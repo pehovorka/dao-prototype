@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { NavLink } from "./NavLink";
 
 interface Props {}
 export const Navbar = (props: Props) => {
@@ -6,7 +8,9 @@ export const Navbar = (props: Props) => {
     <nav>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">Homeowners DAO</a>
+          <Link href="/" className="btn btn-ghost normal-case text-xl">
+            Homeowners DAO
+          </Link>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
@@ -17,7 +21,7 @@ export const Navbar = (props: Props) => {
               <a>Bulletin</a>
             </li>
             <li>
-              <a>Proposals</a>
+              <NavLink href="/proposals">Proposals</NavLink>
             </li>
           </ul>
         </div>
