@@ -9,5 +9,8 @@
   "workspaces": [
     "contracts",
     "web"
-  ]
+  ],
+  "scripts": {
+    "build": "yarn workspace contracts run hardhat compile && yarn workspace web run build"
+  }
 }
