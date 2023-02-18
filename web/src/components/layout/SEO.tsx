@@ -4,9 +4,12 @@ interface SEOProps {
   title: string;
 }
 export const SEO = ({ title }: SEOProps) => {
+  const titleWithSuffix = title
+    ? `${title} | Homeowners DAO`
+    : "Homeowners DAO";
   return (
     <Head>
-      <title>{title} | Homeowners DAO</title>
+      <title>{titleWithSuffix}</title>
     </Head>
   );
 };
