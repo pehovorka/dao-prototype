@@ -28,7 +28,7 @@ export const ProposalsList = ({}: ProposalsListProps) => {
     { refresh: "never" }
   );
 
-  const proposals = logs?.value?.map((log) => ({
+  const proposals = logs?.value?.reverse().map((log) => ({
     data: log.data as ProposalCreatedEventObject,
     blockNumber: log.blockNumber,
     transactionIndex: log.transactionIndex,
