@@ -1,0 +1,22 @@
+
+{
+  "site.name" : "SVJ DAO",
+  "nav.homeowners" : "Vlastníci",
+  "nav.bulletin" : "Nástěnka",
+  "nav.proposals" : "Návrhy",
+  "proposals.title" : "Návrhy",
+  "proposals.list.title" : "Seznam návrhů",
+  "proposal.title" : "Návrhy",
+  "proposal.state.review" : "Posouzení",
+  "proposal.state.active" : "Aktivní",
+  "proposal.state.succeeded" : "Úspěšný",
+  "proposal.state.defeated" : "Neúspěšný",
+  "proposal.state.queued" : "V řadě",
+  "proposal.state.canceled" : "Zrušený",
+  "proposal.state.executed" : "Vykonaný",
+  "proposal.proposedBy" : "Navrhl/a {name}",
+  "proposal.notFound" : "Návrh nenalezen!",
+  "homepage.hero.title" : "Revoluční řešení pro společenství vlastníků",
+  "homepage.hero.subtitle" : "Rozhodujte decentralizovaně o dění ve vašem SVJ. Naše platforma umožňuje vlastníkům domů spolupracovat a rozhodovat se ve společných projektech a vylepšeních. Náš transparentní model řízení usnadňuje kooperaci se sousedy, a vy tak máte čas na věci, které jsou doopravdy důležité.",
+  "homepage.hero.cta" : "Začít"
+}

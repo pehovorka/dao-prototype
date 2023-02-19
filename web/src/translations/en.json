@@ -1,0 +1,22 @@
+
+{
+  "site.name" : "Homeowners DAO",
+  "nav.homeowners" : "Homeowners",
+  "nav.bulletin" : "Bulletin",
+  "nav.proposals" : "Proposals",
+  "proposals.title" : "Proposals",
+  "proposals.list.title" : "List of proposals",
+  "proposal.title" : "Proposal",
+  "proposal.state.review" : "Review",
+  "proposal.state.active" : "Active",
+  "proposal.state.succeeded" : "Succeeded",
+  "proposal.state.defeated" : "Defeated",
+  "proposal.state.queued" : "Queued",
+  "proposal.state.canceled" : "Canceled",
+  "proposal.state.executed" : "Executed",
+  "proposal.proposedBy" : "Proposed by {name}",
+  "proposal.notFound" : "Proposal couldn't be found!",
+  "homepage.hero.title" : "Revolutionize Your Homeowners Association with Homeowners DAO",
+  "homepage.hero.subtitle" : "Join Homeowners DAO, the future of homeowners associations. Our decentralized platform empowers homeowners to collaborate, make decisions and take action on community projects and improvements. Our transparent governance model makes it easy to connect and make an impact on the place you call home.",
+  "homepage.hero.cta" : "Get started"
+}

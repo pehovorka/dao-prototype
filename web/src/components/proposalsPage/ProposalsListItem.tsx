@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FormattedDate, FormattedMessage, FormattedTime } from "react-intl";
 import { useBlock } from "@/hooks/useBlock";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 
@@ -35,10 +36,16 @@ export const ProposalsListItem = ({
           <div className="min-w-0">
             <h2 className="card-title mt-0">{name}</h2>
             <p className="mb-0 overflow-ellipsis overflow-hidden">
-              Proposed by {proposer} | {date}
+              <FormattedMessage
+                id="proposal.proposedBy"
+                values={{ name: proposer }}
+              />{" "}
+              | <FormattedDate value={date} /> <FormattedTime value={date} />
             </p>
           </div>
-          <div className="flex items-center">Voting in progress...</div>
+          <div className="flex items-center">
+            <FormattedMessage id="proposal.state.active" />
+          </div>
         </div>
       </div>
     </Link>

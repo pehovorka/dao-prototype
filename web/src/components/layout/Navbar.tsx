@@ -1,27 +1,45 @@
 import Image from "next/image";
 import Link from "next/link";
-import { NavLink } from "./NavLink";
+import { useRouter } from "next/router";
 
-interface Props {}
-export const Navbar = (props: Props) => {
+import { NavLink } from "./NavLink";
+import { Languages } from "@/hooks/useLang";
+import { FormattedMessage } from "react-intl";
+
+export const Navbar = () => {
+  const router = useRouter();
+  const { locale, pathname, asPath, query } = router;
+
+  const handleLanguageChange = () => {
+    const newLocale = locale === Languages.EN ? Languages.CS : Languages.EN;
+    router.push({ pathname, query }, asPath, { locale: newLocale });
+  };
+
   return (
     <nav>
       <div className="navbar bg-base-100">
         <div className="flex-1">
           <Link href="/" className="btn btn-ghost normal-case text-xl">
-            Homeowners DAO
+            <FormattedMessage id="site.name" />
           </Link>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Homeowners</a>
+              <a>
+                <FormattedMessage id="nav.homeowners" />
+              </a>
             </li>
             <li>
-              <a>Bulletin</a>
+              <a>
+                {" "}
+                <FormattedMessage id="nav.bulletin" />
+              </a>
             </li>
             <li>
-              <NavLink href="/proposals">Proposals</NavLink>
+              <NavLink href="/proposals">
+                <FormattedMessage id="nav.proposals" />
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -41,16 +59,9 @@ export const Navbar = (props: Props) => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
+              <a onClick={handleLanguageChange}>
+                {locale === Languages.EN ? "Česky" : "English"}
               </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
             </li>
           </ul>
         </div>

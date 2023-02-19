@@ -1,7 +1,10 @@
-import { Layout } from "@/components/layout/Layout";
-import "@/styles/globals.css";
+import { useLang } from "@/hooks/useLang";
+import { IntlProvider } from "react-intl";
 import { type Config, DAppProvider, Goerli } from "@usedapp/core";
 import type { AppProps } from "next/app";
+import "@/styles/globals.css";
+
+import { Layout } from "@/components/layout/Layout";
 
 export const config: Config = {
   readOnlyChainId: Goerli.chainId,
@@ -11,11 +14,15 @@ export const config: Config = {
 };
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [locale, messages] = useLang();
+
   return (
     <DAppProvider config={config}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <IntlProvider locale={locale} messages={messages}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </IntlProvider>
     </DAppProvider>
   );
 }
