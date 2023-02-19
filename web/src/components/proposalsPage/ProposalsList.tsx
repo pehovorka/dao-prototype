@@ -1,39 +1,8 @@
-import { useLogs } from "@usedapp/core";
-import { Contract } from "ethers";
-
 import { ProposalsListItem } from "./ProposalsListItem";
-import governorContract from "contracts/artifacts/contracts/Governor.sol/HomeOwnersGovernance.json";
-import {
-  HomeOwnersGovernance,
-  ProposalCreatedEventObject,
-} from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
+import { useProposals } from "@/hooks/useProposals";
 
-const governorContractAddress =
-  process.env.NEXT_PUBLIC_GOVERNOR_CONTRACT_ADDRESS || "";
-
-const contract = new Contract(
-  governorContractAddress,
-  governorContract.abi
-) as HomeOwnersGovernance;
-
-interface ProposalsListProps {}
-
-export const ProposalsList = ({}: ProposalsListProps) => {
-  const logs = useLogs(
-    {
-      contract,
-      event: "ProposalCreated",
-      args: [],
-    },
-    { refresh: "never" }
-  );
-
-  const proposals = logs?.value?.reverse().map((log) => ({
-    data: log.data as ProposalCreatedEventObject,
-    blockNumber: log.blockNumber,
-    transactionIndex: log.transactionIndex,
-  }));
-  const error = logs?.error;
+export const ProposalsList = () => {
+  const { proposals, error } = useProposals();
 
   return (
     <>
@@ -67,6 +36,7 @@ export const ProposalsList = ({}: ProposalsListProps) => {
             proposer={proposal.data.proposer}
             blockNumber={proposal.blockNumber}
             key={proposal.transactionIndex}
+            id={proposal.data.proposalId}
           />
         ))
       ) : (

@@ -13,7 +13,7 @@ export const config: Config = {
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <DAppProvider config={config}>
-      <Layout title="lol">
+      <Layout>
         <Component {...pageProps} />
       </Layout>
     </DAppProvider>

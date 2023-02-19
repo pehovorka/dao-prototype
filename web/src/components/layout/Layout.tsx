@@ -1,10 +1,10 @@
+import type { ReactNode } from "react";
 import { Navbar } from "./Navbar";
 
 interface LayoutProps {
-  children: React.ReactNode;
-  title: string;
+  children: ReactNode;
 }
-export const Layout = ({ children, title }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Navbar />
