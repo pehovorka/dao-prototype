@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { FormattedDate, FormattedMessage, FormattedTime } from "react-intl";
+import { useCall } from "@usedapp/core";
 import { useBlock } from "@/hooks/useBlock";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
+import { govenorContract } from "@/utils/governorContract";
+import { ProposalState } from "@/consts/ProposalState";
 
 interface ProposalsListItemProps {
   name: string;
@@ -19,6 +22,14 @@ const getDate = (timestamp: number | undefined) => {
   });
 };
 
+type ProposalStateIntlId = `proposal.state.${(typeof ProposalState)[number]}`;
+const getProposalStateIntlId = (
+  state: number | undefined
+): ProposalStateIntlId | undefined => {
+  if (state === undefined) return;
+  return `proposal.state.${ProposalState[state]}`;
+};
+
 export const ProposalsListItem = ({
   name,
   proposer,
@@ -26,7 +37,13 @@ export const ProposalsListItem = ({
   id,
 }: ProposalsListItemProps) => {
   const block = useBlock(blockNumber);
+  const stateResult = useCall({
+    contract: govenorContract,
+    method: "state",
+    args: [id],
+  });
 
+  const proposalState = getProposalStateIntlId(stateResult?.value?.[0]);
   const date = getDate(block?.timestamp);
 
   return (
@@ -44,7 +61,7 @@ export const ProposalsListItem = ({
             </p>
           </div>
           <div className="flex items-center">
-            <FormattedMessage id="proposal.state.active" />
+            {proposalState && <FormattedMessage id={proposalState} />}
           </div>
         </div>
       </div>
