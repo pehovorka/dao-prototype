@@ -56,12 +56,19 @@ export const ProposalsListItem = ({
               <FormattedMessage
                 id="proposal.proposedBy"
                 values={{ name: proposer }}
-              />{" "}
-              | <FormattedDate value={date} /> <FormattedTime value={date} />
+              />
+              {" | "}
+              {date ? (
+                <>
+                  <FormattedDate value={date} /> <FormattedTime value={date} />
+                </>
+              ) : (
+                "..."
+              )}
             </p>
           </div>
           <div className="flex items-center">
-            {proposalState && <FormattedMessage id={proposalState} />}
+            {proposalState ? <FormattedMessage id={proposalState} /> : "..."}
           </div>
         </div>
       </div>
