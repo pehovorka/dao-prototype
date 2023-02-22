@@ -1,6 +1,7 @@
 
 {
   "site.name" : "Homeowners DAO",
+  "nav.home" : "Home",
   "nav.homeowners" : "Homeowners",
   "nav.bulletin" : "Bulletin",
   "nav.proposals" : "Proposals",

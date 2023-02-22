@@ -12,7 +12,7 @@ const Icons = {
   [Step.VotingEnd]: "🏁",
   [Step.Queue]: "⏳",
   [Step.Execute]: "🚀",
-};
+} as const;
 
 interface TimelineStepProps {
   step: Step;

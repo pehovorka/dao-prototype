@@ -7,8 +7,9 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Navbar />
-      <main className="container mx-auto px-4 py-8">{children}</main>
+      <Navbar>
+        <main className="container mx-auto px-4 py-8">{children}</main>
+      </Navbar>
     </>
   );
 };

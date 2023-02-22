@@ -9,9 +9,8 @@ interface NavLinkProps {
 export const NavLink = ({ href, children }: NavLinkProps) => {
   const { pathname } = useRouter();
 
-  const className: ComponentProps<"a">["className"] = pathname.startsWith(href)
-    ? "font-bold"
-    : undefined;
+  const className: ComponentProps<"a">["className"] =
+    pathname.substring(0, 5) === href.substring(0, 5) ? "font-bold" : undefined;
 
   return (
     <Link className={className} href={href}>
