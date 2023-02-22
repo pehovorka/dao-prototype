@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 import { BigNumber } from "ethers";
-import { useIntl } from "react-intl";
+import { useIntl, FormattedMessage } from "react-intl";
 
 import { Alert } from "@/components/ui/Alert";
 import { Title } from "@/components/ui/Title";
@@ -37,22 +38,37 @@ export default function PropsalDetailPage() {
   return (
     <>
       <SEO title={title} />
+      <div className="text-sm breadcrumbs">
+        <ul>
+          <li>
+            <Link href="/proposals">
+              <FormattedMessage id="proposals.list.title" />
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <FormattedMessage id="proposal.title" />
+          </li>
+        </ul>
+      </div>
       <Title>{title}</Title>
-      <Timeline
-        proposalId={BigNumber.from(proposalId)}
-        createdAtBlock={proposal.blockNumber}
-        endsAtBlock={proposal.data.endBlock.toNumber()}
-      />
-      <ReactMarkdown
-        className="prose"
-        components={{
-          h1: "h2",
-          h2: "h3",
-          h3: "h4",
-        }}
-      >
-        {body}
-      </ReactMarkdown>
+      <div className="grid sm:grid-cols-twoThirds gap-10">
+        <ReactMarkdown
+          className="prose"
+          components={{
+            h1: "h2",
+            h2: "h3",
+            h3: "h4",
+          }}
+        >
+          {body}
+        </ReactMarkdown>
+        <Timeline
+          proposalId={BigNumber.from(proposalId)}
+          createdAtBlock={proposal.blockNumber}
+          endsAtBlock={proposal.data.endBlock.toNumber()}
+        />
+      </div>
     </>
   );
 }
