@@ -22,9 +22,7 @@ export const TimelineStep = ({ step, date }: TimelineStepProps) => {
   const currentDate = new Date();
   const active = date && currentDate > date;
   const className = active ? "step step-primary" : "step";
-  const textClassName = active
-    ? "text-left text-black"
-    : "text-left text-gray-500";
+  const textClassName = active ? "text-left text-base" : "text-left opacity-60";
 
   return (
     <li data-content={Icons[step]} className={className}>
