@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { FormattedDate, FormattedMessage, FormattedTime } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import { useCall } from "@usedapp/core";
-import { useBlock } from "@/hooks/useBlock";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
+import { BlockDate } from "../common/BlockDate";
 import { govenorContract } from "@/utils/governorContract";
 import { ProposalState } from "@/consts/ProposalState";
 
@@ -12,15 +12,6 @@ interface ProposalsListItemProps {
   blockNumber: number;
   id: ProposalCreatedEventObject["proposalId"];
 }
-
-const getDate = (timestamp: number | undefined) => {
-  if (!timestamp) return "";
-  const date = new Date(timestamp * 1000);
-  return date.toLocaleDateString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-  });
-};
 
 type ProposalStateIntlId = `proposal.state.${(typeof ProposalState)[number]}`;
 const getProposalStateIntlId = (
@@ -36,7 +27,6 @@ export const ProposalsListItem = ({
   blockNumber,
   id,
 }: ProposalsListItemProps) => {
-  const block = useBlock(blockNumber);
   const stateResult = useCall({
     contract: govenorContract,
     method: "state",
@@ -44,7 +34,6 @@ export const ProposalsListItem = ({
   });
 
   const proposalState = getProposalStateIntlId(stateResult?.value?.[0]);
-  const date = getDate(block?.timestamp);
 
   return (
     <Link href={`/proposals/${id}`}>
@@ -58,13 +47,7 @@ export const ProposalsListItem = ({
                 values={{ name: proposer }}
               />
               {" | "}
-              {date ? (
-                <>
-                  <FormattedDate value={date} /> <FormattedTime value={date} />
-                </>
-              ) : (
-                "..."
-              )}
+              <BlockDate blockNumber={blockNumber} />
             </p>
           </div>
           <div className="flex items-center">
