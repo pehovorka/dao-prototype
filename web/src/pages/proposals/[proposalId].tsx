@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
+import { BigNumber } from "ethers";
+import { useIntl } from "react-intl";
 
 import { Alert } from "@/components/ui/Alert";
 import { Title } from "@/components/ui/Title";
 import { useProposals } from "@/hooks/useProposals";
 import { parseProposalDescription } from "@/utils/parseProposalDescription";
-import { SEO } from "@/components/layout/SEO";
-import { useIntl } from "react-intl";
+import { SEO } from "@/components/common/SEO";
+import { Timeline } from "@/components/proposalDetailPage/Timeline";
 
 export default function PropsalDetailPage() {
   const { formatMessage } = useIntl();
@@ -28,14 +30,19 @@ export default function PropsalDetailPage() {
   if (!proposals)
     return <progress className="progress progress-primary mt-5"></progress>;
 
-  const { title, body } = parseProposalDescription(
-    proposals[0].data.description
-  );
+  const proposal = proposals[0];
+
+  const { title, body } = parseProposalDescription(proposal.data.description);
 
   return (
     <>
       <SEO title={title} />
       <Title>{title}</Title>
+      <Timeline
+        proposalId={BigNumber.from(proposalId)}
+        createdAtBlock={proposal.blockNumber}
+        endsAtBlock={proposal.data.endBlock.toNumber()}
+      />
       <ReactMarkdown
         className="prose"
         components={{

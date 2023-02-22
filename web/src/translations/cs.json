@@ -17,6 +17,10 @@
   "proposal.state.expired" : "Expirovaný",
   "proposal.proposedBy" : "Navrhl/a {name}",
   "proposal.notFound" : "Návrh nenalezen!",
+  "proposal.timeline.step.created" : "Vytvoření návrhu",
+  "proposal.timeline.step.votingEnd" : "Konec hlasování",
+  "proposal.timeline.step.queue" : "Čeká na vykonání",
+  "proposal.timeline.step.execute" : "Vykonání návrhu",
   "homepage.hero.title" : "Revoluční řešení pro společenství vlastníků",
   "homepage.hero.subtitle" : "Rozhodujte decentralizovaně o dění ve vašem SVJ. Naše platforma umožňuje vlastníkům jednotek spolupracovat a rozhodovat se ve společných projektech a vylepšeních. Náš transparentní model řízení usnadňuje kooperaci se sousedy, a vy tak máte čas na věci, které jsou doopravdy důležité.",
   "homepage.hero.cta" : "Začít"

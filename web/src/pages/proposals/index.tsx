@@ -1,4 +1,4 @@
-import { SEO } from "@/components/layout/SEO";
+import { SEO } from "@/components/common/SEO";
 import { ProposalsList } from "@/components/proposalsPage/ProposalsList";
 import { Title } from "@/components/ui/Title";
 import { FormattedMessage, useIntl } from "react-intl";

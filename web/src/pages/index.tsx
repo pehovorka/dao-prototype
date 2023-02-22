@@ -1,4 +1,4 @@
-import { SEO } from "@/components/layout/SEO";
+import { SEO } from "@/components/common/SEO";
 import { FormattedMessage } from "react-intl";
 
 export default function Home() {
