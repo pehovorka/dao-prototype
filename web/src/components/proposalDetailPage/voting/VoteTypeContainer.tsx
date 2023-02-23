@@ -1,4 +1,4 @@
-import type { BigNumber } from "ethers";
+import { BigNumber, FixedNumber } from "ethers";
 import { formatEther } from "ethers/lib/utils";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
@@ -13,7 +13,9 @@ export const VoteTypeContainer = ({
   type,
 }: VoteTypeContainerProps) => {
   const percentage = !totalVotes.isZero()
-    ? votes.div(totalVotes).toNumber()
+    ? FixedNumber.from(votes)
+        .divUnsafe(FixedNumber.from(totalVotes))
+        .toUnsafeFloat()
     : 0;
   const totalPower = formatEther(votes);
   const progressClassName = getProgressClassName(type);
@@ -25,7 +27,11 @@ export const VoteTypeContainer = ({
             <FormattedMessage id={`proposal.voting.${type}`} />
           </h3>
           <p className="mb-0 overflow-ellipsis overflow-hidden">
-            <FormattedNumber value={percentage} style="percent" />
+            <FormattedNumber
+              value={percentage}
+              style="percent"
+              maximumFractionDigits={1}
+            />
           </p>
         </div>
         <div className="flex items-center">{totalPower} HOT</div>
@@ -38,5 +44,5 @@ export const VoteTypeContainer = ({
 const getProgressClassName = (type: VoteTypeContainerProps["type"]) => {
   if (type === "for") return "progress progress-success";
   if (type === "against") return "progress progress-error";
-  if (type === "abstain") return "progress progress-warning";
+  if (type === "abstain") return "progress progress-info";
 };
