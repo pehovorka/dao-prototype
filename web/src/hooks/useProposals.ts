@@ -32,7 +32,7 @@ export const useProposals = (proposalId?: string | string[] | undefined) => {
         error,
       };
     } catch (e) {
-      return { proposals: null, error: e };
+      return { proposals: undefined, error: e };
     }
   }
 
