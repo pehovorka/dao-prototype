@@ -1,12 +1,12 @@
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 import { useLogs } from "@usedapp/core";
 import { ethers } from "ethers";
-import { govenorContract } from "@/utils/governorContract";
+import { governorContract } from "@/utils/governorContract";
 
 export const useProposals = (proposalId?: string | string[] | undefined) => {
   const logs = useLogs(
     {
-      contract: govenorContract,
+      contract: governorContract,
       event: "ProposalCreated",
       args: [],
     },

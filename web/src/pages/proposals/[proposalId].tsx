@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
-import { useIntl, FormattedMessage } from "react-intl";
+import { useIntl } from "react-intl";
 
 import { Alert } from "@/components/ui/Alert";
 import { Title } from "@/components/ui/Title";
@@ -10,6 +9,8 @@ import { parseProposalDescription } from "@/utils/parseProposalDescription";
 import { SEO } from "@/components/common/SEO";
 import { Timeline } from "@/components/proposalDetailPage/timeline/Timeline";
 import { VotingContainer } from "@/components/proposalDetailPage/voting/VotingContainer";
+import { Skeleton } from "@/components/ui/Skeleton";
+import { Breadcrumbs, type BreadcrumbsItem } from "@/components/ui/Breadcrumbs";
 
 export default function PropsalDetailPage() {
   const { formatMessage } = useIntl();
@@ -32,31 +33,22 @@ export default function PropsalDetailPage() {
     return (
       <>
         <SEO />
-        <progress className="progress progress-primary mt-5"></progress>
+        <Breadcrumbs items={breadcrumbsItems} />
+        <Skeleton type="TITLE" />
+        <Skeleton type="TEXT" />
       </>
     );
 
-  const proposal = proposals[0];
-  const proposalId = proposal.data.proposalId;
+  const proposal = proposals && proposals[0];
+  const proposalId = proposal?.data.proposalId;
 
-  const { title, body } = parseProposalDescription(proposal.data.description);
+  const { title, body } =
+    (proposal && parseProposalDescription(proposal.data.description)) || {};
 
   return (
     <>
       <SEO title={title} />
-      <div className="text-sm breadcrumbs">
-        <ul>
-          <li>
-            <Link href="/proposals">
-              <FormattedMessage id="proposals.list.title" />
-            </Link>
-          </li>
-          <li>
-            {" "}
-            <FormattedMessage id="proposal.title" />
-          </li>
-        </ul>
-      </div>
+      <Breadcrumbs items={breadcrumbsItems} />
       <Title>{title}</Title>
       <VotingContainer proposalId={proposalId} />
       <div className="grid sm:grid-cols-twoThirds gap-10">
@@ -70,6 +62,7 @@ export default function PropsalDetailPage() {
         >
           {body}
         </ReactMarkdown>
+
         <Timeline
           proposalId={proposalId}
           createdAtBlock={proposal.blockNumber}
@@ -79,3 +72,13 @@ export default function PropsalDetailPage() {
     </>
   );
 }
+
+const breadcrumbsItems: BreadcrumbsItem[] = [
+  {
+    message: "proposals.list.title",
+    href: "/proposals",
+  },
+  {
+    message: "proposal.title",
+  },
+];

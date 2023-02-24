@@ -11,6 +11,7 @@
     "web"
   ],
   "scripts": {
-    "build": "yarn workspace contracts run hardhat compile && yarn workspace web run build"
+    "build": "yarn workspace contracts run hardhat compile && yarn workspace web run build",
+    "start": "yarn workspace web run dev"
   }
 }

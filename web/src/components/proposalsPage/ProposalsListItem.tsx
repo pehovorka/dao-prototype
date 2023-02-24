@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { useCall } from "@usedapp/core";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 import { BlockDate } from "../common/BlockDate";
-import { govenorContract } from "@/utils/governorContract";
+import { governorContract } from "@/utils/governorContract";
 import { ProposalState } from "@/consts/ProposalState";
 
 interface ProposalsListItemProps {
@@ -28,7 +28,7 @@ export const ProposalsListItem = ({
   id,
 }: ProposalsListItemProps) => {
   const stateResult = useCall({
-    contract: govenorContract,
+    contract: governorContract,
     method: "state",
     args: [id],
   });
