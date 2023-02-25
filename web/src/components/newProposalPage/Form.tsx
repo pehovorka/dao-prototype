@@ -32,7 +32,7 @@ export const Form = () => {
     control,
     formState: { errors },
   } = useForm<FormData>();
-  const { account, activateBrowserWallet } = useEthers();
+  const { account, activateBrowserWallet, isLoading } = useEthers();
 
   const onSubmit = handleSubmit((data) => console.log(data));
 
@@ -44,8 +44,12 @@ export const Form = () => {
     } as Options;
   }, []);
 
-  if (!account) {
-    return <NoWalletCard activateBrowserWallet={activateBrowserWallet} />;
+  if (!account && !isLoading) {
+    return (
+      <section>
+        <NoWalletCard activateBrowserWallet={activateBrowserWallet} />
+      </section>
+    );
   }
 
   return (
@@ -59,11 +63,13 @@ export const Form = () => {
           placeholder={formatMessage({
             id: "proposal.new.page.form.title.placeholder",
           })}
-          className="input input-bordered w-full"
+          className={`input input-bordered w-full ${
+            errors.title && "input-error"
+          }`}
         />
 
         <label className="label">
-          <span className="label-text-alt text-error h-10">
+          <span className="label-text-alt text-error h-5">
             {errors.title && (
               <FormattedMessage id="proposal.new.page.form.title.required" />
             )}
@@ -73,7 +79,6 @@ export const Form = () => {
         <label className="label label-text text-lg">
           <FormattedMessage id="proposal.new.page.form.description.title" />
         </label>
-
         <Controller
           render={({ field: { onChange, onBlur, value } }) => (
             <SimpleMDE
