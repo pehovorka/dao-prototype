@@ -1,7 +1,8 @@
 import { SEO } from "@/components/common/SEO";
-import { Form } from "@/components/newProposalPage/Form";
-import { Title } from "@/components/ui/Title";
 import { FormattedMessage, useIntl } from "react-intl";
+
+import { Title } from "@/components/ui/Title";
+import { Form } from "@/components/newProposalPage/Form";
 
 export default function NewProposalPage() {
   const { formatMessage } = useIntl();

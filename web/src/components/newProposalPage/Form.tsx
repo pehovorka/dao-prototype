@@ -2,10 +2,12 @@ import dynamic from "next/dynamic";
 import { useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import "easymde/dist/easymde.min.css";
-import type { Options } from "easymde";
 import { Controller, useForm } from "react-hook-form";
+import { useEthers } from "@usedapp/core";
+import type { Options } from "easymde";
 
 import { Skeleton } from "../ui/Skeleton";
+import { NoWalletCard } from "./NoWalletCard";
 
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
@@ -30,6 +32,8 @@ export const Form = () => {
     control,
     formState: { errors },
   } = useForm<FormData>();
+  const { account, activateBrowserWallet } = useEthers();
+
   const onSubmit = handleSubmit((data) => console.log(data));
 
   const mdEditorOptions = useMemo(() => {
@@ -39,6 +43,10 @@ export const Form = () => {
       toolbarTips: false,
     } as Options;
   }, []);
+
+  if (!account) {
+    return <NoWalletCard activateBrowserWallet={activateBrowserWallet} />;
+  }
 
   return (
     <section>

@@ -45,5 +45,7 @@
   "profile.wallet.switchNetwork" : "Přepnout na Goerli",
   "profile.user.settings.title" : "Uživatelské nastavení",
   "profile.wallet.wrongNetworkModal.title" : "Jste připojeni ke špatné síti!",
-  "profile.wallet.wrongNetworkModal.text" : "V peněžence prosím přepněte na síť Goerli."
+  "profile.wallet.wrongNetworkModal.text" : "V peněžence prosím přepněte na síť Goerli.",
+  "profile.wallet.noWalletCard.title" : "Peněženka není připojena",
+  "profile.wallet.noWalletCard.text" : "Pro vytvoření návrhu musíte připojit peněženku."
 }
