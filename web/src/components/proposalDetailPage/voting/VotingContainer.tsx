@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Alert } from "@/components/ui/Alert";
 import { Title, TitleType } from "@/components/ui/Title";
-import { governorContract } from "@/utils/governorContract";
+import { governorContract } from "@/consts/governorContract";
 import { VoteTypeContainer } from "./VoteTypeContainer";
 
 interface VotingContainerProps {

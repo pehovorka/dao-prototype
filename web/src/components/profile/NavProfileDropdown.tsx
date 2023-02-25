@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEthers } from "@usedapp/core";
+import { shortenAddress, useEthers } from "@usedapp/core";
 import { FormattedMessage } from "react-intl";
 import Blockies from "react-blockies";
 
@@ -23,7 +23,11 @@ export const NavProfileDropdown = () => {
         tabIndex={0}
         className="btn btn-ghost gap-3 px-2 flex-nowrap normal-case"
       >
-        {account ?? <FormattedMessage id="profile.user.anonymous" />}
+        {account ? (
+          shortenAddress(account)
+        ) : (
+          <FormattedMessage id="profile.user.anonymous" />
+        )}
         <div className="w-10 h-10 mask mask-squircle">
           {account ? (
             <Blockies seed={account} size={10} />

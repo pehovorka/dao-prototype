@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { FormattedMessage } from "react-intl";
-import { useCall } from "@usedapp/core";
+import { shortenAddress, useCall } from "@usedapp/core";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 import { BlockDate } from "../common/BlockDate";
-import { governorContract } from "@/utils/governorContract";
+import { governorContract } from "@/consts/governorContract";
 import { ProposalState } from "@/consts/ProposalState";
 
 interface ProposalsListItemProps {
@@ -44,7 +44,7 @@ export const ProposalsListItem = ({
             <p className="mb-0 overflow-ellipsis overflow-hidden">
               <FormattedMessage
                 id="proposal.proposedBy"
-                values={{ name: proposer }}
+                values={{ name: shortenAddress(proposer) }}
               />
               {" | "}
               <BlockDate blockNumber={blockNumber} />
