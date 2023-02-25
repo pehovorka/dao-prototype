@@ -31,6 +31,7 @@
   "proposal.new.page.title" : "Create a new proposal",
   "proposal.new.page.form.title.title" : "Title",
   "proposal.new.page.form.title.placeholder" : "The name of your proposal",
+  "proposal.new.page.form.title.required" : "Proposal title is required!",
   "proposal.new.page.form.description.title" : "Description",
   "proposal.new.page.form.description.placeholder" : "Describe your proposal. You can use Markdown formatting.",
   "proposal.new.page.form.button.cancel" : "Cancel",

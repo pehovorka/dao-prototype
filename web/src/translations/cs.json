@@ -31,6 +31,7 @@
   "proposal.new.page.title" : "Vytvoření návrhu",
   "proposal.new.page.form.title.title" : "Název",
   "proposal.new.page.form.title.placeholder" : "Název vašeho návrhu",
+  "proposal.new.page.form.title.required" : "Název návrhu je povinný!",
   "proposal.new.page.form.description.title" : "Popis",
   "proposal.new.page.form.description.placeholder" : "Popište váš návrh. Můžete použít Markdown formátování.",
   "proposal.new.page.form.button.cancel" : "Zrušit",
