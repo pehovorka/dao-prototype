@@ -8,7 +8,7 @@ interface NoWalletCardProps {
 export const NoWalletCard = ({ activateBrowserWallet }: NoWalletCardProps) => {
   return (
     <div className="card overflow-hidden md:card-side bg-base-100 shadow-xl">
-      <figure className="w-full max-h-52 md:w-2/5 md:max-h-full">
+      <figure className="w-full max-h-52 md:w-2/5 md:max-h-80">
         <Image
           src="/images/crypto-wallet.jpg"
           alt="Album"
@@ -16,8 +16,8 @@ export const NoWalletCard = ({ activateBrowserWallet }: NoWalletCardProps) => {
           height={500}
         />
       </figure>
-      <div className="card-body lg:p-12">
-        <h2 className="card-title lg:mb-12">
+      <div className="card-body lg:p-14">
+        <h2 className="card-title md:text-3xl">
           <FormattedMessage id="profile.wallet.noWalletCard.title" />
         </h2>
         <p>
