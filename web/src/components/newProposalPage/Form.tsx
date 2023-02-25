@@ -3,11 +3,13 @@ import { useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import "easymde/dist/easymde.min.css";
 import { Controller, useForm } from "react-hook-form";
-import { useEthers } from "@usedapp/core";
+import { useEthers, useContractFunction } from "@usedapp/core";
 import type { Options } from "easymde";
 
 import { Skeleton } from "../ui/Skeleton";
 import { NoWalletCard } from "./NoWalletCard";
+import { governorContract } from "@/consts/governorContract";
+import { tokenContract } from "@/consts/tokenContract";
 
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
@@ -33,8 +35,21 @@ export const Form = () => {
     formState: { errors },
   } = useForm<FormData>();
   const { account, activateBrowserWallet, isLoading } = useEthers();
+  const { send, state, events } = useContractFunction(
+    governorContract,
+    "propose"
+  );
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    send(
+      [tokenContract.address],
+      [0],
+      ["0x"],
+      `# ${data.title}\n${data.description}`
+    );
+    console.log(state, events);
+  });
 
   const mdEditorOptions = useMemo(() => {
     return {
