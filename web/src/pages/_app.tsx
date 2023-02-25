@@ -12,7 +12,7 @@ export const config: Config = {
   readOnlyUrls: {
     [Goerli.chainId]: `https://eth-goerli.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`,
   },
-} as const;
+};
 
 export default function App({ Component, pageProps }: AppProps) {
   const [locale, messages] = useLang();

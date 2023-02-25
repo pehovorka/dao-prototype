@@ -22,6 +22,7 @@ export const WrongNetworkModal = () => {
         id="my-modal"
         className="modal-toggle"
         checked={show}
+        readOnly
       />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
