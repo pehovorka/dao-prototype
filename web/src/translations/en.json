@@ -26,7 +26,13 @@
   "proposal.voting.for" : "For",
   "proposal.voting.against" : "Against",
   "proposal.voting.abstain" : "Abstain",
+  "proposal.new.button.title" : "Create new",
+  "proposal.new.page.title" : "Create a new proposal",
   "homepage.hero.title" : "Revolutionize Your Homeowners Association with Homeowners DAO",
   "homepage.hero.subtitle" : "Join Homeowners DAO, the future of homeowners associations. Our decentralized platform empowers homeowners to collaborate, make decisions and take action on community projects and improvements. Our transparent governance model makes it easy to connect and make an impact on the place you call home.",
-  "homepage.hero.cta" : "Get started"
+  "homepage.hero.cta" : "Get started",
+  "profile.user.anonymous" : "Anonymous",
+  "profile.wallet.connect" : "Connect wallet",
+  "profile.wallet.disconnect" : "Disconnect wallet",
+  "profile.user.settings.title" : "User settings"
 }

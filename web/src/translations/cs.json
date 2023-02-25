@@ -26,7 +26,13 @@
   "proposal.voting.for" : "Pro",
   "proposal.voting.against" : "Proti",
   "proposal.voting.abstain" : "Zdržel se",
+  "proposal.new.button.title" : "Vytvořit nový",
+  "proposal.new.page.title" : "Vytvoření návrhu",
   "homepage.hero.title" : "Revoluční řešení pro společenství vlastníků",
   "homepage.hero.subtitle" : "Rozhodujte decentralizovaně o dění ve vašem SVJ. Naše platforma umožňuje vlastníkům jednotek spolupracovat a rozhodovat se ve společných projektech a vylepšeních. Náš transparentní model řízení usnadňuje kooperaci se sousedy, a vy tak máte čas na věci, které jsou doopravdy důležité.",
-  "homepage.hero.cta" : "Začít"
+  "homepage.hero.cta" : "Začít",
+  "profile.user.anonymous" : "Anonymní",
+  "profile.wallet.connect" : "Připojit peněženku",
+  "profile.wallet.disconnect" : "Odpojit peněženku",
+  "profile.user.settings.title" : "Uživatelské nastavení"
 }
