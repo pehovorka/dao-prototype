@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEthers } from "@usedapp/core";
 import { FormattedMessage } from "react-intl";
+import Blockies from "react-blockies";
 
 import { Languages } from "@/hooks/useLang";
 
@@ -23,13 +24,17 @@ export const NavProfileDropdown = () => {
         className="btn btn-ghost gap-3 px-2 flex-nowrap normal-case"
       >
         {account ?? <FormattedMessage id="profile.user.anonymous" />}
-        <div className="w-10 rounded-full">
-          <Image
-            src="/images/user-placeholder.png"
-            width={40}
-            height={40}
-            alt=""
-          />
+        <div className="w-10 h-10 mask mask-squircle">
+          {account ? (
+            <Blockies seed={account} size={10} />
+          ) : (
+            <Image
+              src="/images/user-placeholder.png"
+              width={40}
+              height={40}
+              alt=""
+            />
+          )}
         </div>
       </label>
       <div
