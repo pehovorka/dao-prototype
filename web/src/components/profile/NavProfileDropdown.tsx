@@ -1,21 +1,10 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { shortenAddress, useEthers } from "@usedapp/core";
 import { FormattedMessage } from "react-intl";
 import Blockies from "react-blockies";
 
-import { Languages } from "@/hooks/useLang";
-
-type LanguageKey = (typeof Languages)[keyof typeof Languages];
-
 export const NavProfileDropdown = () => {
-  const router = useRouter();
-  const { locale, pathname, asPath, query } = router;
   const { account, deactivate, activateBrowserWallet } = useEthers();
-
-  const handleLanguageSelect = (value: LanguageKey) => {
-    router.push({ pathname, query }, asPath, { locale: value });
-  };
 
   return (
     <div className="dropdown dropdown-end">
@@ -58,14 +47,6 @@ export const NavProfileDropdown = () => {
             )}
           </li>
         </ul>
-        <select
-          className="select select-md"
-          value={locale}
-          onChange={(e) => handleLanguageSelect(e.target.value as LanguageKey)}
-        >
-          <option value={Languages.CS}>CZ</option>
-          <option value={Languages.EN}>EN</option>
-        </select>
       </div>
     </div>
   );

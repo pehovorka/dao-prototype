@@ -104,8 +104,11 @@ export const Form = () => {
       status: false,
       spellChecker: false,
       toolbarTips: false,
+      placeholder: formatMessage({
+        id: "proposal.new.page.form.description.placeholder",
+      }),
     } as Options;
-  }, []);
+  }, [formatMessage]);
 
   if (!account) {
     return (
@@ -149,9 +152,6 @@ export const Form = () => {
                 value={value}
                 onChange={onChange}
                 onBlur={onBlur}
-                placeholder={formatMessage({
-                  id: "proposal.new.page.form.description.placeholder",
-                })}
                 options={mdEditorOptions}
                 className="prose max-w-full"
               />
