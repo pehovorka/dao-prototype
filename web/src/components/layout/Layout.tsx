@@ -11,7 +11,9 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Navbar>
-        <main className="container mx-auto px-4 py-8">{children}</main>
+        <main className="container mx-auto px-4 py-8 flex-grow">
+          {children}
+        </main>
         <Footer />
       </Navbar>
       <Toaster
