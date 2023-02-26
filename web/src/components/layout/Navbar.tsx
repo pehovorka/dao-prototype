@@ -31,7 +31,7 @@ export const Navbar = ({ children }: NavbarProps) => {
   return (
     <nav className="drawer">
       <input id="side-menu" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col h-screen justify-between">
+      <div className="drawer-content flex flex-col h-full justify-between">
         <div className="navbar">
           <div className="navbar-start">
             <div className="flex-none lg:hidden">
