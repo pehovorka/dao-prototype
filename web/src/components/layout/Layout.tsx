@@ -17,9 +17,10 @@ export const Layout = ({ children }: LayoutProps) => {
         <Footer />
       </Navbar>
       <Toaster
-        position="top-right"
+        position="bottom-center"
         toastOptions={{
-          style: { padding: "1rem" },
+          style: { padding: "1rem", maxWidth: "30rem", marginBottom: "2rem" },
+          duration: 7500,
         }}
       />
     </>
