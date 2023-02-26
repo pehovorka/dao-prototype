@@ -24,6 +24,7 @@
     "react-blockies": "^1.4.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.2",
+    "react-hot-toast": "^2.4.0",
     "react-intl": "^6.2.8",
     "react-markdown": "^8.0.5",
     "react-simplemde-editor": "^5.2.0",
