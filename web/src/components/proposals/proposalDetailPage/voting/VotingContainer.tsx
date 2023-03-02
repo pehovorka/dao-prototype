@@ -6,11 +6,15 @@ import { FormattedMessage } from "react-intl";
 import { Alert, Title, TitleType } from "@/components/ui";
 import { governorContract } from "@/consts/governorContract";
 import { VoteTypeContainer } from "./VoteTypeContainer";
+import { VoteModalButton } from "../../voteModal";
+import { useProposalState } from "@/hooks/useProposalState";
 
 interface VotingContainerProps {
   proposalId: BigNumber;
 }
 export const VotingContainer = ({ proposalId }: VotingContainerProps) => {
+  const { state: proposalState, error: proposalStateError } =
+    useProposalState(proposalId);
   const { value, error } =
     useCall({
       contract: governorContract,
@@ -37,9 +41,14 @@ export const VotingContainer = ({ proposalId }: VotingContainerProps) => {
 
   return (
     <section className="pb-10">
-      <Title type={TitleType.H2}>
-        <FormattedMessage id="proposal.voting.title" />
-      </Title>
+      <div className="flex justify-between items-center mb-6">
+        <Title type={TitleType.H2}>
+          <FormattedMessage id="proposal.voting.title" />
+        </Title>
+        {proposalState === "active" && (
+          <VoteModalButton proposalId={proposalId} />
+        )}
+      </div>
       <div className="grid grid-cols-1 md:gap-5 md:grid-cols-3">
         <VoteTypeContainer
           totalVotes={totalVotes}

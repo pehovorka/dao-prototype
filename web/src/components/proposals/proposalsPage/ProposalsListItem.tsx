@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { FormattedMessage } from "react-intl";
-import { shortenAddress, useCall } from "@usedapp/core";
+import { shortenAddress } from "@usedapp/core";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 
 import { BlockDate } from "@/components/common";
-import { ProposalState, governorContract } from "@/consts";
+import { useProposalState } from "@/hooks";
 
 interface ProposalsListItemProps {
   name: string;
@@ -13,27 +13,13 @@ interface ProposalsListItemProps {
   id: ProposalCreatedEventObject["proposalId"];
 }
 
-type ProposalStateIntlId = `proposal.state.${(typeof ProposalState)[number]}`;
-const getProposalStateIntlId = (
-  state: number | undefined
-): ProposalStateIntlId | undefined => {
-  if (state === undefined) return;
-  return `proposal.state.${ProposalState[state]}`;
-};
-
 export const ProposalsListItem = ({
   name,
   proposer,
   blockNumber,
   id,
 }: ProposalsListItemProps) => {
-  const stateResult = useCall({
-    contract: governorContract,
-    method: "state",
-    args: [id],
-  });
-
-  const proposalState = getProposalStateIntlId(stateResult?.value?.[0]);
+  const { state, error } = useProposalState(id);
 
   return (
     <Link href={`/proposals/${id}`}>
@@ -51,7 +37,11 @@ export const ProposalsListItem = ({
             </p>
           </div>
           <div className="flex items-center">
-            {proposalState ? <FormattedMessage id={proposalState} /> : "..."}
+            {state ? (
+              <FormattedMessage id={`proposal.state.${state}`} />
+            ) : (
+              "..."
+            )}
           </div>
         </div>
       </div>
