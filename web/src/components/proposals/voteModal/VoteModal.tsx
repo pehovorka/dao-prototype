@@ -13,6 +13,7 @@ export const VoteModal = ({ open, setOpen }: VoteModalProps) => {
         id="my-modal"
         className="modal-toggle"
         checked={open}
+        readOnly
       />
       <div className="modal">
         <VoteModalContent setOpen={setOpen} />
