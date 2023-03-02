@@ -1,5 +1,5 @@
+import { useProposals } from "@/hooks";
 import { ProposalsListItem } from "./ProposalsListItem";
-import { useProposals } from "@/hooks/useProposals";
 
 export const ProposalsList = () => {
   const { proposals, error } = useProposals();

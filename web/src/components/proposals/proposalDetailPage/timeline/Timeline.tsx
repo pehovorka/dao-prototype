@@ -1,7 +1,7 @@
 import { BigNumber } from "ethers";
-import { useBlock } from "@/hooks/useBlock";
+import { useBlock } from "@/hooks";
 import { Block } from "@ethersproject/abstract-provider";
-import { Step, TimelineStep } from "./TimelineStep";
+import { Step, TimelineStep } from ".";
 
 const BLOCK_SECONDS = 12;
 

@@ -2,9 +2,9 @@ import Link from "next/link";
 import { FormattedMessage } from "react-intl";
 import { shortenAddress, useCall } from "@usedapp/core";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
-import { BlockDate } from "../common/BlockDate";
-import { governorContract } from "@/consts/governorContract";
-import { ProposalState } from "@/consts/ProposalState";
+
+import { BlockDate } from "@/components/common";
+import { ProposalState, governorContract } from "@/consts";
 
 interface ProposalsListItemProps {
   name: string;

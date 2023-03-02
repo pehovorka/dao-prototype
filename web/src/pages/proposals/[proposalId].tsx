@@ -2,15 +2,19 @@ import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 import { useIntl } from "react-intl";
 
-import { Alert } from "@/components/ui/Alert";
-import { Title } from "@/components/ui/Title";
-import { useProposals } from "@/hooks/useProposals";
-import { parseProposalDescription } from "@/utils/parseProposalDescription";
-import { SEO } from "@/components/common/SEO";
-import { Timeline } from "@/components/proposalDetailPage/timeline/Timeline";
-import { VotingContainer } from "@/components/proposalDetailPage/voting/VotingContainer";
-import { Skeleton } from "@/components/ui/Skeleton";
-import { Breadcrumbs, type BreadcrumbsItem } from "@/components/ui/Breadcrumbs";
+import {
+  Alert,
+  Title,
+  Skeleton,
+  Breadcrumbs,
+  type BreadcrumbsItem,
+} from "@/components/ui";
+
+import { useProposals } from "@/hooks";
+import { SEO } from "@/components/common";
+import { parseProposalDescription } from "@/utils";
+import { Timeline } from "@/components/proposals/proposalDetailPage/timeline";
+import { VotingContainer } from "@/components/proposals/proposalDetailPage/voting";
 
 export default function PropsalDetailPage() {
   const { formatMessage } = useIntl();

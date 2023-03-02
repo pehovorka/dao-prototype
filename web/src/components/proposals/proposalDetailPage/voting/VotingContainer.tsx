@@ -3,8 +3,7 @@ import { BigNumber } from "ethers";
 import { useCall } from "@usedapp/core";
 import { FormattedMessage } from "react-intl";
 
-import { Alert } from "@/components/ui/Alert";
-import { Title, TitleType } from "@/components/ui/Title";
+import { Alert, Title, TitleType } from "@/components/ui";
 import { governorContract } from "@/consts/governorContract";
 import { VoteTypeContainer } from "./VoteTypeContainer";
 

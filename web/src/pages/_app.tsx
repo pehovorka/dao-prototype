@@ -1,11 +1,11 @@
-import { useLang } from "@/hooks/useLang";
+import type { AppProps } from "next/app";
 import { IntlProvider } from "react-intl";
 import { type Config, DAppProvider, Goerli } from "@usedapp/core";
-import type { AppProps } from "next/app";
 import "@/styles/globals.css";
 
-import { Layout } from "@/components/layout/Layout";
-import { WrongNetworkModal } from "@/components/profile/WrongNetworkModal";
+import { useLang } from "@/hooks";
+import { Layout } from "@/components/layout";
+import { WrongNetworkModal } from "@/components/profile";
 
 export const config: Config = {
   readOnlyChainId: Goerli.chainId,

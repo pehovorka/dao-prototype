@@ -2,8 +2,8 @@ import { SEO } from "@/components/common/SEO";
 import Link from "next/link";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { ProposalsList } from "@/components/proposalsPage/ProposalsList";
-import { Title } from "@/components/ui/Title";
+import { ProposalsList } from "@/components/proposals/proposalsPage";
+import { Title } from "@/components/ui";
 
 export default function ProposalsPage() {
   const { formatMessage } = useIntl();

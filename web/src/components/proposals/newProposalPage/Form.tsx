@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useEthers } from "@usedapp/core";
 
-import { NoWalletCard } from "./NoWalletCard";
-import { MarkdownEditor } from "./MarkdownEditor";
+import {
+  NoWalletCard,
+  FormButtons,
+  MarkdownEditor,
+  ProposalTitleInput,
+} from "@/components/proposals/newProposalPage";
+
 import { tokenContract } from "@/consts/tokenContract";
-import { usePropose } from "@/hooks/usePropose";
-import { FormButtons } from "./FormButtons";
-import { ProposalTitleInput } from "./ProposalTitleInput";
+import { usePropose } from "@/hooks";
 
 export interface FormData {
   title: string;

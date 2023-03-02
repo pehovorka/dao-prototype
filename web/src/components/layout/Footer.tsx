@@ -1,4 +1,4 @@
-import { Languages } from "@/hooks/useLang";
+import { Languages } from "@/hooks";
 import { useRouter } from "next/router";
 
 type LanguageKey = (typeof Languages)[keyof typeof Languages];

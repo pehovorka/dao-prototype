@@ -1,4 +1,4 @@
-import { useBlock } from "@/hooks/useBlock";
+import { useBlock } from "@/hooks";
 import { FormattedDate, FormattedTime } from "react-intl";
 
 interface BlockDateProps {

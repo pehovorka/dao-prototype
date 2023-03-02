@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import "easymde/dist/easymde.min.css";
 import type { Options } from "easymde";
 
-import { Skeleton } from "../ui/Skeleton";
+import { Skeleton } from "@/components/ui";
 import type { FormData } from "./Form";
 
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
