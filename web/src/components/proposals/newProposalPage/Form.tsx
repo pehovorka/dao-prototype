@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useEthers } from "@usedapp/core";
 
 import {
-  NoWalletCard,
   FormButtons,
   MarkdownEditor,
   ProposalTitleInput,
@@ -10,6 +9,7 @@ import {
 
 import { tokenContract } from "@/consts/tokenContract";
 import { usePropose } from "@/hooks";
+import { NoWalletCard } from "@/components/proposals/common";
 
 export interface FormData {
   title: string;
@@ -39,7 +39,10 @@ export const Form = () => {
   if (!account) {
     return (
       <section>
-        <NoWalletCard activateBrowserWallet={activateBrowserWallet} />
+        <NoWalletCard
+          type="create"
+          activateBrowserWallet={activateBrowserWallet}
+        />
       </section>
     );
   }
