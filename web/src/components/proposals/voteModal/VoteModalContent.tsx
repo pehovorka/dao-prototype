@@ -1,17 +1,47 @@
 import { useEthers } from "@usedapp/core";
-import type { Dispatch, SetStateAction } from "react";
+import { BigNumber } from "ethers";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { FormattedMessage } from "react-intl";
+
+import { useVote, voteToSupportMap, type Vote } from "@/hooks";
 import { NoWalletCard } from "../common";
 import { VoteRadioButton } from "./VoteRadioButton";
 
 interface VoteModalContentProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
+  proposalId: BigNumber;
 }
-export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
+export const VoteModalContent = ({
+  setOpen,
+  proposalId,
+}: VoteModalContentProps) => {
   const { account, activateBrowserWallet } = useEthers();
-  const handleClose = () => {
-    setOpen(false);
+  const [selectedOption, setSelectedOption] = useState<Vote>();
+  const { castVote, inProgress, setInProgress, state } = useVote();
+
+  const handleSelect = (vote: Vote) => {
+    setSelectedOption(vote);
   };
+  const handleVote = () => {
+    if (!selectedOption) return;
+    setInProgress(true);
+    castVote(proposalId, voteToSupportMap[selectedOption]);
+  };
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
+
+  useEffect(() => {
+    if (state.status === "Success") {
+      handleClose();
+    }
+  }, [state.status, handleClose]);
 
   if (!account) {
     return (
@@ -31,15 +61,23 @@ export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
         <FormattedMessage id="proposal.voting.title" />
       </h3>
       <div className="my-8">
-        <VoteRadioButton type="for" />
-        <VoteRadioButton type="against" />
-        <VoteRadioButton type="abstain" />
+        <VoteRadioButton handleSelect={handleSelect} type="for" />
+        <VoteRadioButton handleSelect={handleSelect} type="against" />
+        <VoteRadioButton handleSelect={handleSelect} type="abstain" />
       </div>
       <div className="modal-action">
-        <button onClick={handleClose} className="btn btn-ghost">
+        <button
+          onClick={handleClose}
+          disabled={inProgress}
+          className="btn btn-ghost"
+        >
           <FormattedMessage id="proposal.new.page.form.button.cancel" />
         </button>
-        <button onClick={() => setOpen(false)} className="btn btn-primary">
+        <button
+          onClick={handleVote}
+          disabled={!selectedOption || inProgress}
+          className={`btn btn-primary ${inProgress && "loading"}`}
+        >
           <FormattedMessage id="proposal.voting.vote.button" />
         </button>
       </div>

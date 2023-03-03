@@ -20,7 +20,7 @@ export const VoteModalButton = ({ proposalId }: VoteModalButtonProps) => {
         <Image src="/voteIcon.svg" alt="" width={18} height={18} />
         <FormattedMessage id="proposal.voting.vote.button" />
       </button>
-      <VoteModal open={open} setOpen={setOpen} />
+      <VoteModal open={open} setOpen={setOpen} proposalId={proposalId} />
     </>
   );
 };

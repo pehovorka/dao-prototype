@@ -1,8 +1,14 @@
 import { FormattedMessage } from "react-intl";
+import type { Vote } from "@/hooks";
+
 interface VoteRadioButtonProps {
-  type: "for" | "against" | "abstain";
+  type: Vote;
+  handleSelect: (type: Vote) => void;
 }
-export const VoteRadioButton = ({ type }: VoteRadioButtonProps) => {
+export const VoteRadioButton = ({
+  type,
+  handleSelect,
+}: VoteRadioButtonProps) => {
   const underlineColorClassName =
     type === "for"
       ? "peer-checked:decoration-success"
@@ -26,6 +32,7 @@ export const VoteRadioButton = ({ type }: VoteRadioButtonProps) => {
           id={type}
           value={type}
           className="peer sr-only"
+          onChange={() => handleSelect(type)}
         />
         <div
           className={`m-1 rounded-lg font-bold border-2 opacity-70

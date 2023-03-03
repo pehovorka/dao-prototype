@@ -1,11 +1,13 @@
+import { BigNumber } from "ethers";
 import type { Dispatch, SetStateAction } from "react";
 import { VoteModalContent } from "./VoteModalContent";
 
 interface VoteModalProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  proposalId: BigNumber;
 }
-export const VoteModal = ({ open, setOpen }: VoteModalProps) => {
+export const VoteModal = ({ open, setOpen, proposalId }: VoteModalProps) => {
   return (
     <>
       <input
@@ -16,7 +18,7 @@ export const VoteModal = ({ open, setOpen }: VoteModalProps) => {
         readOnly
       />
       <div className="modal">
-        <VoteModalContent setOpen={setOpen} />
+        <VoteModalContent setOpen={setOpen} proposalId={proposalId} />
       </div>
     </>
   );
