@@ -18,6 +18,7 @@ import { parseProposalDescription } from "@/utils";
 import { Timeline } from "@/components/proposals/proposalDetailPage/timeline";
 import { VotingContainer } from "@/components/proposals/proposalDetailPage/voting";
 import { proposalDetailAtom } from "@/atoms";
+import { ProposalDetailMetaContainer } from "@/components/proposals/proposalDetailPage/meta";
 
 export default function PropsalDetailPage() {
   const router = useRouter();
@@ -61,7 +62,8 @@ export default function PropsalDetailPage() {
     <>
       <SEO title={title} />
       <Breadcrumbs items={breadcrumbsItems} />
-      <Title>{title}</Title>
+      <Title className="text-4xl font-black mb-7">{title}</Title>
+      <ProposalDetailMetaContainer />
       <VotingContainer />
       <div className="grid sm:grid-cols-twoThirds gap-10">
         <ReactMarkdown

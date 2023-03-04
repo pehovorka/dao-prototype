@@ -5,6 +5,7 @@ import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/
 
 import { BlockDate } from "@/components/common";
 import { useProposalState } from "@/hooks";
+import { ProposalStateBadge } from "../common";
 
 interface ProposalsListItemProps {
   name: string;
@@ -37,11 +38,7 @@ export const ProposalsListItem = ({
             </p>
           </div>
           <div className="flex items-center">
-            {state ? (
-              <FormattedMessage id={`proposal.state.${state}`} />
-            ) : (
-              "..."
-            )}
+            {state ? <ProposalStateBadge state={state} /> : "..."}
           </div>
         </div>
       </div>

@@ -18,12 +18,13 @@ const titleStyles = {
 
 interface TitleProps {
   children: ReactNode;
+  className?: string;
   type?: TitleType;
 }
-export const Title = ({ children, type }: TitleProps) => {
+export const Title = ({ children, type, className }: TitleProps) => {
   return createElement(
     type || TitleType.H1,
-    { className: titleStyles[type || TitleType.H1] },
+    { className: className || titleStyles[type || TitleType.H1] },
     children
   );
 };
