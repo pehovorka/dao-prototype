@@ -1,17 +1,10 @@
-import { BigNumber } from "ethers";
 import Image from "next/image";
 import { useState } from "react";
 import { FormattedMessage } from "react-intl";
+
 import { VoteModal } from "./VoteModal";
 
-interface VoteModalButtonProps {
-  proposalId: BigNumber;
-  blockNumber: number;
-}
-export const VoteModalButton = ({
-  proposalId,
-  blockNumber,
-}: VoteModalButtonProps) => {
+export const VoteModalButton = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClick = () => {
@@ -24,12 +17,7 @@ export const VoteModalButton = ({
         <Image src="/voteIcon.svg" alt="" width={18} height={18} />
         <FormattedMessage id="proposal.voting.vote.button" />
       </button>
-      <VoteModal
-        open={open}
-        setOpen={setOpen}
-        proposalId={proposalId}
-        blockNumber={blockNumber}
-      />
+      <VoteModal open={open} setOpen={setOpen} />
     </>
   );
 };

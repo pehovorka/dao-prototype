@@ -2,28 +2,26 @@ import { useEffect, useState } from "react";
 import { BigNumber } from "ethers";
 import { useCall } from "@usedapp/core";
 import { FormattedMessage } from "react-intl";
+import { useAtomValue } from "jotai";
 
 import { Alert, Title, TitleType } from "@/components/ui";
 import { governorContract } from "@/consts/governorContract";
 import { VoteTypeContainer } from "./VoteTypeContainer";
 import { VoteModalButton } from "../../voteModal";
-import { useProposalState } from "@/hooks/useProposalState";
+import { proposalDetailAtom } from "@/atoms";
+import { type ProposalCreatedEvent, useProposalState } from "@/hooks";
 
-interface VotingContainerProps {
-  proposalId: BigNumber;
-  blockNumber: number;
-}
-export const VotingContainer = ({
-  proposalId,
-  blockNumber,
-}: VotingContainerProps) => {
-  const { state: proposalState, error: proposalStateError } =
-    useProposalState(proposalId);
+export const VotingContainer = () => {
+  const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
+
+  const { state: proposalState, error: proposalStateError } = useProposalState(
+    proposal.data.proposalId
+  );
   const { value, error } =
     useCall({
       contract: governorContract,
       method: "proposalVotes",
-      args: [proposalId],
+      args: [proposal.data.proposalId],
     }) ?? {};
 
   const [totalVotes, setTotalVotes] = useState<BigNumber | undefined>(
@@ -49,9 +47,7 @@ export const VotingContainer = ({
         <Title type={TitleType.H2}>
           <FormattedMessage id="proposal.voting.title" />
         </Title>
-        {proposalState === "active" && (
-          <VoteModalButton proposalId={proposalId} blockNumber={blockNumber} />
-        )}
+        {proposalState === "active" && <VoteModalButton />}
       </div>
       <div className="grid grid-cols-1 md:gap-5 md:grid-cols-3">
         <VoteTypeContainer

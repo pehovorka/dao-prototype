@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 import { useIntl } from "react-intl";
+import { useAtom } from "jotai";
 
 import {
   Alert,
@@ -15,13 +17,22 @@ import { SEO } from "@/components/common";
 import { parseProposalDescription } from "@/utils";
 import { Timeline } from "@/components/proposals/proposalDetailPage/timeline";
 import { VotingContainer } from "@/components/proposals/proposalDetailPage/voting";
+import { proposalDetailAtom } from "@/atoms";
 
 export default function PropsalDetailPage() {
-  const { formatMessage } = useIntl();
   const router = useRouter();
-  const { proposalId: proposalIdString } = router.query;
+  const { formatMessage } = useIntl();
 
-  const { proposals, error } = useProposals(proposalIdString);
+  const proposalIdQuery = router.query.proposalId;
+
+  const { proposals, error } = useProposals(proposalIdQuery);
+  const [proposal, setProposal] = useAtom(proposalDetailAtom);
+
+  useEffect(() => {
+    if (proposals && proposals.length > 0) {
+      setProposal(proposals[0]);
+    }
+  }, [proposals, error, setProposal]);
 
   if (error || (proposals && proposals.length === 0)) {
     const message = formatMessage({ id: "proposal.notFound" });
@@ -33,7 +44,7 @@ export default function PropsalDetailPage() {
     );
   }
 
-  if (proposals === undefined)
+  if (proposal === null)
     return (
       <>
         <SEO />
@@ -43,9 +54,6 @@ export default function PropsalDetailPage() {
       </>
     );
 
-  const proposal = proposals && proposals[0];
-  const proposalId = proposal?.data.proposalId;
-
   const { title, body } =
     (proposal && parseProposalDescription(proposal.data.description)) || {};
 
@@ -54,10 +62,7 @@ export default function PropsalDetailPage() {
       <SEO title={title} />
       <Breadcrumbs items={breadcrumbsItems} />
       <Title>{title}</Title>
-      <VotingContainer
-        proposalId={proposalId}
-        blockNumber={proposal.blockNumber}
-      />
+      <VotingContainer />
       <div className="grid sm:grid-cols-twoThirds gap-10">
         <ReactMarkdown
           className="prose"
@@ -71,7 +76,7 @@ export default function PropsalDetailPage() {
         </ReactMarkdown>
 
         <Timeline
-          proposalId={proposalId}
+          proposalId={proposal.data.proposalId}
           createdAtBlock={proposal.blockNumber}
           endsAtBlock={proposal.data.endBlock.toNumber()}
         />

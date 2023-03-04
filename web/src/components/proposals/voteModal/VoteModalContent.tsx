@@ -1,5 +1,5 @@
 import { useEthers } from "@usedapp/core";
-import { BigNumber } from "ethers";
+import { useAtomValue } from "jotai";
 import {
   Dispatch,
   SetStateAction,
@@ -9,23 +9,24 @@ import {
 } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { useVote, voteToSupportMap, type Vote } from "@/hooks";
+import {
+  type ProposalCreatedEvent,
+  useVote,
+  voteToSupportMap,
+  type Vote,
+} from "@/hooks";
 import { NoWalletCard, VotingPower } from "../common";
 import { VoteRadioButton } from "./VoteRadioButton";
+import { proposalDetailAtom } from "@/atoms";
 
 interface VoteModalContentProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
-  proposalId: BigNumber;
-  blockNumber: number;
 }
-export const VoteModalContent = ({
-  setOpen,
-  proposalId,
-  blockNumber,
-}: VoteModalContentProps) => {
+export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
   const { account, activateBrowserWallet } = useEthers();
   const [selectedOption, setSelectedOption] = useState<Vote>();
   const { castVote, inProgress, setInProgress, state } = useVote();
+  const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
 
   const handleSelect = (vote: Vote) => {
     setSelectedOption(vote);
@@ -33,7 +34,7 @@ export const VoteModalContent = ({
   const handleVote = () => {
     if (!selectedOption) return;
     setInProgress(true);
-    castVote(proposalId, voteToSupportMap[selectedOption]);
+    castVote(proposal.data.proposalId, voteToSupportMap[selectedOption]);
   };
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -64,7 +65,7 @@ export const VoteModalContent = ({
       <h3 className="font-bold text-lg">
         <FormattedMessage id="proposal.voting.title" />
       </h3>
-      <VotingPower blockNumber={blockNumber} />
+      <VotingPower blockNumber={proposal.blockNumber} />
       <div className="my-8">
         <VoteRadioButton
           handleSelect={handleSelect}
