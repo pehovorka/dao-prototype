@@ -4,10 +4,12 @@ import type { Vote } from "@/hooks";
 interface VoteRadioButtonProps {
   type: Vote;
   handleSelect: (type: Vote) => void;
+  selectedOption: Vote | undefined;
 }
 export const VoteRadioButton = ({
   type,
   handleSelect,
+  selectedOption,
 }: VoteRadioButtonProps) => {
   const underlineColorClassName =
     type === "for"
@@ -33,6 +35,7 @@ export const VoteRadioButton = ({
           value={type}
           className="peer sr-only"
           onChange={() => handleSelect(type)}
+          checked={type === selectedOption}
         />
         <div
           className={`m-1 rounded-lg font-bold border-2 opacity-70

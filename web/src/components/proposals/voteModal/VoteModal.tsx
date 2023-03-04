@@ -6,8 +6,14 @@ interface VoteModalProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   proposalId: BigNumber;
+  blockNumber: number;
 }
-export const VoteModal = ({ open, setOpen, proposalId }: VoteModalProps) => {
+export const VoteModal = ({
+  open,
+  setOpen,
+  proposalId,
+  blockNumber,
+}: VoteModalProps) => {
   return (
     <>
       <input
@@ -18,7 +24,11 @@ export const VoteModal = ({ open, setOpen, proposalId }: VoteModalProps) => {
         readOnly
       />
       <div className="modal">
-        <VoteModalContent setOpen={setOpen} proposalId={proposalId} />
+        <VoteModalContent
+          setOpen={setOpen}
+          proposalId={proposalId}
+          blockNumber={blockNumber}
+        />
       </div>
     </>
   );

@@ -58,5 +58,7 @@
   "profile.wallet.wrongNetworkModal.text" : "V peněžence prosím přepněte na síť Goerli.",
   "profile.wallet.noWalletCard.title" : "Peněženka není připojena",
   "profile.wallet.noWalletCard.createProposal.text" : "Pro vytvoření návrhu musíte připojit peněženku.",
-  "profile.wallet.noWalletCard.vote.text" : "Pro hlasování musíte připojit peněženku."
+  "profile.wallet.noWalletCard.vote.text" : "Pro hlasování musíte připojit peněženku.",
+  "profile.votingPower.text" : "Vaše hlasovací tokeny",
+  "profile.votingPower.error" : "Chyba"
 }

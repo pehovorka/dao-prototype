@@ -6,8 +6,12 @@ import { VoteModal } from "./VoteModal";
 
 interface VoteModalButtonProps {
   proposalId: BigNumber;
+  blockNumber: number;
 }
-export const VoteModalButton = ({ proposalId }: VoteModalButtonProps) => {
+export const VoteModalButton = ({
+  proposalId,
+  blockNumber,
+}: VoteModalButtonProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClick = () => {
@@ -20,7 +24,12 @@ export const VoteModalButton = ({ proposalId }: VoteModalButtonProps) => {
         <Image src="/voteIcon.svg" alt="" width={18} height={18} />
         <FormattedMessage id="proposal.voting.vote.button" />
       </button>
-      <VoteModal open={open} setOpen={setOpen} proposalId={proposalId} />
+      <VoteModal
+        open={open}
+        setOpen={setOpen}
+        proposalId={proposalId}
+        blockNumber={blockNumber}
+      />
     </>
   );
 };

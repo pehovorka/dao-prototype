@@ -58,5 +58,7 @@
   "profile.wallet.wrongNetworkModal.text" : "Please switch to the Goerli network in your wallet.",
   "profile.wallet.noWalletCard.title" : "Wallet is not connected",
   "profile.wallet.noWalletCard.createProposal.text" : "Please connect your wallet before creating a proposal.",
-  "profile.wallet.noWalletCard.vote.text" : "Please connect your wallet before voting."
+  "profile.wallet.noWalletCard.vote.text" : "Please connect your wallet before voting.",
+  "profile.votingPower.text" : "Your voting power",
+  "profile.votingPower.error" : "Error"
 }

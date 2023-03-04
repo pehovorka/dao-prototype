@@ -11,8 +11,12 @@ import { useProposalState } from "@/hooks/useProposalState";
 
 interface VotingContainerProps {
   proposalId: BigNumber;
+  blockNumber: number;
 }
-export const VotingContainer = ({ proposalId }: VotingContainerProps) => {
+export const VotingContainer = ({
+  proposalId,
+  blockNumber,
+}: VotingContainerProps) => {
   const { state: proposalState, error: proposalStateError } =
     useProposalState(proposalId);
   const { value, error } =
@@ -46,7 +50,7 @@ export const VotingContainer = ({ proposalId }: VotingContainerProps) => {
           <FormattedMessage id="proposal.voting.title" />
         </Title>
         {proposalState === "active" && (
-          <VoteModalButton proposalId={proposalId} />
+          <VoteModalButton proposalId={proposalId} blockNumber={blockNumber} />
         )}
       </div>
       <div className="grid grid-cols-1 md:gap-5 md:grid-cols-3">

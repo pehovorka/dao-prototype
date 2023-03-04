@@ -54,7 +54,10 @@ export default function PropsalDetailPage() {
       <SEO title={title} />
       <Breadcrumbs items={breadcrumbsItems} />
       <Title>{title}</Title>
-      <VotingContainer proposalId={proposalId} />
+      <VotingContainer
+        proposalId={proposalId}
+        blockNumber={proposal.blockNumber}
+      />
       <div className="grid sm:grid-cols-twoThirds gap-10">
         <ReactMarkdown
           className="prose"

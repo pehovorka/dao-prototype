@@ -10,16 +10,18 @@ import {
 import { FormattedMessage } from "react-intl";
 
 import { useVote, voteToSupportMap, type Vote } from "@/hooks";
-import { NoWalletCard } from "../common";
+import { NoWalletCard, VotingPower } from "../common";
 import { VoteRadioButton } from "./VoteRadioButton";
 
 interface VoteModalContentProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
   proposalId: BigNumber;
+  blockNumber: number;
 }
 export const VoteModalContent = ({
   setOpen,
   proposalId,
+  blockNumber,
 }: VoteModalContentProps) => {
   const { account, activateBrowserWallet } = useEthers();
   const [selectedOption, setSelectedOption] = useState<Vote>();
@@ -35,11 +37,13 @@ export const VoteModalContent = ({
   };
   const handleClose = useCallback(() => {
     setOpen(false);
+    setSelectedOption(undefined);
   }, [setOpen]);
 
   useEffect(() => {
     if (state.status === "Success") {
       handleClose();
+      setSelectedOption(undefined);
     }
   }, [state.status, handleClose]);
 
@@ -60,10 +64,23 @@ export const VoteModalContent = ({
       <h3 className="font-bold text-lg">
         <FormattedMessage id="proposal.voting.title" />
       </h3>
+      <VotingPower blockNumber={blockNumber} />
       <div className="my-8">
-        <VoteRadioButton handleSelect={handleSelect} type="for" />
-        <VoteRadioButton handleSelect={handleSelect} type="against" />
-        <VoteRadioButton handleSelect={handleSelect} type="abstain" />
+        <VoteRadioButton
+          handleSelect={handleSelect}
+          selectedOption={selectedOption}
+          type="for"
+        />
+        <VoteRadioButton
+          handleSelect={handleSelect}
+          selectedOption={selectedOption}
+          type="against"
+        />
+        <VoteRadioButton
+          handleSelect={handleSelect}
+          selectedOption={selectedOption}
+          type="abstain"
+        />
       </div>
       <div className="modal-action">
         <button
