@@ -12,19 +12,19 @@ export const ProposalDetailMetaContainer = () => {
   const { state } = useProposalState(proposal.data.proposalId);
 
   return (
-    <section className="flex items-center mb-20 gap-12">
+    <section className="flex items-center mb-20 gap-x-12 gap-y-4 flex-wrap">
       <div className="flex gap-4 items-center">
         <div className="w-8 h-8 mask mask-squircle">
           <Blockies seed={proposal.data.proposer} size={10} scale={3.2} />
         </div>
-        <span className="text-lg">
+        <span className="text-sm break-all md:text-lg">
           <FormattedMessage
             id="proposal.proposedBy"
             values={{ name: proposal.data.proposer }}
           />
         </span>
-        {state && <ProposalStateBadge state={state} />}
       </div>
+      {state && <ProposalStateBadge state={state} />}
     </section>
   );
 };
