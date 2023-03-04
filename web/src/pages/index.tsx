@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <SEO />
-      <div className="hero bg-base-200 p-5 rounded-2xl lg:py-20">
+      <div className="hero bg-base-100 p-5 rounded-2xl lg:py-20">
         <div className="hero-content">
           <div>
             <h1 className="text-4xl font-bold mb-5 lg:text-5xl">

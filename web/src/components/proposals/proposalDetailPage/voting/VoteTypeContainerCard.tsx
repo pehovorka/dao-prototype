@@ -13,7 +13,7 @@ export const VoteTypeContainerCard = ({
   totalPower,
   progressClassName,
 }: VoteTypeContainerCardProps) => (
-  <div className="card bg-base-200 shadow-md mb-4 card-compact overflow-hidden">
+  <div className="card bg-base-100 shadow-md mb-4 card-compact overflow-hidden">
     <div className="card-body flex flex-row justify-between gap-10">
       <div className="min-w-0">
         <h3 className="card-title mt-0">
