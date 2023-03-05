@@ -48,7 +48,7 @@ export const ProposalsListItem = ({
             </div>
           </div>
           <div className="flex items-center gap-x-2 flex-wrap justify-end">
-            {account && <HasVotedBadge proposalId={id} />}
+            {account && <HasVotedBadge type="list" proposalId={id} />}
             {state ? <ProposalStateBadge state={state} /> : "..."}
           </div>
         </div>

@@ -9,7 +9,12 @@ import { governorContract } from "@/consts/governorContract";
 import { VoteTypeContainer } from "./VoteTypeContainer";
 import { VoteModalButton } from "../../voteModal";
 import { proposalDetailAtom } from "@/atoms";
-import { type ProposalCreatedEvent, useProposalState } from "@/hooks";
+import {
+  type ProposalCreatedEvent,
+  useProposalState,
+  useHasVoted,
+} from "@/hooks";
+import { HasVotedBadge } from "../../common";
 
 export const VotingContainer = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
@@ -17,6 +22,7 @@ export const VotingContainer = () => {
   const { state: proposalState, error: proposalStateError } = useProposalState(
     proposal.data.proposalId
   );
+  const { hasVoted } = useHasVoted(proposal.data.proposalId);
   const { value, error } =
     useCall({
       contract: governorContract,
@@ -43,11 +49,19 @@ export const VotingContainer = () => {
 
   return (
     <section className="pb-10">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6 gap-x-5 flex-wrap min-h-16">
         <Title type={TitleType.H2}>
           <FormattedMessage id="proposal.voting.title" />
         </Title>
-        {proposalState === "active" && <VoteModalButton />}
+        <div className="mb-5">
+          {proposalState === "active" && !hasVoted && <VoteModalButton />}
+          {hasVoted && (
+            <HasVotedBadge
+              type="detail"
+              proposalId={proposal.data.proposalId}
+            />
+          )}
+        </div>
       </div>
       <div className="grid grid-cols-1 md:gap-5 md:grid-cols-3">
         <VoteTypeContainer
