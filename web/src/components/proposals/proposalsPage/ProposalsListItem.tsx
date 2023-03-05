@@ -25,10 +25,12 @@ export const ProposalsListItem = ({
 
   return (
     <Link href={`/proposals/${id}`}>
-      <div className="card drop-shadow-md bg-base-100 mb-3 transition-all duration-200 hover:drop-shadow-xl">
+      <div className="card group shadow-md bg-base-100 mb-3 transition-all duration-200 hover:shadow-xl">
         <div className="card-body flex flex-row justify-between gap-10">
           <div className="min-w-0">
-            <h2 className="card-title mt-0">{name}</h2>
+            <h2 className="card-title mt-0 underline decoration-transparent underline-offset-4 decoration-2 transition-colors group-hover:decoration-secondary">
+              {name}
+            </h2>
             <div className="flex gap-2 items-center mt-3">
               <div className="w-6 h-6 mask mask-squircle">
                 <Blockies seed={proposer} size={10} scale={2.4} />
