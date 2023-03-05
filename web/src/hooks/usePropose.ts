@@ -52,7 +52,7 @@ export const usePropose = () => {
       const { args } = event;
       if (args) {
         const data = args[0];
-        push(`/proposals/${data}`);
+        push(`/proposal/${data}`);
       }
     }
   }, [events, push]);

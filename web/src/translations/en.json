@@ -8,6 +8,8 @@
   "proposals.title" : "Proposals",
   "proposals.list.title" : "List of proposals",
   "proposals.list.addNewButton" : "Create new",
+  "proposals.list.error" : "There was an error while fetching the proposals. Please try again later.",
+  "proposals.list.pagination.page" : "Page {page}",
   "proposal.title" : "Proposal",
   "proposal.state.pending" : "Review",
   "proposal.state.active" : "Active",

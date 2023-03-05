@@ -8,6 +8,8 @@
   "proposals.title" : "Návrhy",
   "proposals.list.title" : "Seznam návrhů",
   "proposals.list.addNewButton" : "Vytvořit nový",
+  "proposals.list.error" : "Při načítání návrhů se něco pokazilo. Zkuste to prosím později.",
+  "proposals.list.pagination.page" : "Strana {page}",
   "proposal.title" : "Návrh",
   "proposal.state.pending" : "Posouzení",
   "proposal.state.active" : "Aktivní",
@@ -40,7 +42,7 @@
   "proposal.voting.voters.abstain" : "Zdrželi se",
   "proposal.voting.voters.noVotes" : "Žádné hlasy",
   "proposal.voting.voters.table.address" : "Adresa",
-  "proposal.voting.voters.table.votingPower" : "Volební síla",
+  "proposal.voting.voters.table.votingPower" : "Hlasovací síla",
   "proposal.voting.voters.table.date" : "Datum",
   "proposal.new.button.title" : "Vytvořit nový",
   "proposal.new.page.title" : "Vytvoření návrhu",
@@ -67,6 +69,6 @@
   "profile.wallet.noWalletCard.title" : "Peněženka není připojena",
   "profile.wallet.noWalletCard.createProposal.text" : "Pro vytvoření návrhu musíte připojit peněženku.",
   "profile.wallet.noWalletCard.vote.text" : "Pro hlasování musíte připojit peněženku.",
-  "profile.votingPower.text" : "Vaše volební síla",
+  "profile.votingPower.text" : "Vaše hlasovací síla",
   "profile.votingPower.error" : "Chyba"
 }

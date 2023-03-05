@@ -25,7 +25,7 @@ export const ProposalsListItem = ({
   const { account } = useEthers();
 
   return (
-    <Link href={`/proposals/${id}`}>
+    <Link href={`/proposal/${id}`}>
       <div className="card group shadow-md bg-base-100 mb-3 transition-all duration-200 hover:shadow-xl">
         <div className="card-body flex flex-row justify-between gap-5 flex-wrap">
           <div className="min-w-0">

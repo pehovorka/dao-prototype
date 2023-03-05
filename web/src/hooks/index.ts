@@ -1,6 +1,7 @@
 export * from "./useBlock";
 export * from "./useHasVoted";
 export * from "./useLang";
+export * from "./usePagination";
 export * from "./useProposalCreatedEvents";
 export * from "./usePropose";
 export * from "./useProposalState";

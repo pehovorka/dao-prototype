@@ -14,7 +14,7 @@ export default function ProposalsPage() {
         <Title>
           <FormattedMessage id="proposals.list.title" />
         </Title>
-        <Link href="/proposals/new">
+        <Link href="/proposal/new">
           <button className="btn gap-1 btn-primary mb-10">
             <svg
               xmlns="http://www.w3.org/2000/svg"
