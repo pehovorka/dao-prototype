@@ -2,8 +2,8 @@ import { FormattedMessage } from "react-intl";
 
 interface PaginationProps {
   page: number;
-  handlePrevious: () => void;
-  handleNext: () => void;
+  handlePrevious?: () => void;
+  handleNext?: () => void;
   totalPages: number;
 }
 export const Pagination = ({
