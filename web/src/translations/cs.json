@@ -35,6 +35,13 @@
   "proposal.voting.vote.state.success" : "🎉 Hlas byl započítán!",
   "proposal.voting.vote.state.exception" : "Něco se nepovedlo – chyba:\n{error}",
   "proposal.voting.hasVoted" : "Hlasoval/a jste",
+  "proposal.voting.voters.for" : "Hlasující pro",
+  "proposal.voting.voters.against" : "Hlasující proti",
+  "proposal.voting.voters.abstain" : "Zdrželi se",
+  "proposal.voting.voters.noVotes" : "Žádné hlasy",
+  "proposal.voting.voters.table.address" : "Adresa",
+  "proposal.voting.voters.table.votingPower" : "Volební síla",
+  "proposal.voting.voters.table.date" : "Datum",
   "proposal.new.button.title" : "Vytvořit nový",
   "proposal.new.page.title" : "Vytvoření návrhu",
   "proposal.new.page.form.title.title" : "Název",
@@ -60,6 +67,6 @@
   "profile.wallet.noWalletCard.title" : "Peněženka není připojena",
   "profile.wallet.noWalletCard.createProposal.text" : "Pro vytvoření návrhu musíte připojit peněženku.",
   "profile.wallet.noWalletCard.vote.text" : "Pro hlasování musíte připojit peněženku.",
-  "profile.votingPower.text" : "Vaše hlasovací tokeny",
+  "profile.votingPower.text" : "Vaše volební síla",
   "profile.votingPower.error" : "Chyba"
 }

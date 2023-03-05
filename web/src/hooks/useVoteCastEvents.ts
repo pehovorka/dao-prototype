@@ -1,8 +1,9 @@
-import { governorContract } from "@/consts";
-import { useLogs } from "@usedapp/core";
-import type { BigNumber } from "ethers";
-import type { VoteCastEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 import { useEffect, useState } from "react";
+import { useBlockNumber, useLogs } from "@usedapp/core";
+import type { BigNumber } from "ethers";
+
+import { governorContract } from "@/consts";
+import type { VoteCastEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 
 interface VoteCastEvent {
   data: VoteCastEventObject;
@@ -20,10 +21,17 @@ export const useVoteCastEvents = (
 ) => {
   const [events, setEvents] = useState<VoteCastEvent[] | undefined>(undefined);
   const [error, setError] = useState(undefined);
+  const blockNumber = useBlockNumber();
 
   // Workaround for rerenders caused by useLogs
   // More info here: https://github.com/TrueFiEng/useDApp/pull/1045#issuecomment-1403793564
   const [hasRendered, setHasRendered] = useState(false);
+
+  useEffect(() => {
+    if (blockNumber) {
+      setHasRendered(false);
+    }
+  }, [blockNumber]);
 
   const logs = useLogs(
     {
