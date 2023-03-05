@@ -33,7 +33,7 @@ export default function PropsalDetailPage() {
     if (proposals && proposals.length > 0) {
       setProposal(proposals[0]);
     }
-  }, [proposals, error, setProposal]);
+  }, [proposals, setProposal]);
 
   if (error || (proposals && proposals.length === 0)) {
     const message = formatMessage({ id: "proposal.notFound" });
@@ -45,11 +45,12 @@ export default function PropsalDetailPage() {
     );
   }
 
-  if (proposal === null)
+  if (proposals === undefined || proposal === null)
     return (
       <>
         <SEO />
         <Breadcrumbs items={breadcrumbsItems} />
+        <Skeleton type="TITLE" />
         <Skeleton type="TITLE" />
         <Skeleton type="TEXT" />
       </>
