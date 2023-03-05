@@ -1,8 +1,8 @@
-import { useProposals } from "@/hooks";
+import { useProposalCreatedEvents } from "@/hooks";
 import { ProposalsListItem } from "./ProposalsListItem";
 
 export const ProposalsList = () => {
-  const { proposals, error } = useProposals();
+  const { proposals, error } = useProposalCreatedEvents();
 
   return (
     <>

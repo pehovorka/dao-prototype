@@ -14,7 +14,9 @@ export interface ProposalCreatedEvent {
   removed: boolean;
 }
 
-export const useProposals = (proposalId?: string | string[] | undefined) => {
+export const useProposalCreatedEvents = (
+  proposalId?: string | string[] | undefined
+) => {
   const [proposals, setProposals] = useState<
     ProposalCreatedEvent[] | undefined
   >(undefined);

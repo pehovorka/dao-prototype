@@ -12,7 +12,7 @@ import {
   type BreadcrumbsItem,
 } from "@/components/ui";
 
-import { useProposals } from "@/hooks";
+import { useProposalCreatedEvents } from "@/hooks";
 import { SEO } from "@/components/common";
 import { parseProposalDescription } from "@/utils";
 import { Timeline } from "@/components/proposals/proposalDetailPage/timeline";
@@ -26,7 +26,7 @@ export default function PropsalDetailPage() {
 
   const proposalIdQuery = router.query.proposalId;
 
-  const { proposals, error } = useProposals(proposalIdQuery);
+  const { proposals, error } = useProposalCreatedEvents(proposalIdQuery);
   const [proposal, setProposal] = useAtom(proposalDetailAtom);
 
   useEffect(() => {
