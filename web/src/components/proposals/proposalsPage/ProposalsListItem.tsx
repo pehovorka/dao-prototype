@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { FormattedMessage } from "react-intl";
-import { shortenAddress } from "@usedapp/core";
+import { shortenAddress, useEthers } from "@usedapp/core";
 import Blockies from "react-blockies";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 
 import { BlockDate } from "@/components/common";
 import { useProposalState } from "@/hooks";
-import { ProposalStateBadge } from "../common";
+import { HasVotedBadge, ProposalStateBadge } from "../common";
 
 interface ProposalsListItemProps {
   name: string;
@@ -22,11 +22,12 @@ export const ProposalsListItem = ({
   id,
 }: ProposalsListItemProps) => {
   const { state, error } = useProposalState(id);
+  const { account } = useEthers();
 
   return (
     <Link href={`/proposals/${id}`}>
       <div className="card group shadow-md bg-base-100 mb-3 transition-all duration-200 hover:shadow-xl">
-        <div className="card-body flex flex-row justify-between gap-10">
+        <div className="card-body flex flex-row justify-between gap-5 flex-wrap">
           <div className="min-w-0">
             <h2 className="card-title mt-0 underline decoration-transparent underline-offset-4 decoration-2 transition-colors group-hover:decoration-secondary">
               {name}
@@ -46,7 +47,8 @@ export const ProposalsListItem = ({
               </p>
             </div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center gap-x-2 flex-wrap justify-end">
+            {account && <HasVotedBadge proposalId={id} />}
             {state ? <ProposalStateBadge state={state} /> : "..."}
           </div>
         </div>

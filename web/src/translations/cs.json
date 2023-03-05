@@ -34,6 +34,7 @@
   "proposal.voting.vote.state.mining" : "Čekání na vytěžení bloku...",
   "proposal.voting.vote.state.success" : "🎉 Hlas byl započítán!",
   "proposal.voting.vote.state.exception" : "Něco se nepovedlo – chyba:\n{error}",
+  "proposal.voting.hasVoted" : "Hlasoval/a jste",
   "proposal.new.button.title" : "Vytvořit nový",
   "proposal.new.page.title" : "Vytvoření návrhu",
   "proposal.new.page.form.title.title" : "Název",

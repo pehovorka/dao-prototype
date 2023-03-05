@@ -34,6 +34,7 @@
   "proposal.voting.vote.state.mining" : "Waiting for the block mining...",
   "proposal.voting.vote.state.success" : "🎉 The vote was successfully counted!",
   "proposal.voting.vote.state.exception" : "Something went wrong – error:\n{error}",
+  "proposal.voting.hasVoted" : "Voted",
   "proposal.new.button.title" : "Create new",
   "proposal.new.page.title" : "Create a new proposal",
   "proposal.new.page.form.title.title" : "Title",
