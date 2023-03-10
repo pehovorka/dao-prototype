@@ -10,15 +10,15 @@ import {
   Skeleton,
   Breadcrumbs,
   type BreadcrumbsItem,
-} from "@/components/ui";
+} from "@/modules/ui";
 
 import { useProposalCreatedEvents } from "@/hooks";
-import { SEO } from "@/components/common";
+import { SEO } from "@/modules/common";
 import { parseProposalDescription } from "@/utils";
-import { Timeline } from "@/components/proposals/proposalDetailPage/timeline";
-import { VotingContainer } from "@/components/proposals/proposalDetailPage/voting";
+import { Timeline } from "@/modules/proposals/proposalDetailPage/timeline";
+import { VotingContainer } from "@/modules/proposals/proposalDetailPage/voting";
 import { proposalDetailAtom } from "@/atoms";
-import { ProposalDetailMetaContainer } from "@/components/proposals/proposalDetailPage/meta";
+import { ProposalDetailMetaContainer } from "@/modules/proposals/proposalDetailPage/meta";
 
 export default function PropsalDetailPage() {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import { useAtomValue } from "jotai";
 import Blockies from "react-blockies";
 
-import { ProposalStateBadge } from "@/components/proposals/common";
+import { ProposalStateBadge } from "@/modules/proposals/common";
 import { proposalDetailAtom } from "@/atoms";
 import { type ProposalCreatedEvent, useProposalState } from "@/hooks";
 import { FormattedMessage } from "react-intl";

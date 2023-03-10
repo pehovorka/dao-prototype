@@ -4,8 +4,8 @@ import { type Config, DAppProvider, Goerli } from "@usedapp/core";
 import "@/styles/globals.css";
 
 import { useLang } from "@/hooks";
-import { Layout } from "@/components/layout";
-import { WrongNetworkModal } from "@/components/profile";
+import { Layout } from "@/modules/layout";
+import { WrongNetworkModal } from "@/modules/profile";
 
 export const config: Config = {
   readOnlyChainId: Goerli.chainId,

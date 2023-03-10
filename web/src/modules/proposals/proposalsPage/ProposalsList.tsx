@@ -1,4 +1,4 @@
-import { Alert, Skeleton } from "@/components/ui";
+import { Alert, Skeleton } from "@/modules/ui";
 import {
   type ProposalCreatedEvent,
   usePagination,

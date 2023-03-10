@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai";
 import Blockies from "react-blockies";
-import { Skeleton } from "@/components/ui";
+import { Skeleton } from "@/modules/ui";
 import { proposalDetailAtom } from "@/atoms";
 import {
   type ProposalCreatedEvent,
@@ -10,7 +10,7 @@ import {
 import type { VoteTypeContainerProps } from "./VoteTypeContainer";
 import { formatEther } from "ethers/lib/utils";
 import { shortenAddress } from "@usedapp/core";
-import { BlockDate } from "@/components/common";
+import { BlockDate } from "@/modules/common";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 import { BigNumber } from "ethers";
 

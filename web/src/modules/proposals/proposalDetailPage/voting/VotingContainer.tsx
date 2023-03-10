@@ -4,7 +4,7 @@ import { useCall } from "@usedapp/core";
 import { FormattedMessage } from "react-intl";
 import { useAtomValue } from "jotai";
 
-import { Alert, Title, TitleType } from "@/components/ui";
+import { Alert, Title, TitleType } from "@/modules/ui";
 import { governorContract } from "@/consts/governorContract";
 import { VoteTypeContainer } from "./VoteTypeContainer";
 import { VoteModalButton } from "../../voteModal";

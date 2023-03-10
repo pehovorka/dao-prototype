@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
-import { Footer, Navbar } from "@/components/layout";
+import { Footer, Navbar } from "@/modules/layout";
 
 interface LayoutProps {
   children: ReactNode;

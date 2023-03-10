@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SEO } from "@/components/common/SEO";
+import { SEO } from "@/modules/common/SEO";
 import { FormattedMessage } from "react-intl";
 
 export default function Home() {

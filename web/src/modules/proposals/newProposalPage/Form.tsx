@@ -5,11 +5,11 @@ import {
   FormButtons,
   MarkdownEditor,
   ProposalTitleInput,
-} from "@/components/proposals/newProposalPage";
+} from "@/modules/proposals/newProposalPage";
 
 import { tokenContract } from "@/consts/tokenContract";
 import { usePropose } from "@/hooks";
-import { NoWalletCard } from "@/components/proposals/common";
+import { NoWalletCard } from "@/modules/proposals/common";
 
 export interface FormData {
   title: string;

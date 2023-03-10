@@ -4,7 +4,7 @@ import { shortenAddress, useEthers } from "@usedapp/core";
 import Blockies from "react-blockies";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 
-import { BlockDate } from "@/components/common";
+import { BlockDate } from "@/modules/common";
 import { useProposalState } from "@/hooks";
 import { HasVotedBadge, ProposalStateBadge } from "../common";
 
