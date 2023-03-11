@@ -1,11 +1,7 @@
-import { useEffect, useState } from "react";
-import { BigNumber } from "ethers";
-import { useCall } from "@usedapp/core";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { useAtomValue } from "jotai";
 
 import { Alert, Title, TitleType } from "@/modules/ui";
-import { governorContract } from "@/consts/governorContract";
 import { VoteTypeContainer } from "./VoteTypeContainer";
 import { VoteModalButton } from "../../voteModal";
 import { proposalDetailAtom } from "@/atoms";
@@ -15,45 +11,50 @@ import {
   useHasVoted,
 } from "@/hooks";
 import { HasVotedBadge } from "../../common";
+import { useProposalVotes } from "../../hooks";
 
 export const VotingContainer = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
+  const { formatNumber } = useIntl();
 
   const { state: proposalState, error: proposalStateError } = useProposalState(
     proposal.data.proposalId
   );
   const { hasVoted } = useHasVoted(proposal.data.proposalId);
-  const { value, error } =
-    useCall({
-      contract: governorContract,
-      method: "proposalVotes",
-      args: [proposal.data.proposalId],
-    }) ?? {};
-
-  const [totalVotes, setTotalVotes] = useState<BigNumber | undefined>(
-    undefined
+  const { isQuorumReached, participationRate, votes } = useProposalVotes(
+    proposal.blockNumber,
+    proposal.data.proposalId
   );
 
-  useEffect(() => {
-    if (!value) return;
-    const totalVotes = value.forVotes
-      .add(value.againstVotes)
-      .add(value.abstainVotes);
-    setTotalVotes(totalVotes);
-  }, [value]);
-
-  if (error) {
-    console.error(error);
+  if (votes.error) {
+    console.error(votes.error);
     return <Alert message="Error loading voting data" type="error" />; // TODO: i18n
   }
 
   return (
     <section className="pb-10">
-      <div className="flex justify-between items-center mb-6 gap-x-5 flex-wrap min-h-16">
+      <div className="flex justify-between items-center mb-6 gap-x-10 flex-wrap min-h-16">
         <Title type={TitleType.H2}>
           <FormattedMessage id="proposal.voting.title" />
         </Title>
-        <div className="mb-5">
+        <div className="flex items-center mb-5 gap-5 flex-wrap">
+          {isQuorumReached !== undefined && participationRate !== undefined && (
+            <span>
+              <FormattedMessage
+                id={
+                  isQuorumReached
+                    ? "proposal.voting.quorumReached"
+                    : "proposal.voting.quorumNotReached"
+                }
+                values={{
+                  participationRate: formatNumber(participationRate, {
+                    style: "percent",
+                    maximumFractionDigits: 2,
+                  }),
+                }}
+              />
+            </span>
+          )}
           {proposalState === "active" && !hasVoted && <VoteModalButton />}
           {hasVoted && (
             <HasVotedBadge
@@ -65,18 +66,18 @@ export const VotingContainer = () => {
       </div>
       <div className="grid grid-cols-1 md:gap-5 md:grid-cols-3">
         <VoteTypeContainer
-          totalVotes={totalVotes}
-          votes={value?.forVotes}
+          totalVotes={votes.totalVotes}
+          votes={votes.forVotes}
           type="for"
         />
         <VoteTypeContainer
-          totalVotes={totalVotes}
-          votes={value?.againstVotes}
+          totalVotes={votes.totalVotes}
+          votes={votes.againstVotes}
           type="against"
         />
         <VoteTypeContainer
-          totalVotes={totalVotes}
-          votes={value?.abstainVotes}
+          totalVotes={votes.totalVotes}
+          votes={votes.abstainVotes}
           type="abstain"
         />
       </div>

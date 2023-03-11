@@ -5,6 +5,8 @@ export enum Step {
   VotingEnd = "votingEnd",
   Queue = "queue",
   Execute = "execute",
+  Defeated = "defeated",
+  QuorumNotReached = "quorumNotReached",
 }
 
 const Icons = {
@@ -12,6 +14,8 @@ const Icons = {
   [Step.VotingEnd]: "🏁",
   [Step.Queue]: "⏳",
   [Step.Execute]: "🚀",
+  [Step.Defeated]: "❌",
+  [Step.QuorumNotReached]: "❌",
 } as const;
 
 interface TimelineStepProps {
