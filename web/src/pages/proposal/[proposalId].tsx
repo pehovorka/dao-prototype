@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
 import { useIntl } from "react-intl";
 import { useAtom } from "jotai";
 
@@ -15,10 +14,10 @@ import {
 import { useProposalCreatedEvents } from "@/hooks";
 import { SEO } from "@/modules/common";
 import { parseProposalDescription } from "@/utils";
-import { Timeline } from "@/modules/proposals/proposalDetailPage/timeline";
 import { VotingContainer } from "@/modules/proposals/proposalDetailPage/voting";
 import { proposalDetailAtom } from "@/atoms";
 import { ProposalDetailMetaContainer } from "@/modules/proposals/proposalDetailPage/meta";
+import { DescriptionAndTimelineContainer } from "@/modules/proposals/proposalDetailPage/descriptionAndTimeline";
 
 export default function PropsalDetailPage() {
   const router = useRouter();
@@ -66,20 +65,7 @@ export default function PropsalDetailPage() {
       <Title className="text-4xl font-black mb-7">{title}</Title>
       <ProposalDetailMetaContainer />
       <VotingContainer />
-      <div className="grid sm:grid-cols-twoThirds gap-10">
-        <ReactMarkdown
-          className="prose"
-          components={{
-            h1: "h2",
-            h2: "h3",
-            h3: "h4",
-          }}
-        >
-          {body}
-        </ReactMarkdown>
-
-        <Timeline />
-      </div>
+      <DescriptionAndTimelineContainer description={body} />
     </>
   );
 }
