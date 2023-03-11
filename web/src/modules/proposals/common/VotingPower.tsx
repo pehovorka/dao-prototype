@@ -1,4 +1,4 @@
-import { useVotingPower } from "@/hooks";
+import { useVotingPower } from "@/modules/proposals/hooks";
 import { FormattedMessage } from "react-intl";
 
 interface VotingPowerProps {

@@ -1,4 +1,8 @@
-import { type ProposalCreatedEvent, useBlock, useProposalState } from "@/hooks";
+import { useBlock } from "@/hooks";
+import {
+  type ProposalCreatedEvent,
+  useProposalState,
+} from "@/modules/proposals/hooks";
 import { useAtomValue } from "jotai";
 import { proposalDetailAtom } from "@/atoms";
 import { Skeleton, Title, TitleType } from "@/modules/ui";

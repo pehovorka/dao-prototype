@@ -1,9 +1,9 @@
 import { Alert, Skeleton } from "@/modules/ui";
+import { usePagination } from "@/hooks";
 import {
   type ProposalCreatedEvent,
-  usePagination,
   useProposalCreatedEvents,
-} from "@/hooks";
+} from "@/modules/proposals/hooks";
 import { useIntl } from "react-intl";
 import { Pagination } from "./Pagination";
 import { ProposalsListItem } from "./ProposalsListItem";

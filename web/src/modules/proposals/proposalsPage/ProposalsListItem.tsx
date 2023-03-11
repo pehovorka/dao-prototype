@@ -5,7 +5,7 @@ import Blockies from "react-blockies";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 
 import { BlockDate } from "@/modules/common";
-import { useProposalState } from "@/hooks";
+import { useProposalState } from "@/modules/proposals/hooks";
 import { HasVotedBadge, ProposalStateBadge } from "../common";
 
 interface ProposalsListItemProps {

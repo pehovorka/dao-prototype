@@ -11,10 +11,10 @@ import {
   type BreadcrumbsItem,
 } from "@/modules/ui";
 
-import { useProposalCreatedEvents } from "@/hooks";
+import { useProposalCreatedEvents } from "@/modules/proposals/hooks";
 import { SEO } from "@/modules/common";
 import { parseProposalDescription } from "@/utils";
-import { VotingContainer } from "@/modules/proposals/proposalDetailPage/voting";
+import { VotingContainer } from "@/modules/proposals/proposalDetailPage/voting/votingContainer";
 import { proposalDetailAtom } from "@/atoms";
 import { ProposalDetailMetaContainer } from "@/modules/proposals/proposalDetailPage/meta";
 import { DescriptionAndTimelineContainer } from "@/modules/proposals/proposalDetailPage/descriptionAndTimeline";

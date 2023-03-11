@@ -14,8 +14,8 @@ import {
   useVote,
   voteToSupportMap,
   type Vote,
-} from "@/hooks";
-import { NoWalletCard, VotingPower } from "../common";
+} from "@/modules/proposals/hooks";
+import { NoWalletCard, VotingPower } from "../../../common";
 import { VoteRadioButton } from "./VoteRadioButton";
 import { proposalDetailAtom } from "@/atoms";
 

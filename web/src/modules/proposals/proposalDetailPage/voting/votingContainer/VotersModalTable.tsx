@@ -6,7 +6,7 @@ import {
   type ProposalCreatedEvent,
   useVoteCastEvents,
   voteToSupportMap,
-} from "@/hooks";
+} from "@/modules/proposals/hooks";
 import type { VoteTypeContainerProps } from "./VoteTypeContainer";
 import { formatEther } from "ethers/lib/utils";
 import { shortenAddress } from "@usedapp/core";

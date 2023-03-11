@@ -8,7 +8,7 @@ import {
 } from "@/modules/proposals/newProposalPage";
 
 import { tokenContract } from "@/consts/tokenContract";
-import { usePropose } from "@/hooks";
+import { usePropose } from "@/modules/proposals/hooks";
 import { NoWalletCard } from "@/modules/proposals/common";
 
 export interface FormData {

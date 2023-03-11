@@ -3,15 +3,15 @@ import { useAtomValue } from "jotai";
 
 import { Alert, Title, TitleType } from "@/modules/ui";
 import { VoteTypeContainer } from "./VoteTypeContainer";
-import { VoteModalButton } from "../../voteModal";
+import { VoteModalButton } from "../voteModal";
 import { proposalDetailAtom } from "@/atoms";
 import {
   type ProposalCreatedEvent,
   useProposalState,
   useHasVoted,
-} from "@/hooks";
-import { HasVotedBadge } from "../../common";
-import { useProposalVotes } from "../../hooks";
+} from "@/modules/proposals/hooks";
+import { HasVotedBadge } from "../../../common";
+import { useProposalVotes } from "../../../hooks";
 
 export const VotingContainer = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;

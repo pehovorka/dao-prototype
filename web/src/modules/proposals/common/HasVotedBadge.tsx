@@ -1,4 +1,4 @@
-import { useHasVoted } from "@/hooks";
+import { useHasVoted } from "@/modules/proposals/hooks";
 import { FormattedMessage } from "react-intl";
 import type { BigNumber } from "ethers";
 

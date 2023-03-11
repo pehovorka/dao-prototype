@@ -3,7 +3,10 @@ import Blockies from "react-blockies";
 
 import { ProposalStateBadge } from "@/modules/proposals/common";
 import { proposalDetailAtom } from "@/atoms";
-import { type ProposalCreatedEvent, useProposalState } from "@/hooks";
+import {
+  type ProposalCreatedEvent,
+  useProposalState,
+} from "@/modules/proposals/hooks";
 import { FormattedMessage } from "react-intl";
 
 export const ProposalDetailMetaContainer = () => {

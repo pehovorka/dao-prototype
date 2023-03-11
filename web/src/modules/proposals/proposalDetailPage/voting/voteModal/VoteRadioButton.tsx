@@ -1,5 +1,5 @@
 import { FormattedMessage } from "react-intl";
-import type { Vote } from "@/hooks";
+import type { Vote } from "@/modules/proposals/hooks";
 
 interface VoteRadioButtonProps {
   type: Vote;
