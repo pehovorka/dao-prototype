@@ -48,6 +48,7 @@
   "proposal.voting.voters.against" : "Hlasující proti",
   "proposal.voting.voters.abstain" : "Zdrželi se",
   "proposal.voting.voters.noVotes" : "Žádné hlasy",
+  "proposal.voting.voters.disclaimer" : "Po odhlasování může trvat několik sekund, než se hlas objeví.",
   "proposal.voting.voters.table.address" : "Adresa",
   "proposal.voting.voters.table.votingPower" : "Hlasovací síla",
   "proposal.voting.voters.table.date" : "Datum",

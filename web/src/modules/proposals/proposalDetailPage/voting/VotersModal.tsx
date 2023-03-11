@@ -30,6 +30,9 @@ export const VotersModal = ({ open, handleClose, type }: VotersModalProps) => {
             <FormattedMessage id={`proposal.voting.voters.${type}`} />
           </h3>
           <VotersModalTable type={type} />
+          <p className="text-sm mt-4">
+            <FormattedMessage id={"proposal.voting.voters.disclaimer"} />
+          </p>
         </div>
       </div>
     </>

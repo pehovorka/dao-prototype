@@ -48,6 +48,7 @@
   "proposal.voting.voters.against" : "Voters against",
   "proposal.voting.voters.abstain" : "Voters who abstained",
   "proposal.voting.voters.noVotes" : "No votes",
+  "proposal.voting.voters.disclaimer" : "After casting a vote, it can take several seconds before the vote is visible.",
   "proposal.voting.voters.table.address" : "Address",
   "proposal.voting.voters.table.votingPower" : "Voting power",
   "proposal.voting.voters.table.date" : "Date",
