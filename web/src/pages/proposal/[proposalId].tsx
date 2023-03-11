@@ -18,6 +18,7 @@ import { VotingContainer } from "@/modules/proposals/proposalDetailPage/voting/v
 import { proposalDetailAtom } from "@/atoms";
 import { ProposalDetailMetaContainer } from "@/modules/proposals/proposalDetailPage/meta";
 import { DescriptionAndTimelineContainer } from "@/modules/proposals/proposalDetailPage/descriptionAndTimeline";
+import { VotesTreeMap } from "@/modules/proposals/proposalDetailPage/voting/treeMap";
 
 export default function PropsalDetailPage() {
   const router = useRouter();
@@ -66,6 +67,7 @@ export default function PropsalDetailPage() {
       <ProposalDetailMetaContainer />
       <VotingContainer />
       <DescriptionAndTimelineContainer description={body} />
+      <VotesTreeMap />
     </>
   );
 }

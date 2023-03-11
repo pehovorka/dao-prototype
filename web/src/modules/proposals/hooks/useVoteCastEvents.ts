@@ -5,7 +5,7 @@ import type { BigNumber } from "ethers";
 import { governorContract } from "@/consts";
 import type { VoteCastEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 
-interface VoteCastEvent {
+export interface VoteCastEvent {
   data: VoteCastEventObject;
   blockNumber: number;
   blockHash: string;
