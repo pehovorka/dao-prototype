@@ -78,11 +78,7 @@ export default function PropsalDetailPage() {
           {body}
         </ReactMarkdown>
 
-        <Timeline
-          proposalId={proposal.data.proposalId}
-          createdAtBlock={proposal.blockNumber}
-          endsAtBlock={proposal.data.endBlock.toNumber()}
-        />
+        <Timeline />
       </div>
     </>
   );

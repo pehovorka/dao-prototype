@@ -1,79 +1,48 @@
-import { BigNumber } from "ethers";
-import { useBlock, useProposalState } from "@/hooks";
-import { ProposalState } from "@/consts";
-import { Block } from "@ethersproject/abstract-provider";
-import { Step, TimelineStep } from "./TimelineStep";
+import { type ProposalCreatedEvent, useBlock, useProposalState } from "@/hooks";
+import { useAtomValue } from "jotai";
+import { proposalDetailAtom } from "@/atoms";
+import { Skeleton, Title, TitleType } from "@/modules/ui";
+import { FormattedMessage } from "react-intl";
+import { getFutureBlockDate } from "./utils";
+import { TimelineSteps } from "./TimelineSteps";
 
-const BLOCK_SECONDS = 12;
+export const Timeline = () => {
+  const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
 
-const getFutureBlockDate = (
-  createdAtBlockDetails: Block,
-  endsAtBlockNumber: number
-) => {
-  const blocksDifference = endsAtBlockNumber - createdAtBlockDetails.number;
-  const secondsDifference = blocksDifference * BLOCK_SECONDS;
-
-  const endsAtTimestamp =
-    createdAtBlockDetails?.timestamp &&
-    createdAtBlockDetails?.timestamp + secondsDifference;
-
-  if (endsAtTimestamp) return new Date(endsAtTimestamp * 1000);
-
-  return undefined;
-};
-
-interface TimelineProps {
-  proposalId: BigNumber;
-  createdAtBlock: number;
-  endsAtBlock: number;
-}
-export const Timeline = ({
-  proposalId,
-  createdAtBlock,
-  endsAtBlock,
-}: TimelineProps) => {
-  const createdAtBlockDetails = useBlock(createdAtBlock);
-  const { state } = useProposalState(proposalId);
+  const createdAtBlockDetails = useBlock(proposal.data.startBlock.toNumber());
+  const endsAtBlockDetails = useBlock(proposal.data.endBlock.toNumber());
+  const { state } = useProposalState(proposal.data.proposalId);
 
   const startsAtDate =
     createdAtBlockDetails && new Date(createdAtBlockDetails?.timestamp * 1000);
   const endsAtDate =
-    createdAtBlockDetails &&
-    getFutureBlockDate(createdAtBlockDetails, endsAtBlock);
-
-  const steps = state && getSteps(state, startsAtDate, endsAtDate);
+    (endsAtBlockDetails && new Date(endsAtBlockDetails?.timestamp * 1000)) ??
+    (createdAtBlockDetails &&
+      getFutureBlockDate(
+        createdAtBlockDetails,
+        proposal.data.endBlock.toNumber()
+      ));
 
   return (
-    <div className="artboard">
-      <ul className="steps steps-vertical">{steps}</ul>
-    </div>
+    <section>
+      <Title type={TitleType.H2}>
+        <FormattedMessage id="proposal.timeline.title" />
+      </Title>
+      {state ? (
+        <div className="artboard">
+          <ul className="steps steps-vertical">
+            <TimelineSteps
+              proposalState={state}
+              startsAtDate={startsAtDate}
+              endsAtDate={endsAtDate}
+            />
+          </ul>
+        </div>
+      ) : (
+        <div className="w-1/2">
+          <Skeleton type="TEXT" />
+        </div>
+      )}
+    </section>
   );
-};
-
-const getSteps = (
-  proposalState: (typeof ProposalState)[number],
-  startsAtDate?: Date,
-  endsAtDate?: Date
-) => {
-  switch (proposalState) {
-    case "active":
-      return (
-        <>
-          <TimelineStep step={Step.Created} date={startsAtDate} />
-          <TimelineStep step={Step.VotingEnd} date={endsAtDate} />
-          <TimelineStep step={Step.Queue} />
-          <TimelineStep step={Step.Execute} />
-        </>
-      );
-    case "defeated":
-      return (
-        <>
-          <TimelineStep step={Step.Created} date={startsAtDate} />
-          <TimelineStep step={Step.VotingEnd} date={endsAtDate} />
-          <TimelineStep step={Step.Defeated} />
-        </>
-      );
-    default:
-      return null;
-  }
 };

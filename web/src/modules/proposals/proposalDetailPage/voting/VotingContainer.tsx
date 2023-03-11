@@ -15,7 +15,7 @@ import { useProposalVotes } from "../../hooks";
 
 export const VotingContainer = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
-  const { formatNumber } = useIntl();
+  const { formatNumber, formatMessage } = useIntl();
 
   const { state: proposalState, error: proposalStateError } = useProposalState(
     proposal.data.proposalId
@@ -28,7 +28,12 @@ export const VotingContainer = () => {
 
   if (votes.error) {
     console.error(votes.error);
-    return <Alert message="Error loading voting data" type="error" />; // TODO: i18n
+    return (
+      <Alert
+        message={formatMessage({ id: "proposal.voting.error" })}
+        type="error"
+      />
+    );
   }
 
   return (
