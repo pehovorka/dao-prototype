@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { type ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
-import { useLogs } from "@usedapp/core";
+import { useBlockNumber, useLogs } from "@usedapp/core";
 import { ethers } from "ethers";
 
 import { governorContract } from "@/consts/governorContract";
@@ -21,6 +21,7 @@ export const useProposalCreatedEvents = (
     ProposalCreatedEvent[] | undefined
   >(undefined);
   const [error, setError] = useState<Error | undefined>(undefined);
+  const blockNumber = useBlockNumber();
 
   // Workaround for rerenders caused by useLogs
   // More info here: https://github.com/TrueFiEng/useDApp/pull/1045#issuecomment-1403793564
@@ -31,6 +32,12 @@ export const useProposalCreatedEvents = (
     event: "ProposalCreated",
     args: [],
   });
+
+  useEffect(() => {
+    if (blockNumber) {
+      setHasRendered(false);
+    }
+  }, [blockNumber]);
 
   useEffect(() => {
     if (!logs?.value || hasRendered) return;
