@@ -71,16 +71,19 @@ export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
           handleSelect={handleSelect}
           selectedOption={selectedOption}
           type="for"
+          disabled={inProgress}
         />
         <VoteRadioButton
           handleSelect={handleSelect}
           selectedOption={selectedOption}
           type="against"
+          disabled={inProgress}
         />
         <VoteRadioButton
           handleSelect={handleSelect}
           selectedOption={selectedOption}
           type="abstain"
+          disabled={inProgress}
         />
       </div>
       <div className="modal-action">

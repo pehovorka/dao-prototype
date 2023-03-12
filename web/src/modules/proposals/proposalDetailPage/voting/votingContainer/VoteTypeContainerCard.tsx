@@ -1,3 +1,4 @@
+import { config } from "@/config";
 import { useState } from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 import { VotersModal } from "./VotersModal";
@@ -59,7 +60,7 @@ export const VoteTypeContainerCard = ({
             ) : (
               "..."
             )}{" "}
-            HOT
+            {config.tokenSymbol}
           </div>
         </div>
         <progress className={progressClassName} value={percentage}></progress>

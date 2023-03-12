@@ -82,6 +82,9 @@
   "profile.wallet.noWalletCard.vote.text" : "Pro hlasování musíte připojit peněženku.",
   "profile.votingPower.text" : "Vaše hlasovací síla",
   "profile.votingPower.error" : "Chyba",
-  "profile.undelegatedVotes.text" : "Ve vaší peněžence máte aktivum {tokenName}, ale volební síla z jeho vlastnictví zatím není delegována.",
-  "profile.undelegatedVotes.button" : "Delegovat"
+  "profile.undelegatedVotes.text" : "Ve vaší peněžence máte aktivum {tokenName}, ale hlasovací síla z jeho vlastnictví zatím není delegována.",
+  "profile.undelegatedVotes.button" : "Delegovat {tokenBalance} {tokenName}",
+  "profile.delegate.state.mining" : "Čekání na vytěžení bloku...",
+  "profile.delegate.state.success" : "🎉 Hlasovací síla byla úspěšně delegována!",
+  "profile.delegate.state.exception" : "Něco se nepovedlo – chyba:\n{error}"
 }

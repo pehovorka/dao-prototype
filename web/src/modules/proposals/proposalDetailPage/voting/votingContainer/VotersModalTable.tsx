@@ -1,6 +1,10 @@
 import { useAtomValue } from "jotai";
 import Blockies from "react-blockies";
-import { Skeleton } from "@/modules/ui";
+import { FormattedMessage, FormattedNumber } from "react-intl";
+import { BigNumber } from "ethers";
+import { shortenAddress } from "@usedapp/core";
+import { formatEther } from "ethers/lib/utils";
+
 import { proposalDetailAtom } from "@/atoms";
 import {
   type ProposalCreatedEvent,
@@ -8,11 +12,9 @@ import {
   voteToSupportMap,
 } from "@/modules/proposals/hooks";
 import type { VoteTypeContainerProps } from "./VoteTypeContainer";
-import { formatEther } from "ethers/lib/utils";
-import { shortenAddress } from "@usedapp/core";
 import { BlockDate } from "@/modules/common";
-import { FormattedMessage, FormattedNumber } from "react-intl";
-import { BigNumber } from "ethers";
+import { Skeleton } from "@/modules/ui";
+import { config } from "@/config";
 
 interface VotersModalTableProps {
   type: VoteTypeContainerProps["type"];
@@ -80,7 +82,7 @@ export const VotersModalTable = ({ type }: VotersModalTableProps) => {
                 <FormattedNumber
                   value={Number(formatEther(event.data.weight))}
                 />{" "}
-                HOT
+                {config.tokenSymbol}
               </td>
             </tr>
           ))}
@@ -92,7 +94,7 @@ export const VotersModalTable = ({ type }: VotersModalTableProps) => {
             <th></th>
             <th className="text-right">
               <FormattedNumber value={Number(formatEther(totalVotingPower))} />{" "}
-              HOT
+              {config.tokenSymbol}
             </th>
           </tr>
         </tfoot>

@@ -5,11 +5,13 @@ interface VoteRadioButtonProps {
   type: Vote;
   handleSelect: (type: Vote) => void;
   selectedOption: Vote | undefined;
+  disabled: boolean;
 }
 export const VoteRadioButton = ({
   type,
   handleSelect,
   selectedOption,
+  disabled,
 }: VoteRadioButtonProps) => {
   const underlineColorClassName =
     type === "for"
@@ -33,14 +35,17 @@ export const VoteRadioButton = ({
           name="radio"
           id={type}
           value={type}
-          className="peer sr-only"
+          className="peer sr-only loading"
           onChange={() => handleSelect(type)}
           checked={type === selectedOption}
+          disabled={disabled}
         />
         <div
           className={`m-1 rounded-lg font-bold border-2 opacity-70
           underline decoration-transparent ${borderColorClassName} underline-offset-4 decoration-4 
-          border-dashed cursor-pointer p-4 transition-all ${underlineColorClassName} peer-checked:underline 
+          border-dashed ${
+            !disabled && "cursor-pointer"
+          } p-4 transition-all ${underlineColorClassName} peer-checked:underline 
           peer-checked:border-solid peer-checked:opacity-100 hover:opacity-90 hover:decoration-base-300`}
         >
           <span className="text-lg">

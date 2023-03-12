@@ -83,5 +83,8 @@
   "profile.votingPower.text" : "Your voting power",
   "profile.votingPower.error" : "Error",
   "profile.undelegatedVotes.text" : "You own the {tokenName} token, but you don't have the voting power delegated yet.",
-  "profile.undelegatedVotes.button" : "Delegate now"
+  "profile.undelegatedVotes.button" : "Delegate {tokenBalance} {tokenName}",
+  "profile.delegate.state.mining" : "Waiting for the block mining...",
+  "profile.delegate.state.success" : "🎉 The voting power was successfully delegated!",
+  "profile.delegate.state.exception" : "Something went wrong – error:\n{error}"
 }

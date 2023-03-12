@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { constants } from "ethers";
 import { shortenIfAddress } from "@usedapp/core";
 import { useAtomValue } from "jotai";
+import { formatEther } from "ethers/lib/utils";
 
 import { proposalDetailAtom } from "@/atoms";
 import {
@@ -11,9 +12,9 @@ import {
   useVoteCastEvents,
   type ProposalCreatedEvent,
 } from "@/modules/proposals/hooks";
-import { formatEther } from "ethers/lib/utils";
 import { Skeleton, Title, TitleType } from "@/modules/ui";
 import { filterVotesByType } from "@/modules/proposals/utils";
+import { config } from "@/config";
 
 type NodeType = "forVotes" | "againstVotes" | "abstainVotes" | "notVoted";
 
@@ -89,7 +90,9 @@ export const VotesTreeMap = () => {
           identity="name"
           value="loc"
           valueFormat=">-.2f"
-          label={(node) => `${formatNumber(node.value ?? 0)} HOT`}
+          label={(node) =>
+            `${formatNumber(node.value ?? 0)} ${config.tokenSymbol}`
+          }
           labelSkipSize={1}
           nodeOpacity={1}
           enableParentLabel={false}
@@ -119,7 +122,7 @@ export const VotesTreeMap = () => {
                 )}
                 <p>
                   <span className="text-base">
-                    {formatNumber(node.value)} HOT
+                    {formatNumber(node.value)} {config.tokenSymbol}
                   </span>
                 </p>
               </div>

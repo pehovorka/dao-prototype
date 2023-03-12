@@ -1,3 +1,4 @@
+export * from "./useDelegate";
 export * from "./useProposalVotes";
 export * from "./useHasVoted";
 export * from "./useProposalCreatedEvents";

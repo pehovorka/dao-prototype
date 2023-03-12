@@ -1,5 +1,7 @@
-import { useVotingPower } from "@/modules/proposals/hooks";
 import { FormattedMessage } from "react-intl";
+
+import { config } from "@/config";
+import { useVotingPower } from "@/modules/proposals/hooks";
 
 interface VotingPowerProps {
   blockNumber?: number;
@@ -21,7 +23,9 @@ export const VotingPower = ({ blockNumber }: VotingPowerProps) => {
           </div>
         )}
         {votingPower !== undefined && !error && (
-          <div className="text-xl font-bold">{votingPower} HOT</div>
+          <div className="text-xl font-bold">
+            {votingPower} {config.tokenSymbol}
+          </div>
         )}
       </div>
     </div>
