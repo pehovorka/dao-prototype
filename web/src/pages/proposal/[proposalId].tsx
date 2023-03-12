@@ -17,7 +17,7 @@ import { parseProposalDescription } from "@/utils";
 import { VotingContainer } from "@/modules/proposals/proposalDetailPage/voting/votingContainer";
 import { proposalDetailAtom } from "@/atoms";
 import { ProposalDetailMetaContainer } from "@/modules/proposals/proposalDetailPage/meta";
-import { DescriptionAndTimelineContainer } from "@/modules/proposals/proposalDetailPage/descriptionAndTimeline";
+import { ProposalDetailContentContainer } from "@/modules/proposals/proposalDetailPage/proposalDetailContent";
 import { VotesTreeMap } from "@/modules/proposals/proposalDetailPage/voting/treeMap";
 
 export default function PropsalDetailPage() {
@@ -66,8 +66,7 @@ export default function PropsalDetailPage() {
       <Title className="text-4xl font-black mb-7">{title}</Title>
       <ProposalDetailMetaContainer />
       <VotingContainer />
-      <DescriptionAndTimelineContainer description={body} />
-      <VotesTreeMap />
+      <ProposalDetailContentContainer description={body} />
     </>
   );
 }

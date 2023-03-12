@@ -1,3 +1,3 @@
-export * from "./Timeline";
+export * from "./TimelineSection";
 export * from "./TimelineStep";
 export * from "./TimelineSteps";
