@@ -2,7 +2,7 @@ import Image from "next/image";
 import { shortenAddress, useEthers } from "@usedapp/core";
 import { FormattedMessage } from "react-intl";
 import Blockies from "react-blockies";
-import { VotingPower } from "../proposals/common";
+import { NotDelegatedVotesAlert, VotingPower } from "../proposals/common";
 
 export const NavProfileDropdown = () => {
   const { account, deactivate, activateBrowserWallet } = useEthers();
@@ -33,11 +33,12 @@ export const NavProfileDropdown = () => {
       </label>
       <div
         tabIndex={0}
-        className="card card-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52"
+        className="card card-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-72"
       >
         {account && (
           <>
             <VotingPower />
+            <NotDelegatedVotesAlert />
             <div className="divider m-0"></div>
           </>
         )}

@@ -81,5 +81,7 @@
   "profile.wallet.noWalletCard.createProposal.text" : "Please connect your wallet before creating a proposal.",
   "profile.wallet.noWalletCard.vote.text" : "Please connect your wallet before voting.",
   "profile.votingPower.text" : "Your voting power",
-  "profile.votingPower.error" : "Error"
+  "profile.votingPower.error" : "Error",
+  "profile.undelegatedVotes.text" : "You own the {tokenName} token, but you don't have the voting power delegated yet.",
+  "profile.undelegatedVotes.button" : "Delegate now"
 }

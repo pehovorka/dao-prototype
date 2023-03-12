@@ -81,5 +81,7 @@
   "profile.wallet.noWalletCard.createProposal.text" : "Pro vytvoření návrhu musíte připojit peněženku.",
   "profile.wallet.noWalletCard.vote.text" : "Pro hlasování musíte připojit peněženku.",
   "profile.votingPower.text" : "Vaše hlasovací síla",
-  "profile.votingPower.error" : "Chyba"
+  "profile.votingPower.error" : "Chyba",
+  "profile.undelegatedVotes.text" : "Ve vaší peněžence máte aktivum {tokenName}, ale volební síla z jeho vlastnictví zatím není delegována.",
+  "profile.undelegatedVotes.button" : "Delegovat"
 }

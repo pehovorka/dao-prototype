@@ -1,8 +1,9 @@
 interface AlertProps {
   message: string;
   type: "error" | "success" | "info" | "warning";
+  actions?: React.ReactNode;
 }
-export const Alert = ({ message, type }: AlertProps) => {
+export const Alert = ({ message, type, actions }: AlertProps) => {
   const className = getAlertClassName(type);
   const icon = getIcon(type);
   return (
@@ -11,6 +12,7 @@ export const Alert = ({ message, type }: AlertProps) => {
         {icon}
         <span>{message}</span>
       </div>
+      {actions && <>{actions}</>}
     </div>
   );
 };
@@ -18,13 +20,13 @@ export const Alert = ({ message, type }: AlertProps) => {
 const getAlertClassName = (type: AlertProps["type"]) => {
   switch (type) {
     case "error":
-      return "alert alert-error shadow-lg";
+      return "alert alert-error shadow-lg flex-wrap";
     case "info":
-      return "alert alert-info shadow-lg";
+      return "alert alert-info shadow-lg flex-wrap";
     case "success":
-      return "alert alert-success shadow-lg";
+      return "alert alert-success shadow-lg flex-wrap";
     case "warning":
-      return "alert alert-warning shadow-lg";
+      return "alert alert-warning shadow-lg flex-wrap";
   }
 };
 
