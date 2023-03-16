@@ -15,6 +15,8 @@ import { NoWalletCard } from "@/modules/proposals/common";
 export interface FormData {
   title: string;
   description: string;
+  transferAddress?: string;
+  transferAmount?: number;
 }
 
 export const Form = () => {
@@ -54,7 +56,7 @@ export const Form = () => {
         <form onSubmit={onSubmit}>
           <ProposalTitleInput register={register} error={errors.title} />
           <MarkdownEditor control={control} />
-          <ActionsContainer control={control} />
+          <ActionsContainer register={register} errors={errors} />
           <FormButtons loading={inProgress} />
         </form>
       </section>

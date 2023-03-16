@@ -1,15 +1,20 @@
 import { useState } from "react";
-import type { Control } from "react-hook-form";
+import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import { FormattedMessage } from "react-intl";
 import { FormData } from "./Form";
+import { TransferFundsActionContainer } from "./TransferFundsActionContainer";
 
 interface ActionsContainerProps {
-  control: Control<FormData>;
+  register: UseFormRegister<FormData>;
+  errors: FieldErrors<FormData> | undefined;
 }
 
-export const ActionsContainer = ({ control }: ActionsContainerProps) => {
+export const ActionsContainer = ({
+  register,
+  errors,
+}: ActionsContainerProps) => {
   const [enabled, setEnabled] = useState(false);
-  const [tab, setTab] = useState<"sendEth" | "custom">("sendEth");
+  const [tab, setTab] = useState<"transferEth" | "custom">("transferEth");
 
   return (
     <div className={`collapse my-8 ${enabled && "collapse-open"}`}>
@@ -27,18 +32,23 @@ export const ActionsContainer = ({ control }: ActionsContainerProps) => {
       <div className="collapse-content">
         <div className="tabs tabs-boxed">
           <a
-            className={`tab ${tab === "sendEth" && "tab-active"}`}
-            onClick={() => setTab("sendEth")}
+            className={`tab transition-all ${
+              tab === "transferEth" && "tab-active"
+            }`}
+            onClick={() => setTab("transferEth")}
           >
             <FormattedMessage id="proposal.new.page.form.actions.action.transfer.title" />
           </a>
           <a
-            className={`tab ${tab === "custom" && "tab-active"}`}
+            className={`tab transition-all ${tab === "custom" && "tab-active"}`}
             onClick={() => setTab("custom")}
           >
             <FormattedMessage id="proposal.new.page.form.actions.action.custom.title" />
           </a>
         </div>
+        {tab === "transferEth" && (
+          <TransferFundsActionContainer register={register} errors={errors} />
+        )}
       </div>
     </div>
   );
