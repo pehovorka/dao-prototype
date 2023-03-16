@@ -29,6 +29,7 @@
   "proposal.timeline.step.defeated" : "Návrh neúspěšný",
   "proposal.timeline.step.quorumNotReached" : "Nedosaženo hlasovací kvórum",
   "proposal.timeline.step.succeeded" : "Návrh úspěšný",
+  "proposal.timeline.openOnEtherscan" : "Zobrazit transakci na Etherscan",
   "proposal.voting.title" : "Hlasování",
   "proposal.voting.error" : "Chyba načítání dat o hlasování. Po vytvoření návrhu může několik sekund trvat, než budou data dostupná.",
   "proposal.voting.for" : "Pro",

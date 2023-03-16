@@ -30,7 +30,7 @@ export const TimelineSection = () => {
   return (
     <SectionCard title={<FormattedMessage id="proposal.timeline.title" />}>
       {state ? (
-        <ul className="steps steps-vertical">
+        <ul className="steps steps-vertical overflow-visible">
           <TimelineSteps
             proposalState={state}
             startsAtDate={startsAtDate}

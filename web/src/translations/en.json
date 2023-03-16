@@ -29,6 +29,7 @@
   "proposal.timeline.step.defeated" : "Proposal defeated",
   "proposal.timeline.step.quorumNotReached" : "Quorum not reached",
   "proposal.timeline.step.succeeded" : "Proposal suceeded",
+  "proposal.timeline.openOnEtherscan" : "View transaction in Etherscan",
   "proposal.voting.title" : "Voting",
   "proposal.voting.error" : "There was an error loading voting data. After creating a proposal, it can take a few seconds before the data are available.",
   "proposal.voting.for" : "For",
