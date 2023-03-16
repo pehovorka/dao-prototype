@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useEthers } from "@usedapp/core";
 
 import {
+  ActionsContainer,
   FormButtons,
   MarkdownEditor,
   ProposalTitleInput,
@@ -53,6 +54,7 @@ export const Form = () => {
         <form onSubmit={onSubmit}>
           <ProposalTitleInput register={register} error={errors.title} />
           <MarkdownEditor control={control} />
+          <ActionsContainer control={control} />
           <FormButtons loading={inProgress} />
         </form>
       </section>
