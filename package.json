@@ -1,7 +1,6 @@
 {
   "name": "dao-prototype",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.1.0",
   "repository": "https://github.com/pehovorka/dao-prototype.git",
   "author": "Petr Hovorka <pehovorka@gmail.com>",
   "license": "MIT",
