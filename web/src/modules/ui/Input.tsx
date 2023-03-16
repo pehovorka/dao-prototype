@@ -39,7 +39,11 @@ export const Input = <FormData extends FieldValues>({
       <label className="label label-text text-lg">
         <FormattedMessage id={messages.label} />
       </label>
-      <label className="input-group">
+      <label
+        className={
+          (messages.innerLeftLabel || messages.innerRightLabel) && "input-group"
+        }
+      >
         {messages.innerLeftLabel && (
           <span>
             <FormattedMessage id={messages.innerLeftLabel} />
