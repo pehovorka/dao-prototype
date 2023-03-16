@@ -15,6 +15,7 @@ import type { VoteTypeContainerProps } from "./VoteTypeContainer";
 import { BlockDate } from "@/modules/common";
 import { Skeleton } from "@/modules/ui";
 import { config } from "@/config";
+import { ViewInEtherscanButton } from "@/modules/proposals/common";
 
 interface VotersModalTableProps {
   type: VoteTypeContainerProps["type"];
@@ -76,7 +77,12 @@ export const VotersModalTable = ({ type }: VotersModalTableProps) => {
                 <div className="hidden lg:inline-block">{event.data.voter}</div>
               </td>
               <td>
-                <BlockDate blockNumber={event.blockNumber} />
+                <div className="flex gap-2 items-center">
+                  <BlockDate blockNumber={event.blockNumber} />
+                  <ViewInEtherscanButton
+                    transactionHash={event.transactionHash}
+                  />
+                </div>
               </td>
               <td className="text-right">
                 <FormattedNumber

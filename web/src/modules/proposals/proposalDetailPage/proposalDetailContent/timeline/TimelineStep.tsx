@@ -1,10 +1,5 @@
-import { NewTabIcon } from "@/assets/icons/NewTabIcon";
-import {
-  FormattedDate,
-  FormattedMessage,
-  FormattedTime,
-  useIntl,
-} from "react-intl";
+import { ViewInEtherscanButton } from "@/modules/proposals/common";
+import { FormattedDate, FormattedMessage, FormattedTime } from "react-intl";
 
 export enum Step {
   Created = "created",
@@ -36,8 +31,6 @@ export const TimelineStep = ({
   date,
   transactionHash,
 }: TimelineStepProps) => {
-  const { formatMessage } = useIntl();
-
   const currentDate = new Date();
   const active = date && currentDate > date;
   const className = active ? "step step-primary" : "step";
@@ -59,20 +52,7 @@ export const TimelineStep = ({
           )}
         </div>
         {transactionHash && (
-          <div
-            className="tooltip tooltip-left"
-            data-tip={formatMessage({
-              id: "proposal.timeline.openOnEtherscan",
-            })}
-          >
-            <a
-              href={`https://goerli.etherscan.io/tx/${transactionHash}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <NewTabIcon className="fill-primary w-5 h-5 hover:fill-primary-focus" />
-            </a>
-          </div>
+          <ViewInEtherscanButton transactionHash={transactionHash} />
         )}
       </div>
     </li>
