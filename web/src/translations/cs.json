@@ -21,7 +21,7 @@
   "proposal.state.canceled" : "Zrušený",
   "proposal.state.executed" : "Vykonaný",
   "proposal.state.expired" : "Expirovaný",
-  "proposal.proposedBy" : "Navrhl/a {name}",
+  "proposal.proposer" : "Navrhovatel",
   "proposal.notFound" : "Návrh nenalezen!",
   "proposal.timeline.title" : "Časová osa",
   "proposal.timeline.step.created" : "Vytvoření návrhu",

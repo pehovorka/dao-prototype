@@ -9,11 +9,13 @@ interface AddressWithAvatarProps {
   address: string;
   short?: boolean;
   copyable?: boolean;
+  iconClassName?: string;
 }
 export const AddressWithAvatar = ({
   address,
   short,
   copyable,
+  iconClassName,
 }: AddressWithAvatarProps) => {
   const { formatMessage } = useIntl();
   const [isCopied, setIsCopied] = useState(false);
@@ -44,7 +46,13 @@ export const AddressWithAvatar = ({
           })}
         >
           <button onClick={handleClick}>
-            <CopyIcon className="ml-4 h-5 opacity-60 transition-opacity hover:opacity-100" />
+            <CopyIcon
+              className={
+                iconClassName
+                  ? iconClassName
+                  : "ml-4 h-5 opacity-60 transition-opacity hover:opacity-100"
+              }
+            />
           </button>
         </div>
       )}

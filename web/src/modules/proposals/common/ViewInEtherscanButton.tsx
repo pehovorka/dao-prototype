@@ -21,7 +21,7 @@ export const ViewInEtherscanButton = ({
         target="_blank"
         rel="noreferrer"
       >
-        <NewTabIcon className="fill-primary w-5 h-5 hover:fill-primary-focus" />
+        <NewTabIcon className="fill-primary w-4 h-4 hover:fill-primary-focus" />
       </a>
     </div>
   );

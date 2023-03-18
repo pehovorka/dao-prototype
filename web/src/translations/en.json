@@ -21,7 +21,7 @@
   "proposal.state.canceled" : "Canceled",
   "proposal.state.executed" : "Executed",
   "proposal.state.expired" : "Expired",
-  "proposal.proposedBy" : "Proposed by {name}",
+  "proposal.proposer" : "Proposer",
   "proposal.notFound" : "Proposal couldn't be found!",
   "proposal.timeline.title" : "Timeline",
   "proposal.timeline.step.created" : "Proposal created",

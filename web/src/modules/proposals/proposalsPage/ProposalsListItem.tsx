@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { FormattedMessage } from "react-intl";
-import { shortenAddress, useEthers } from "@usedapp/core";
-import Blockies from "react-blockies";
+import { useEthers } from "@usedapp/core";
 import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 
-import { BlockDate } from "@/modules/common";
+import { AddressWithAvatar, BlockDate } from "@/modules/common";
 import { useProposalState } from "@/modules/proposals/hooks";
 import { HasVotedBadge, ProposalStateBadge } from "../common";
 
@@ -32,19 +30,12 @@ export const ProposalsListItem = ({
             <h2 className="card-title mt-0 underline decoration-transparent underline-offset-4 decoration-2 transition-colors group-hover:decoration-secondary">
               {name}
             </h2>
-            <div className="flex gap-2 items-center mt-3">
-              <div className="w-6 h-6 mask mask-squircle">
-                <Blockies seed={proposer} size={10} scale={2.4} />
-              </div>
-
-              <p className="mb-0 overflow-ellipsis overflow-hidden">
-                <FormattedMessage
-                  id="proposal.proposedBy"
-                  values={{ name: shortenAddress(proposer) }}
-                />
-                {" | "}
+            <div className="flex flex-wrap gap-2 items-center mt-3">
+              <AddressWithAvatar address={proposer} short />
+              {"|"}
+              <div>
                 <BlockDate blockNumber={blockNumber} />
-              </p>
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-x-2 flex-wrap justify-end">

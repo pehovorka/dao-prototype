@@ -1,8 +1,6 @@
-import { useAtomValue } from "jotai";
-import Blockies from "react-blockies";
 import { FormattedMessage, FormattedNumber } from "react-intl";
+import { useAtomValue } from "jotai";
 import { BigNumber } from "ethers";
-import { shortenAddress } from "@usedapp/core";
 import { formatEther } from "ethers/lib/utils";
 
 import { proposalDetailAtom } from "@/atoms";
@@ -12,7 +10,7 @@ import {
   voteToSupportMap,
 } from "@/modules/proposals/hooks";
 import type { VoteTypeContainerProps } from "./VoteTypeContainer";
-import { BlockDate } from "@/modules/common";
+import { AddressWithAvatar, BlockDate } from "@/modules/common";
 import { Skeleton } from "@/modules/ui";
 import { config } from "@/config";
 import { ViewInEtherscanButton } from "@/modules/proposals/common";
@@ -68,13 +66,20 @@ export const VotersModalTable = ({ type }: VotersModalTableProps) => {
             <tr key={index}>
               <th>{index + 1}</th>
               <td className="flex gap-3">
-                <div className="w-6 h-6 mask mask-squircle">
-                  <Blockies seed={event.data.voter} size={10} scale={2.4} />
-                </div>
                 <div className="lg:hidden">
-                  {shortenAddress(event.data.voter)}
+                  <AddressWithAvatar
+                    copyable
+                    short
+                    address={event.data.voter}
+                  />
                 </div>
-                <div className="hidden lg:inline-block">{event.data.voter}</div>
+                <div className="hidden lg:inline-block">
+                  <AddressWithAvatar
+                    copyable
+                    address={event.data.voter}
+                    iconClassName="h-4 fill-primary transition-opacity hover:fill-primary-focus"
+                  />
+                </div>
               </td>
               <td>
                 <div className="flex gap-2 items-center">

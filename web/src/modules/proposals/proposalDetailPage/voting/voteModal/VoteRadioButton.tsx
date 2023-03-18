@@ -13,12 +13,12 @@ export const VoteRadioButton = ({
   selectedOption,
   disabled,
 }: VoteRadioButtonProps) => {
-  const underlineColorClassName =
+  const checkedColorClassName =
     type === "for"
-      ? "peer-checked:decoration-success"
+      ? "peer-checked:decoration-success peer-checked:bg-success"
       : type === "against"
-      ? "peer-checked:decoration-error"
-      : "peer-checked:decoration-info";
+      ? "peer-checked:decoration-error peer-checked:bg-error"
+      : "peer-checked:decoration-info peer-checked:bg-info";
 
   const borderColorClassName =
     type === "for"
@@ -45,7 +45,7 @@ export const VoteRadioButton = ({
           underline decoration-transparent ${borderColorClassName} underline-offset-4 decoration-4 
           border-dashed ${
             !disabled && "cursor-pointer"
-          } p-4 transition-all ${underlineColorClassName} peer-checked:underline 
+          } p-4 transition-all ${checkedColorClassName} peer-checked:bg-opacity-10 peer-checked:underline 
           peer-checked:border-solid peer-checked:opacity-100 hover:opacity-90 hover:decoration-base-300`}
         >
           <span className="text-lg">
