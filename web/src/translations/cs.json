@@ -1,6 +1,8 @@
 
 {
   "site.name" : "SVJ DAO",
+  "common.copyToClipboard" : "Zkopírovat do schránky",
+  "common.copyToClipboard.copied" : "Zkopírováno!",
   "nav.home" : "Domů",
   "nav.homeowners" : "Vlastníci",
   "nav.bulletin" : "Nástěnka",

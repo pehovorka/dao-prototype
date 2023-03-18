@@ -7,6 +7,7 @@ import { tokenContract } from "@/consts";
 import { AddressWithAvatar } from "@/modules/common";
 import { SectionCard, Title, TitleType } from "@/modules/ui";
 import { ProposalCreatedEvent } from "../../hooks";
+import { EthereumIcon, WalletIcon } from "@/assets/icons";
 
 export const ActionsSection = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
@@ -31,19 +32,34 @@ export const ActionsSection = () => {
         <Title type={TitleType.H5}>
           <FormattedMessage id={`proposal.actions.transfer.title`} />
         </Title>
-        <p className="text-2xl font-black">
-          <FormattedNumber value={Number(formatEther(transaction.args[1]))} />{" "}
-          <FormattedMessage id="proposal.actions.transfer.amount.currency" />
-        </p>
-        <p className="text-sm uppercase mt-4">
-          <FormattedMessage
-            id="proposal.actions.transfer.recipient"
-            values={{
-              address: transaction.args[0],
-            }}
-          />
-        </p>
-        <AddressWithAvatar address={transaction.args[0]} />
+        <div className="stats stats-vertical border-2 border-base-content border-opacity-10 lg:stats-horizontal">
+          <div className="stat">
+            <div className="stat-figure text-primary">
+              <EthereumIcon className="fill-primary h-9 w-9" />
+            </div>
+            <div className="stat-title">
+              <FormattedMessage id="proposal.actions.transfer.amount" />
+            </div>
+            <div className="stat-value text-primary">
+              <FormattedNumber
+                value={Number(formatEther(transaction.args[1]))}
+              />{" "}
+              <FormattedMessage id="proposal.actions.transfer.amount.currency" />
+            </div>
+          </div>
+
+          <div className="stat">
+            <div className="stat-figure text-secondary">
+              <WalletIcon className="fill-secondary h-8 w-8" />
+            </div>
+            <div className="stat-title">
+              <FormattedMessage id="proposal.actions.transfer.recipient" />
+            </div>
+            <div className="stat-value text-secondary text-sm break-all">
+              <AddressWithAvatar short copyable address={transaction.args[0]} />
+            </div>
+          </div>
+        </div>
       </SectionCard>
     );
   }
