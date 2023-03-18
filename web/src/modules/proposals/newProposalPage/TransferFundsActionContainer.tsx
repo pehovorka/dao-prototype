@@ -64,6 +64,7 @@ export const TransferFundsActionContainer = ({
         register={register}
         name="transferAmount"
         type="number"
+        step="any"
         options={{ required: true, max: balanceNumber }}
       />
     </div>

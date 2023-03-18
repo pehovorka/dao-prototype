@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from "react";
+import { HTMLProps } from "react";
 import type {
   FieldError,
   FieldValues,
@@ -8,7 +8,8 @@ import type {
 } from "react-hook-form";
 import { FormattedMessage, type MessageDescriptor, useIntl } from "react-intl";
 
-interface InputProps<FormData extends FieldValues> {
+interface InputProps<FormData extends FieldValues>
+  extends HTMLProps<HTMLInputElement> {
   messages: {
     label: MessageDescriptor["id"];
     placeholder: MessageDescriptor["id"];
@@ -22,7 +23,6 @@ interface InputProps<FormData extends FieldValues> {
   register: UseFormRegister<FormData>;
   name: Path<FormData>;
   options?: RegisterOptions;
-  type?: HTMLInputTypeAttribute;
 }
 export const Input = <FormData extends FieldValues>({
   messages,
@@ -32,6 +32,7 @@ export const Input = <FormData extends FieldValues>({
   name,
   type = "text",
   options = { required: true },
+  ...rest
 }: InputProps<FormData>) => {
   const { formatMessage } = useIntl();
   return (
@@ -56,6 +57,7 @@ export const Input = <FormData extends FieldValues>({
           })}
           className={`input input-bordered w-full ${error && "input-error"}`}
           type={type}
+          {...rest}
         />
         {messages.innerRightLabel && (
           <span>

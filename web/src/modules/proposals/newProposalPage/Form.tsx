@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useEthers } from "@usedapp/core";
+import { ethers } from "ethers";
 
 import {
   ActionsContainer,
@@ -15,6 +16,7 @@ import { NoWalletCard } from "@/modules/proposals/common";
 export interface FormData {
   title: string;
   description: string;
+  action: "none" | "transfer" | "custom";
   transferAddress?: string;
   transferAmount?: number;
 }
@@ -24,6 +26,7 @@ export const Form = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm<FormData>();
   const { account, activateBrowserWallet } = useEthers();
@@ -31,10 +34,26 @@ export const Form = () => {
 
   const onSubmit = handleSubmit((data) => {
     setInProgress(true);
+
+    const getCallData = () => {
+      if (
+        data.action === "transfer" &&
+        data.transferAddress &&
+        data.transferAmount
+      ) {
+        return tokenContract.interface.encodeFunctionData("transfer", [
+          data.transferAddress,
+          ethers.utils.parseUnits(data.transferAmount.toString(), "ether"),
+        ]);
+      }
+
+      return "0x";
+    };
+
     send(
       [tokenContract.address],
       [0],
-      ["0x"],
+      [getCallData()],
       `# ${data.title}\n${data.description}`
     );
   });
@@ -56,7 +75,11 @@ export const Form = () => {
         <form onSubmit={onSubmit}>
           <ProposalTitleInput register={register} error={errors.title} />
           <MarkdownEditor control={control} />
-          <ActionsContainer register={register} errors={errors} />
+          <ActionsContainer
+            register={register}
+            errors={errors}
+            setValue={setValue}
+          />
           <FormButtons loading={inProgress} />
         </form>
       </section>
