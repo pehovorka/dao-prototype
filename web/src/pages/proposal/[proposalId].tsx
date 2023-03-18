@@ -18,7 +18,6 @@ import { VotingContainer } from "@/modules/proposals/proposalDetailPage/voting/v
 import { proposalDetailAtom } from "@/atoms";
 import { ProposalDetailMetaContainer } from "@/modules/proposals/proposalDetailPage/meta";
 import { ProposalDetailContentContainer } from "@/modules/proposals/proposalDetailPage/proposalDetailContent";
-import { VotesTreeMap } from "@/modules/proposals/proposalDetailPage/voting/treeMap";
 
 export default function PropsalDetailPage() {
   const router = useRouter();
