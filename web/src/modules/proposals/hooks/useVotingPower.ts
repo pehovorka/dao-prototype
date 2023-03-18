@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { BigNumber, constants } from "ethers";
+import { useMemo } from "react";
+import { constants } from "ethers";
 import { formatEther } from "ethers/lib/utils";
 import { tokenContract } from "@/consts";
 import {
@@ -14,9 +14,6 @@ export const useVotingPower = (blockNumber?: number) => {
   const { account } = useEthers();
   const tokenBalance = useTokenBalance(config.tokenContractAddress, account);
   const currentBlockNumber = useBlockNumber();
-  const [votingPower, setVotingPower] = useState<BigNumber | undefined>(
-    undefined
-  );
 
   const memoizedBlockNumber = useMemo(() => {
     if (blockNumber) {
@@ -29,18 +26,15 @@ export const useVotingPower = (blockNumber?: number) => {
   }, [blockNumber, currentBlockNumber]);
 
   const { value, error } =
-    useCall(
-      {
-        contract: tokenContract,
-        method: "getPastVotes",
-        args: [account ?? constants.AddressZero, memoizedBlockNumber],
-      },
-      { refresh: "never" }
-    ) ?? {};
+    useCall({
+      contract: tokenContract,
+      method: "getPastVotes",
+      args: [account ?? constants.AddressZero, memoizedBlockNumber],
+    }) ?? {};
 
-  useEffect(() => {
+  const votingPower = useMemo(() => {
     if (value && value[0]) {
-      setVotingPower(value[0]);
+      return value[0];
     }
   }, [value]);
 
