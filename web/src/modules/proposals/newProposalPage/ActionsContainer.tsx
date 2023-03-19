@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { FormattedMessage } from "react-intl";
+import { CustomActionContainer } from "./CustomActionContainer";
 import { FormData } from "./Form";
 import { TransferFundsActionContainer } from "./TransferFundsActionContainer";
 
@@ -54,6 +55,10 @@ export const ActionsContainer = ({
         </div>
         {enabled && tab === "transfer" && (
           <TransferFundsActionContainer register={register} errors={errors} />
+        )}
+
+        {enabled && tab === "custom" && (
+          <CustomActionContainer register={register} errors={errors} />
         )}
       </div>
     </div>

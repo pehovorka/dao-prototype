@@ -19,6 +19,7 @@ export interface FormData {
   action: "none" | "transfer" | "custom";
   transferAddress?: string;
   transferAmount?: number;
+  customFunction?: [string, string];
 }
 
 export const Form = () => {
