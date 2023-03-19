@@ -1,8 +1,6 @@
-import Blockies from "react-blockies";
 import { type DefaultTreeMapDatum, ResponsiveTreeMap } from "@nivo/treemap";
 import { FormattedMessage, useIntl } from "react-intl";
 import { constants } from "ethers";
-import { shortenIfAddress } from "@usedapp/core";
 import { useAtomValue } from "jotai";
 import { formatEther } from "ethers/lib/utils";
 
@@ -15,6 +13,7 @@ import {
 import { Skeleton } from "@/modules/ui";
 import { filterVotesByType } from "@/modules/proposals/utils";
 import { config } from "@/config";
+import { AddressWithAvatar } from "@/modules/common";
 
 type NodeType = "forVotes" | "againstVotes" | "abstainVotes" | "notVoted";
 
@@ -92,35 +91,36 @@ export const VotesTreeMap = () => {
         labelSkipSize={1}
         nodeOpacity={1}
         enableParentLabel={false}
-        borderWidth={2}
+        borderWidth={1}
         tooltip={({ node }) => (
-          <div className="card bg-base-100 shadow-xl">
-            <div className="card-body">
+          <div className="stats shadow-lg">
+            <div className="stat">
               {node.data.type === "notVoted" ? (
-                <span className="text-base font-bold">
+                <span className="font-bold">
                   <FormattedMessage id="proposal.voting.treeMap.unusedVotes" />
                 </span>
               ) : (
-                <div className="flex gap-2 items-center">
-                  <div className="w-6 h-6 mask mask-squircle">
-                    <Blockies
-                      seed={node.data.name ?? constants.AddressZero}
-                      size={10}
-                      scale={2.4}
+                <>
+                  <span className="font-bold">
+                    <AddressWithAvatar
+                      short
+                      address={node.data.name ?? constants.AddressZero}
                     />
-                  </div>
-                  <p>
-                    <span className="text-base font-bold">
-                      {shortenIfAddress(node.data.name)}
-                    </span>
-                  </p>
-                </div>
+                  </span>
+                </>
               )}
-              <p>
-                <span className="text-base">
+              <>
+                <span className="stat-value">
                   {formatNumber(node.value)} {config.tokenSymbol}
                 </span>
-              </p>
+                {node.data.type && node.data.type !== "notVoted" && (
+                  <p className="stat-desc">
+                    <FormattedMessage
+                      id={`proposal.voting.treeMap.${node.data.type}`}
+                    />
+                  </p>
+                )}
+              </>
             </div>
           </div>
         )}

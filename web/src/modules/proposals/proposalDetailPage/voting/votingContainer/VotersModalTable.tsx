@@ -66,20 +66,11 @@ export const VotersModalTable = ({ type }: VotersModalTableProps) => {
             <tr key={index}>
               <th>{index + 1}</th>
               <td className="flex gap-3">
-                <div className="lg:hidden">
-                  <AddressWithAvatar
-                    copyable
-                    short
-                    address={event.data.voter}
-                  />
-                </div>
-                <div className="hidden lg:inline-block">
-                  <AddressWithAvatar
-                    copyable
-                    address={event.data.voter}
-                    iconClassName="h-4 fill-primary transition-opacity hover:fill-primary-focus"
-                  />
-                </div>
+                <AddressWithAvatar
+                  copyable
+                  responsive
+                  address={event.data.voter}
+                />
               </td>
               <td>
                 <div className="flex gap-2 items-center">

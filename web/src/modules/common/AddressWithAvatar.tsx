@@ -9,12 +9,14 @@ interface AddressWithAvatarProps {
   address: string;
   short?: boolean;
   copyable?: boolean;
+  responsive?: boolean;
   iconClassName?: string;
 }
 export const AddressWithAvatar = ({
   address,
   short,
   copyable,
+  responsive,
   iconClassName,
 }: AddressWithAvatarProps) => {
   const { formatMessage } = useIntl();
@@ -32,9 +34,16 @@ export const AddressWithAvatar = ({
         <Blockies seed={address} size={10} scale={2.4} />
       </div>
 
-      <span className="break-all">
-        {short ? shortenIfAddress(address) : address}
-      </span>
+      {responsive ? (
+        <>
+          <span className="lg:hidden">{shortenIfAddress(address)}</span>
+          <span className="hidden lg:inline-block">{address}</span>
+        </>
+      ) : (
+        <span className="break-all">
+          {short ? shortenIfAddress(address) : address}
+        </span>
+      )}
 
       {copyable && (
         <div

@@ -21,6 +21,7 @@ export const ProposalDetailMetaContainer = () => {
         <AddressWithAvatar
           address={proposal.data.proposer}
           copyable
+          responsive
           iconClassName="ml-2 h-4 fill-base-content opacity-50 transition-all hover:fill-secondary hover:opacity-100"
         />
       </div>
