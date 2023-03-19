@@ -12,12 +12,22 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="footer flex items-center p-4 text-base-content justify-between">
-      <div className="flex items-center">
+    <footer className="footer flex p-8 justify-between items-end md:items-center">
+      <div className="flex gap-3 flex-col md:flex-row md:items-center">
         <ApartmentBuildingIcon />
         <p>© 2023 Petr Hovorka</p>
+        <p className="hidden md:inline">·</p>
+        <p className="link link-hover">
+          <a
+            href="https://github.com/pehovorka/dao-prototype/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+        </p>
       </div>
-      <div className="gap-4">
+      <div>
         <select
           className="select select-md select-ghost select-bordered"
           value={locale}
@@ -33,7 +43,7 @@ export const Footer = () => {
 
 const ApartmentBuildingIcon = () => (
   <svg
-    className="w-16 h-16 fill-base-content"
+    className="w-20 h-16 fill-base-content"
     version="1.1"
     id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"

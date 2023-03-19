@@ -29,10 +29,12 @@ export const VotingContainer = () => {
   if (votes.error) {
     console.error(votes.error);
     return (
-      <Alert
-        message={formatMessage({ id: "proposal.voting.error" })}
-        type="error"
-      />
+      <div className="pb-10">
+        <Alert
+          message={formatMessage({ id: "proposal.voting.error" })}
+          type="error"
+        />
+      </div>
     );
   }
 
