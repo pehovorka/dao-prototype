@@ -33,12 +33,22 @@ export const usePropose = () => {
       case "Exception":
         toast.dismiss();
         setInProgress(false);
-        toast.error(formatMessage({ id: "proposal.new.state.exception" }));
+        toast.error(
+          formatMessage(
+            { id: "proposal.new.state.exception" },
+            { error: state.errorMessage }
+          )
+        );
         break;
       case "Fail":
         toast.dismiss();
         setInProgress(false);
-        toast.error(formatMessage({ id: "proposal.new.state.exception" }));
+        toast.error(
+          formatMessage(
+            { id: "proposal.new.state.exception" },
+            { error: state.errorMessage }
+          )
+        );
         break;
       default:
         break;

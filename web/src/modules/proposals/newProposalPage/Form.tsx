@@ -13,6 +13,7 @@ import { tokenContract } from "@/consts/tokenContract";
 import { usePropose } from "@/modules/proposals/hooks";
 import { NoWalletCard } from "@/modules/proposals/common";
 import { SolidityDataType } from "@/utils";
+import { contracts } from "../consts";
 
 export interface FormData {
   title: string;
@@ -48,13 +49,30 @@ export const Form = () => {
         ]);
       }
 
+      if (data.action === "custom" && data.customFunctionName) {
+        const [contractName, functionName] = data.customFunctionName;
+        const contract = contracts.find((c) => c.name === contractName);
+        if (contract) {
+          try {
+            console.log(data.customFunctionInputs);
+            return contract.interface.encodeFunctionData(functionName, [
+              ...data.customFunctionInputs.map((input) => input.value),
+            ]);
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+
       return "0x";
     };
+
+    const callData = getCallData();
 
     send(
       [tokenContract.address],
       [0],
-      [getCallData()],
+      [callData],
       `# ${data.title}\n${data.description}`
     );
   });

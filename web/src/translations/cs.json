@@ -68,7 +68,7 @@
   "proposal.actions.transfer.recipient" : "Příjemce",
   "proposal.actions.custom.title" : "Vlastní akce",
   "proposal.actions.custom.placeholder" : "Zvolte prosím akci",
-  "proposal.actions.custom.disclaimer.text" : "Tato funkcionalita je experimentální a její použití může vést k chybám.",
+  "proposal.actions.custom.disclaimer.text" : "Tato funkcionalita je experimentální a její použití může vést k chybám.Popis jednotlivých funkcí a jejich argumentů lze nalézt v dokumentaci OpenZeppelin: {links}",
   "proposal.actions.custom.field.error.min" : "Číslo je moc nízké pro datový typ {dataType}",
   "proposal.actions.custom.field.error.max" : "Číslo je moc vysoké pro datový typ {dataType}",
   "proposal.actions.custom.field.error.pattern" : "Formát vstupu není správný. Požadovaný datový typ je {dataType}",

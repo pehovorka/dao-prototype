@@ -1,5 +1,5 @@
 interface AlertProps {
-  message: string;
+  message: React.ReactNode;
   type: "error" | "success" | "info" | "warning";
   actions?: React.ReactNode;
 }

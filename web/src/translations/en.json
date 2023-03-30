@@ -68,7 +68,7 @@
   "proposal.actions.transfer.recipient" : "Recipient",
   "proposal.actions.custom.title" : "Custom fuction",
   "proposal.actions.custom.placeholder" : "Please select an action",
-  "proposal.actions.custom.disclaimer.text" : "This functionality is not production-grade. Use with caution.",
+  "proposal.actions.custom.disclaimer.text" : "This functionality is not production-grade. Use with caution. Documentation of each function can be found on the OpenZeppelin website: {links}",
   "proposal.actions.custom.field.error.min" : "The number is too low for the {dataType} data type",
   "proposal.actions.custom.field.error.max" : "The number is too high for the {dataType} data type",
   "proposal.actions.custom.field.error.pattern" : "The input format is incorrect. The required data type is {dataType}",

@@ -1,14 +1,13 @@
 import { config } from "@/config";
-import { constants, Contract } from "ethers";
-import { FunctionFragment } from "ethers/lib/utils";
+import { constants } from "ethers";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import { governorContract, timelockContract, tokenContract } from "@/consts";
 import { getValidationOptionsByDataType, SolidityDataType } from "@/utils";
 import { BalanceContainer } from "../common";
 import { Alert, Input } from "@/modules/ui";
 import type { FormData } from "./Form";
+import { contracts } from "../consts";
 
 export const CustomActionContainer = () => {
   const { formatMessage } = useIntl();
@@ -18,6 +17,7 @@ export const CustomActionContainer = () => {
   const {
     register,
     setValue,
+    getValues,
     formState: { errors },
     clearErrors,
   } = useFormContext<FormData>();
@@ -37,9 +37,27 @@ export const CustomActionContainer = () => {
           />
           <Alert
             type="warning"
-            message={formatMessage({
-              id: "proposal.actions.custom.disclaimer.text",
-            })}
+            message={
+              <FormattedMessage
+                id="proposal.actions.custom.disclaimer.text"
+                values={{
+                  links: contractDocsLinks.map((contract, index) => (
+                    <>
+                      <a
+                        className="underline"
+                        key={contract.name}
+                        href={contract.link}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {contract.name}
+                      </a>
+                      {index !== contractDocsLinks.length - 1 && ", "}
+                    </>
+                  )),
+                }}
+              />
+            }
           />
         </div>
         <label className="label label-text text-lg">
@@ -49,9 +67,8 @@ export const CustomActionContainer = () => {
           className="select select-bordered w-full"
           {...(register("customFunctionName", { required: true }),
           {
-            defaultValue: "",
             onChange: (e) => {
-              const [contractName, functionName] = e.target.value.split(",");
+              const [contractName, functionName] = JSON.parse(e.target.value);
               const contract = contracts.find((c) => c.name === contractName);
               if (contract) {
                 const functionFragment = contract.functions.find(
@@ -70,15 +87,19 @@ export const CustomActionContainer = () => {
               setValue("customFunctionName", [contractName, functionName]);
               clearErrors();
             },
+            value: JSON.stringify(getValues("customFunctionName")) ?? "",
           })}
         >
-          <option value="" disabled>
+          <option hidden>
             {formatMessage({ id: "proposal.actions.custom.placeholder" })}
           </option>
           {contracts.map((c) => (
             <optgroup label={c.name} key={c.name}>
               {Object.values(c.functions).map((f) => (
-                <option value={[c.name, f.name]} key={`${c.name}_${f.name}`}>
+                <option
+                  value={JSON.stringify([c.name, f.name])}
+                  key={`${c.name}_${f.name}`}
+                >
                   {f.name}
                 </option>
               ))}
@@ -137,14 +158,17 @@ export const CustomActionContainer = () => {
   );
 };
 
-const filterFunctions = (contract: Contract) => {
-  return Object.values(contract.interface.functions).filter(
-    (f) => f.stateMutability !== "view" && f.stateMutability !== "pure"
-  );
-};
-
-const contracts: { functions: FunctionFragment[]; name: string }[] = [
-  { functions: filterFunctions(governorContract), name: "Governor" },
-  { functions: filterFunctions(tokenContract), name: "Token" },
-  { functions: filterFunctions(timelockContract), name: "Timelock" },
+const contractDocsLinks = [
+  {
+    name: "Governor",
+    link: "https://docs.openzeppelin.com/contracts/4.x/api/governance#Governor",
+  },
+  {
+    name: "Token",
+    link: "https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20",
+  },
+  {
+    name: "Timelock",
+    link: "https://docs.openzeppelin.com/contracts/4.x/api/governance#TimelockController",
+  },
 ];
