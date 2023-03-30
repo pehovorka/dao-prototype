@@ -62,6 +62,7 @@
   "proposal.voting.treeMap.abstainVotes" : "Abstain",
   "proposal.actions.title" : "Actions after proposal passes",
   "proposal.actions.noActions" : "No actions",
+  "proposal.actions.cannotParse" : "The action couldn't be parsed.",
   "proposal.actions.transfer.title" : "Transfer funds from treasury",
   "proposal.actions.transfer.amount" : "Amount",
   "proposal.actions.transfer.amount.currency" : "ETH",

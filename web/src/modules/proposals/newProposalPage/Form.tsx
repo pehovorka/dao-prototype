@@ -67,12 +67,22 @@ export const Form = () => {
       return "0x";
     };
 
-    const callData = getCallData();
+    const getContractAddress = () => {
+      if (data.action === "custom" && data.customFunctionName) {
+        const [contractName] = data.customFunctionName;
+        const contract = contracts.find((c) => c.name === contractName);
+        if (contract) {
+          return contract.address;
+        }
+      }
+
+      return tokenContract.address;
+    };
 
     send(
-      [tokenContract.address],
+      [getContractAddress()],
       [0],
-      [callData],
+      [getCallData()],
       `# ${data.title}\n${data.description}`
     );
   });

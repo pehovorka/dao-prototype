@@ -62,6 +62,7 @@
   "proposal.voting.treeMap.abstainVotes" : "Zdržel se",
   "proposal.actions.title" : "Akce po schválení návrhu",
   "proposal.actions.noActions" : "Žádné akce",
+  "proposal.actions.cannotParse" : "Akci nelze dekódovat.",
   "proposal.actions.transfer.title" : "Odeslání prostředků z pokladny",
   "proposal.actions.transfer.amount" : "Množství",
   "proposal.actions.transfer.amount.currency" : "ETH",

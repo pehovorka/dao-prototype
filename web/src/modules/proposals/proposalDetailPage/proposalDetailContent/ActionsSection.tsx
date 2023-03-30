@@ -3,11 +3,11 @@ import { FormattedMessage, FormattedNumber } from "react-intl";
 import { formatEther } from "ethers/lib/utils";
 
 import { proposalDetailAtom } from "@/atoms";
-import { tokenContract } from "@/consts";
 import { AddressWithAvatar } from "@/modules/common";
 import { SectionCard, Title, TitleType } from "@/modules/ui";
 import { ProposalCreatedEvent } from "../../hooks";
 import { EthereumIcon, WalletIcon } from "@/assets/icons";
+import { parseTransactionByContractAddress } from "../../utils";
 
 export const ActionsSection = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
@@ -22,9 +22,20 @@ export const ActionsSection = () => {
     );
   }
 
-  const transaction = tokenContract.interface.parseTransaction({
-    data: proposal.data.calldatas[0],
-  });
+  const transaction = parseTransactionByContractAddress(
+    proposal.data.targets[0],
+    proposal.data.calldatas[0]
+  );
+
+  if (!transaction) {
+    return (
+      <SectionCard title={<FormattedMessage id="proposal.actions.title" />}>
+        <div className="m-auto">
+          <FormattedMessage id={`proposal.actions.cannotParse`} />
+        </div>
+      </SectionCard>
+    );
+  }
 
   if (transaction.name === "transfer") {
     return (
@@ -64,5 +75,19 @@ export const ActionsSection = () => {
     );
   }
 
-  return null;
+  return (
+    <SectionCard title={<FormattedMessage id="proposal.actions.title" />}>
+      <Title type={TitleType.H5}>{transaction.signature}</Title>
+      <div className="stats stats-vertical border-2 border-base-content border-opacity-10">
+        {transaction.functionFragment.inputs.map((input, index) => (
+          <div className="stat" key={index}>
+            <div className="stat-title">{input.name}</div>
+            <div className="stat-value text-primary text-lg">
+              {transaction.args[index].toString()}
+            </div>
+          </div>
+        ))}
+      </div>
+    </SectionCard>
+  );
 };

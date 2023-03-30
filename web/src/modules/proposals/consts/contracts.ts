@@ -12,6 +12,7 @@ interface EnhancedContract {
   functions: FunctionFragment[];
   name: string;
   interface: Contract["interface"];
+  address: Contract["address"];
 }
 
 export const contracts: EnhancedContract[] = [
@@ -19,16 +20,19 @@ export const contracts: EnhancedContract[] = [
     functions: filterFunctions(governorContract),
     name: "Governor",
     interface: governorContract.interface,
+    address: governorContract.address,
   },
   {
     functions: filterFunctions(tokenContract),
     name: "Token",
     interface: tokenContract.interface,
+    address: tokenContract.address,
   },
   {
     functions: filterFunctions(timelockContract),
     name: "Timelock",
     interface: timelockContract.interface,
+    address: timelockContract.address,
   },
 ];
 
