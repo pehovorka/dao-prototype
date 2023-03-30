@@ -8,6 +8,7 @@ import {
   useProposalState,
 } from "@/modules/proposals/hooks";
 import { AddressWithAvatar } from "@/modules/common";
+import { ProposalActionButtons } from "../actionButtons";
 
 export const ProposalDetailMetaContainer = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
@@ -25,7 +26,10 @@ export const ProposalDetailMetaContainer = () => {
           iconClassName="ml-2 h-4 fill-base-content opacity-50 transition-all hover:fill-secondary hover:opacity-100"
         />
       </div>
-      {state && <ProposalStateBadge state={state} />}
+      <div className="flex gap-4 items-center">
+        {state && <ProposalStateBadge state={state} />}
+        <ProposalActionButtons />
+      </div>
     </section>
   );
 };

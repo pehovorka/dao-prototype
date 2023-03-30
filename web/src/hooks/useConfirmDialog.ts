@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export const useConfirmDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const open = () => {
+  const open = useCallback(() => {
     setIsOpen(true);
-  };
+  }, []);
 
-  const close = () => {
+  const close = useCallback(() => {
     setIsOpen(false);
-  };
+  }, []);
 
   return {
     isOpen,

@@ -6,6 +6,7 @@ interface ConfirmProps {
   title: MessageDescriptor["id"];
   confirmText?: MessageDescriptor["id"];
   cancelText?: MessageDescriptor["id"];
+  inProgress?: boolean;
   onConfirm?: () => void;
   onCancel?: () => void;
 }
@@ -17,6 +18,7 @@ export const Confirm = ({
   cancelText,
   onConfirm,
   onCancel,
+  inProgress,
 }: ConfirmProps) => {
   return (
     <div className={`modal ${open && "modal-open"}`}>
@@ -28,10 +30,17 @@ export const Confirm = ({
           <FormattedMessage id={text} />
         </p>
         <div className="modal-action">
-          <button className="btn btn-ghost" onClick={onCancel}>
+          <button
+            className="btn btn-ghost"
+            disabled={inProgress}
+            onClick={onCancel}
+          >
             <FormattedMessage id={cancelText ?? "common.cancel"} />
           </button>
-          <button className="btn" onClick={onConfirm}>
+          <button
+            className={`btn ${inProgress && "loading"}`}
+            onClick={onConfirm}
+          >
             <FormattedMessage id={confirmText ?? "common.confirm"} />
           </button>
         </div>

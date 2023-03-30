@@ -19,7 +19,7 @@
   "proposal.state.active" : "Aktivní",
   "proposal.state.succeeded" : "Úspěšný",
   "proposal.state.defeated" : "Neúspěšný",
-  "proposal.state.queued" : "V řadě",
+  "proposal.state.queued" : "Ve frontě",
   "proposal.state.canceled" : "Zrušený",
   "proposal.state.executed" : "Vykonaný",
   "proposal.state.expired" : "Expirovaný",
