@@ -1,27 +1,29 @@
-import type { FieldError, UseFormRegister } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import type { FormData } from "./Form";
 import { Input } from "@/modules/ui";
+import { useIntl } from "react-intl";
 
-interface ProposalTitleInputProps {
-  register: UseFormRegister<FormData>;
-  error: FieldError | undefined;
-}
-
-export const ProposalTitleInput = ({
-  register,
-  error,
-}: ProposalTitleInputProps) => {
+export const ProposalTitleInput = () => {
+  const { formatMessage } = useIntl();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FormData>();
   return (
     <Input
       messages={{
-        label: "proposal.new.page.form.title.title",
-        placeholder: "proposal.new.page.form.title.placeholder",
+        label: formatMessage({ id: "proposal.new.page.form.title.title" }),
+        placeholder: formatMessage({
+          id: "proposal.new.page.form.title.placeholder",
+        }),
       }}
       errorMessages={{
-        required: "proposal.new.page.form.title.required",
+        required: formatMessage({
+          id: "proposal.new.page.form.title.required",
+        }),
       }}
-      error={error}
+      error={errors.title}
       register={register}
       name="title"
     />

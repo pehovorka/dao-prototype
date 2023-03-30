@@ -1,4 +1,5 @@
-import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
+import { useIntl } from "react-intl";
 import { constants } from "ethers";
 import { formatEther } from "ethers/lib/utils";
 import { useEtherBalance } from "@usedapp/core";
@@ -8,14 +9,13 @@ import { BalanceContainer } from "../common";
 import { Input } from "@/modules/ui";
 import { config } from "@/config";
 
-interface TransferFundsActionContainerProps {
-  register: UseFormRegister<FormData>;
-  errors: FieldErrors<FormData> | undefined;
-}
-export const TransferFundsActionContainer = ({
-  register,
-  errors,
-}: TransferFundsActionContainerProps) => {
+export const TransferFundsActionContainer = () => {
+  const { formatMessage } = useIntl();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FormData>();
+
   const timelockContractAddress =
     config.timelockContractAddress || constants.AddressZero;
   const balance = useEtherBalance(timelockContractAddress);
@@ -32,15 +32,20 @@ export const TransferFundsActionContainer = ({
       </div>
       <Input
         messages={{
-          label: "proposal.new.page.form.actions.action.transfer.address.title",
-          placeholder:
-            "proposal.new.page.form.actions.action.transfer.address.placeholder",
+          label: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.address.title",
+          }),
+          placeholder: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.address.placeholder",
+          }),
         }}
         errorMessages={{
-          pattern:
-            "proposal.new.page.form.actions.action.transfer.address.error.pattern",
-          required:
-            "proposal.new.page.form.actions.action.transfer.address.error.required",
+          pattern: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.address.error.pattern",
+          }),
+          required: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.address.error.required",
+          }),
         }}
         error={errors?.transferAddress}
         register={register}
@@ -49,16 +54,23 @@ export const TransferFundsActionContainer = ({
       />
       <Input
         messages={{
-          label: "proposal.new.page.form.actions.action.transfer.amount.title",
-          placeholder:
-            "proposal.new.page.form.actions.action.transfer.amount.placeholder",
-          innerRightLabel:
-            "proposal.new.page.form.actions.action.transfer.amount.currency",
+          label: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.amount.title",
+          }),
+          placeholder: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.amount.placeholder",
+          }),
+          innerRightLabel: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.amount.currency",
+          }),
         }}
         errorMessages={{
-          required:
-            "proposal.new.page.form.actions.action.transfer.amount.error.required",
-          max: "proposal.new.page.form.actions.action.transfer.amount.error.max",
+          required: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.amount.error.required",
+          }),
+          max: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.amount.error.max",
+          }),
         }}
         error={errors?.transferAmount}
         register={register}

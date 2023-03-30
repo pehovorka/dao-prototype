@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useEthers } from "@usedapp/core";
 import { ethers } from "ethers";
 
@@ -12,6 +12,7 @@ import {
 import { tokenContract } from "@/consts/tokenContract";
 import { usePropose } from "@/modules/proposals/hooks";
 import { NoWalletCard } from "@/modules/proposals/common";
+import { SolidityDataType } from "@/utils";
 
 export interface FormData {
   title: string;
@@ -19,21 +20,20 @@ export interface FormData {
   action: "none" | "transfer" | "custom";
   transferAddress?: string;
   transferAmount?: number;
-  customFunction?: [string, string];
+  customFunctionName?: [string, string];
+  customFunctionInputs: {
+    name: string | number;
+    dataType: SolidityDataType;
+    value?: string;
+  }[];
 }
 
 export const Form = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    setValue,
-    formState: { errors },
-  } = useForm<FormData>();
+  const methods = useForm<FormData>();
   const { account, activateBrowserWallet } = useEthers();
   const { inProgress, setInProgress, send } = usePropose();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = methods.handleSubmit((data) => {
     setInProgress(true);
 
     const getCallData = () => {
@@ -71,19 +71,15 @@ export const Form = () => {
   }
 
   return (
-    <>
+    <FormProvider {...methods}>
       <section>
         <form onSubmit={onSubmit}>
-          <ProposalTitleInput register={register} error={errors.title} />
-          <MarkdownEditor control={control} />
-          <ActionsContainer
-            register={register}
-            errors={errors}
-            setValue={setValue}
-          />
+          <ProposalTitleInput />
+          <MarkdownEditor />
+          <ActionsContainer />
           <FormButtons loading={inProgress} />
         </form>
       </section>
-    </>
+    </FormProvider>
   );
 };

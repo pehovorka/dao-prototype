@@ -1,27 +1,18 @@
 import { useEffect, useState } from "react";
-import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { FormattedMessage } from "react-intl";
 import { CustomActionContainer } from "./CustomActionContainer";
 import { FormData } from "./Form";
 import { TransferFundsActionContainer } from "./TransferFundsActionContainer";
 
-interface ActionsContainerProps {
-  register: UseFormRegister<FormData>;
-  setValue: UseFormSetValue<FormData>;
-  errors: FieldErrors<FormData> | undefined;
-}
-
-export const ActionsContainer = ({
-  register,
-  errors,
-  setValue,
-}: ActionsContainerProps) => {
+export const ActionsContainer = () => {
+  const { setValue } = useFormContext();
   const [enabled, setEnabled] = useState(false);
   const [tab, setTab] =
     useState<Exclude<FormData["action"], "none">>("transfer");
   useEffect(() => {
     setValue("action", enabled ? tab : "none");
-  }, [enabled, tab, setValue, register]);
+  }, [enabled, tab, setValue]);
 
   return (
     <div className={`collapse my-8 ${enabled && "collapse-open"}`}>
@@ -53,13 +44,9 @@ export const ActionsContainer = ({
             <FormattedMessage id="proposal.new.page.form.actions.action.custom.title" />
           </a>
         </div>
-        {enabled && tab === "transfer" && (
-          <TransferFundsActionContainer register={register} errors={errors} />
-        )}
+        {enabled && tab === "transfer" && <TransferFundsActionContainer />}
 
-        {enabled && tab === "custom" && (
-          <CustomActionContainer register={register} errors={errors} />
-        )}
+        {enabled && tab === "custom" && <CustomActionContainer />}
       </div>
     </div>
   );
