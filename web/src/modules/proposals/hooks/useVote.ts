@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import { useIntl } from "react-intl";
-import { useContractFunction } from "@usedapp/core";
-import toast from "react-hot-toast";
 import { governorContract } from "@/consts/governorContract";
+import { useContractFunctionFlow } from "./useContractFunctionFlow";
 
 export type Vote = "for" | "against" | "abstain";
 
@@ -13,59 +10,16 @@ export const voteToSupportMap = {
 } as const;
 
 export const useVote = () => {
-  const { formatMessage } = useIntl();
-  const { send, state, events } = useContractFunction(
+  const { send, state, inProgress, setInProgress } = useContractFunctionFlow(
     governorContract,
-    "castVote"
-  );
-  const [inProgress, setInProgress] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log("state", state);
-    switch (state.status) {
-      case "None":
-        toast.dismiss();
-        break;
-      case "Mining":
-        toast.dismiss();
-        toast.loading(
-          formatMessage({ id: "proposal.voting.vote.state.mining" }),
-          {
-            duration: 1000000,
-          }
-        );
-        break;
-      case "Success":
-        toast.dismiss();
-        toast.success(
-          formatMessage({ id: "proposal.voting.vote.state.success" })
-        );
-        setInProgress(false);
-        break;
-      case "Exception":
-        toast.dismiss();
-        setInProgress(false);
-        toast.error(
-          formatMessage(
-            { id: "proposal.voting.vote.state.exception" },
-            { error: state.errorMessage }
-          )
-        );
-        break;
-      case "Fail":
-        toast.dismiss();
-        setInProgress(false);
-        toast.error(
-          formatMessage(
-            { id: "proposal.voting.vote.state.exception" },
-            { error: state.errorMessage }
-          )
-        );
-        break;
-      default:
-        break;
+    "castVote",
+    undefined,
+    {
+      mining: "proposal.voting.vote.state.mining",
+      success: "proposal.voting.vote.state.success",
+      exception: "proposal.voting.vote.state.exception",
     }
-  }, [state, formatMessage]);
+  );
 
   return { inProgress, setInProgress, castVote: send, state };
 };

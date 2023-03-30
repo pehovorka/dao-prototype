@@ -14,7 +14,7 @@ export const parseTransactionByContractAddress = (
       });
       return transaction;
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 };

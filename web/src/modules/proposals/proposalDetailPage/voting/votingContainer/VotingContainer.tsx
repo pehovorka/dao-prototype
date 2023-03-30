@@ -62,7 +62,9 @@ export const VotingContainer = () => {
               />
             </span>
           )}
-          {proposalState === "active" && !hasVoted && <VoteModalButton />}
+          {proposalState === "active" && (
+            <VoteModalButton hidden={hasVoted ? true : false} />
+          )}
           {hasVoted && (
             <HasVotedBadge
               type="detail"
