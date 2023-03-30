@@ -3,6 +3,8 @@
   "site.name" : "SVJ DAO",
   "common.copyToClipboard" : "Zkopírovat do schránky",
   "common.copyToClipboard.copied" : "Zkopírováno!",
+  "common.confirm" : "Potvrdit",
+  "common.cancel" : "Zrušit",
   "nav.home" : "Domů",
   "nav.homeowners" : "Vlastníci",
   "nav.bulletin" : "Nástěnka",
@@ -21,6 +23,12 @@
   "proposal.state.canceled" : "Zrušený",
   "proposal.state.executed" : "Vykonaný",
   "proposal.state.expired" : "Expirovaný",
+  "proposal.actionButtons.cancel.button" : "Zrušit návrh",
+  "proposal.actionButtons.cancel.confirm.title" : "Zrušit návrh",
+  "proposal.actionButtons.cancel.confirm.text" : "Pokud zrušíte návrh, ostatní pro něj nebudou moct hlasovat a nevykoná se žádná akce.",
+  "proposal.actionButtons.queue.button" : "Zařadit do fronty",
+  "proposal.actionButtons.queue.confirm.title" : "Zařadit do fronty k vykonání",
+  "proposal.actionButtons.queue.confirm.text" : "Tímto se návrh zařadí do fronty a po uplynutí časového zámku se vykonají případné akce, které jsou s návrhem spojeny.",
   "proposal.proposer" : "Navrhovatel",
   "proposal.notFound" : "Návrh nenalezen!",
   "proposal.timeline.title" : "Časová osa",
@@ -119,5 +127,8 @@
   "profile.undelegatedVotes.button" : "Delegovat {tokenBalance} {tokenName}",
   "profile.delegate.state.mining" : "Čekání na vytěžení bloku...",
   "profile.delegate.state.success" : "🎉 Hlasovací síla byla úspěšně delegována!",
-  "profile.delegate.state.exception" : "Něco se nepovedlo – chyba:\n{error}"
+  "profile.delegate.state.exception" : "Něco se nepovedlo – chyba:\n{error}",
+  "contractFunctionFlow.state.mining" : "Čekání na vytěžení bloku...",
+  "contractFunctionFlow.state.success" : "🎉 Akce byla úspěšně vykonána!",
+  "contractFunctionFlow.state.exception" : "Něco se nepovedlo – chyba:\n{error}"
 }

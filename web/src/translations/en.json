@@ -3,6 +3,8 @@
   "site.name" : "Homeowners DAO",
   "common.copyToClipboard" : "Copy to clipboard",
   "common.copyToClipboard.copied" : "Copied!",
+  "common.confirm" : "Confirm",
+  "common.cancel" : "Cancel",
   "nav.home" : "Home",
   "nav.homeowners" : "Homeowners",
   "nav.bulletin" : "Bulletin",
@@ -21,6 +23,12 @@
   "proposal.state.canceled" : "Canceled",
   "proposal.state.executed" : "Executed",
   "proposal.state.expired" : "Expired",
+  "proposal.actionButtons.cancel.button" : "Cancel proposal",
+  "proposal.actionButtons.cancel.confirm.title" : "Cancel proposal",
+  "proposal.actionButtons.cancel.confirm.text" : "If you cancel the proposal, other people won't be able to vote, and no action will be performed.",
+  "proposal.actionButtons.queue.button" : "Queue proposal",
+  "proposal.actionButtons.queue.confirm.title" : "Queue proposal for execution",
+  "proposal.actionButtons.queue.confirm.text" : "This will queue the proposal execution. Proposed actions, if any, will be executed after the timelock delay.",
   "proposal.proposer" : "Proposer",
   "proposal.notFound" : "Proposal couldn't be found!",
   "proposal.timeline.title" : "Timeline",
@@ -119,5 +127,8 @@
   "profile.undelegatedVotes.button" : "Delegate {tokenBalance} {tokenName}",
   "profile.delegate.state.mining" : "Waiting for the block mining...",
   "profile.delegate.state.success" : "🎉 The voting power was successfully delegated!",
-  "profile.delegate.state.exception" : "Something went wrong – error:\n{error}"
+  "profile.delegate.state.exception" : "Something went wrong – error:\n{error}",
+  "contractFunctionFlow.state.mining" : "Waiting for the block mining...",
+  "contractFunctionFlow.state.success" : "🎉 The action was successfully executed!",
+  "contractFunctionFlow.state.exception" : "Something went wrong – error:\n{error}"
 }
