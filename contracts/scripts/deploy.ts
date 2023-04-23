@@ -1,27 +1,14 @@
 import { ethers } from "hardhat";
 
-// For reference only – the default HardHat deploy script
-/* async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
-
-  const lockedAmount = ethers.utils.parseEther("1");
-
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
-
-  await lock.deployed();
-
-  console.log(`Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`);
-} */
-
 async function main() {
   const [owner] = await ethers.getSigners();
 
+  // Deploy HomeOwnersToken contract
   const HomeOwnersToken = await ethers.getContractFactory("HomeOwnersToken");
   const homeOwnersToken = await HomeOwnersToken.deploy();
+  console.log(`HomeOwnersToken deployed to ${homeOwnersToken.address}`);
 
+  // Deploy TimelockController contract
   const TimelockController = await ethers.getContractFactory(
     "TimelockController"
   );
@@ -31,31 +18,39 @@ async function main() {
     [],
     owner.address
   );
+  console.log(`TimeLockController deployed to ${timelockController.address}`);
+
+  // Deploy HomeOwnersGovernance contract
 
   const HomeOwnersGovernance = await ethers.getContractFactory(
     "HomeOwnersGovernance"
   );
   const homeOwnersGovernance = await HomeOwnersGovernance.deploy(
     homeOwnersToken.address,
-    timelockController.address
+    timelockController.address,
+    25,
+    1,
+    1500,
+    1
+  );
+  console.log(
+    `HomeOwnersGovernance deployed to ${homeOwnersGovernance.address}`
   );
 
+  // Assign proposer and executor roles to the governance contract
   const proposerRole = await timelockController.PROPOSER_ROLE();
   const executorRole = await timelockController.EXECUTOR_ROLE();
 
   await timelockController.grantRole(
     proposerRole,
-    homeOwnersGovernance.address
-  );
-  await timelockController.grantRole(
-    executorRole,
-    homeOwnersGovernance.address
+    homeOwnersGovernance.address,
+    { from: owner.address }
   );
 
-  console.log(`HomeOwnersToken deployed to ${homeOwnersToken.address}`);
-  console.log(`TimeLockController deployed to ${timelockController.address}`);
-  console.log(
-    `HomeOwnersGovernance deployed to ${homeOwnersGovernance.address}`
+  await timelockController.grantRole(
+    executorRole,
+    homeOwnersGovernance.address,
+    { from: owner.address }
   );
 }
 
