@@ -31,7 +31,7 @@ export const AddressWithAvatar = ({
   };
 
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-2">
       <div className="w-6 h-6 mask mask-squircle">
         <Blockies seed={address} size={10} scale={2.4} />
       </div>
