@@ -9,7 +9,7 @@ import {
   ProposalTitleInput,
 } from "@/modules/proposals/newProposalPage";
 
-import { tokenContract } from "@/consts/tokenContract";
+import { tokenContract, treasuryContract } from "@/consts";
 import { usePropose } from "@/modules/proposals/hooks";
 import { NoWalletCard } from "@/modules/proposals/common";
 import { SolidityDataType } from "@/utils";
@@ -43,9 +43,9 @@ export const Form = () => {
         data.transferAddress &&
         data.transferAmount
       ) {
-        return tokenContract.interface.encodeFunctionData("transfer", [
-          data.transferAddress,
+        return treasuryContract.interface.encodeFunctionData("sendFunds", [
           ethers.utils.parseUnits(data.transferAmount.toString(), "ether"),
+          data.transferAddress,
         ]);
       }
 
@@ -68,6 +68,10 @@ export const Form = () => {
     };
 
     const getContractAddress = () => {
+      if (data.action === "transfer") {
+        return treasuryContract.address;
+      }
+
       if (data.action === "custom" && data.customFunctionName) {
         const [contractName] = data.customFunctionName;
         const contract = contracts.find((c) => c.name === contractName);

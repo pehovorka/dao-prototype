@@ -16,16 +16,16 @@ export const TransferFundsActionContainer = () => {
     formState: { errors },
   } = useFormContext<FormData>();
 
-  const timelockContractAddress =
-    config.timelockContractAddress || constants.AddressZero;
-  const balance = useEtherBalance(timelockContractAddress);
+  const treasuryContractAddress =
+    config.treasuryContractAddress || constants.AddressZero;
+  const balance = useEtherBalance(treasuryContractAddress);
   const balanceNumber = balance ? Number(formatEther(balance)) : 0;
 
   return (
     <div className="my-6">
       <div className="pb-6">
         <BalanceContainer
-          address={timelockContractAddress}
+          address={treasuryContractAddress}
           currency="ETH"
           label="proposal.new.page.form.actions.action.transfer.balance.label"
         />

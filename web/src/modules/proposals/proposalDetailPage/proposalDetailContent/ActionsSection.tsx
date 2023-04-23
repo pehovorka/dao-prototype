@@ -37,7 +37,7 @@ export const ActionsSection = () => {
     );
   }
 
-  if (transaction.name === "transfer") {
+  if (transaction.name === "sendFunds") {
     return (
       <SectionCard title={<FormattedMessage id="proposal.actions.title" />}>
         <Title type={TitleType.H5}>
@@ -53,7 +53,7 @@ export const ActionsSection = () => {
             </div>
             <div className="stat-value text-primary">
               <FormattedNumber
-                value={Number(utils.formatEther(transaction.args[1]))}
+                value={Number(utils.formatEther(transaction.args[0]))}
               />{" "}
               <FormattedMessage id="proposal.actions.transfer.amount.currency" />
             </div>
@@ -67,7 +67,7 @@ export const ActionsSection = () => {
               <FormattedMessage id="proposal.actions.transfer.recipient" />
             </div>
             <div className="stat-value text-secondary text-sm break-all">
-              <AddressWithAvatar short copyable address={transaction.args[0]} />
+              <AddressWithAvatar short copyable address={transaction.args[1]} />
             </div>
           </div>
         </div>
