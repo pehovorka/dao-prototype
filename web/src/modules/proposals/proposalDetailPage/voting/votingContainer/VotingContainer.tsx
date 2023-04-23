@@ -17,9 +17,7 @@ export const VotingContainer = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
   const { formatNumber, formatMessage } = useIntl();
 
-  const { state: proposalState, error: proposalStateError } = useProposalState(
-    proposal.data.proposalId
-  );
+  const { state: proposalState } = useProposalState(proposal.data.proposalId);
   const { hasVoted } = useHasVoted(proposal.data.proposalId);
   const { isQuorumReached, participationRate, votes } = useProposalVotes(
     proposal.blockNumber,

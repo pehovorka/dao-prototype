@@ -19,7 +19,7 @@ export const ProposalsListItem = ({
   blockNumber,
   id,
 }: ProposalsListItemProps) => {
-  const { state, error } = useProposalState(id);
+  const { state } = useProposalState(id);
   const { account } = useEthers();
 
   return (

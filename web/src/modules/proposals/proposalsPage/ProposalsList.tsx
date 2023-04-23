@@ -7,6 +7,7 @@ import {
 import { useIntl } from "react-intl";
 import { Pagination } from "./Pagination";
 import { ProposalsListItem } from "./ProposalsListItem";
+import { parseProposalDescription } from "@/utils";
 
 export const ProposalsList = () => {
   const { proposals, error } = useProposalCreatedEvents();
@@ -42,21 +43,25 @@ export const ProposalsList = () => {
     );
   }
 
-  return items.map((proposal) => (
+  return (
     <>
-      <ProposalsListItem
-        name={proposal.data.description.split("\n")[0].slice(2)}
-        proposer={proposal.data.proposer}
-        blockNumber={proposal.blockNumber}
-        key={proposal.transactionIndex}
-        id={proposal.data.proposalId}
-      />
-      <Pagination
-        page={page}
-        handlePrevious={handlePrevious}
-        handleNext={handleNext}
-        totalPages={numberOfPages}
-      />
+      {items.map((proposal) => (
+        <>
+          <ProposalsListItem
+            name={parseProposalDescription(proposal.data.description).title}
+            proposer={proposal.data.proposer}
+            blockNumber={proposal.blockNumber}
+            key={proposal.transactionIndex}
+            id={proposal.data.proposalId}
+          />
+          <Pagination
+            page={page}
+            handlePrevious={handlePrevious}
+            handleNext={handleNext}
+            totalPages={numberOfPages}
+          />
+        </>
+      ))}
     </>
-  ));
+  );
 };
