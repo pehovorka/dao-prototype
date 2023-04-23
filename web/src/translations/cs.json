@@ -9,8 +9,6 @@
   "common.contracts" : "Kontrakty",
   "common.web" : "Web",
   "nav.home" : "Domů",
-  "nav.homeowners" : "Vlastníci",
-  "nav.bulletin" : "Nástěnka",
   "nav.proposals" : "Návrhy",
   "proposals.title" : "Návrhy",
   "proposals.list.title" : "Seznam návrhů",

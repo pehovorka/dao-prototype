@@ -9,8 +9,6 @@
   "common.contracts" : "Contracts",
   "common.web" : "Web",
   "nav.home" : "Home",
-  "nav.homeowners" : "Homeowners",
-  "nav.bulletin" : "Bulletin",
   "nav.proposals" : "Proposals",
   "proposals.title" : "Proposals",
   "proposals.list.title" : "List of proposals",

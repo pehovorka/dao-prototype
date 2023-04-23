@@ -11,16 +11,11 @@ interface NavbarProps {
 
 const menuItems: ReactNode[] = [
   <li key={1}>
-    <a>
-      <FormattedMessage id="nav.homeowners" />
-    </a>
+    <NavLink href="/">
+      <FormattedMessage id="nav.home" />
+    </NavLink>
   </li>,
   <li key={2}>
-    <a>
-      <FormattedMessage id="nav.bulletin" />
-    </a>
-  </li>,
-  <li key={3}>
     <NavLink href="/proposals">
       <FormattedMessage id="nav.proposals" />
     </NavLink>
@@ -67,14 +62,7 @@ export const Navbar = ({ children }: NavbarProps) => {
       </div>
       <div className="drawer-side">
         <label htmlFor="side-menu" className="drawer-overlay"></label>
-        <ul className="menu p-5 w-80 bg-base-100">
-          <li>
-            <NavLink href={"/"}>
-              <FormattedMessage id="nav.home" />
-            </NavLink>
-          </li>
-          {menuItems}
-        </ul>
+        <ul className="menu p-5 w-80 bg-base-100">{menuItems}</ul>
       </div>
     </nav>
   );
