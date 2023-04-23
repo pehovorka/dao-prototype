@@ -1,3 +1,4 @@
+export * from "./ApartmentBuildingIcon";
 export * from "./CopyIcon";
 export * from "./EthereumIcon";
 export * from "./InfoIcon";

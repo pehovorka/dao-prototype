@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useIntl } from "react-intl";
 import { shortenIfAddress } from "@usedapp/core";
 
-import { CopyIcon } from "@/assets/icons";
+import { CopyIcon, NewTabIcon } from "@/assets/icons";
 
 interface AddressWithAvatarProps {
   address: string;
@@ -11,6 +11,7 @@ interface AddressWithAvatarProps {
   copyable?: boolean;
   responsive?: boolean;
   iconClassName?: string;
+  openInEtherscan?: boolean;
 }
 export const AddressWithAvatar = ({
   address,
@@ -18,6 +19,7 @@ export const AddressWithAvatar = ({
   copyable,
   responsive,
   iconClassName,
+  openInEtherscan,
 }: AddressWithAvatarProps) => {
   const { formatMessage } = useIntl();
   const [isCopied, setIsCopied] = useState(false);
@@ -47,7 +49,7 @@ export const AddressWithAvatar = ({
 
       {copyable && (
         <div
-          className="tooltip"
+          className="tooltip tooltip-left"
           data-tip={formatMessage({
             id: isCopied
               ? "common.copyToClipboard.copied"
@@ -63,6 +65,29 @@ export const AddressWithAvatar = ({
               }
             />
           </button>
+        </div>
+      )}
+
+      {openInEtherscan && (
+        <div
+          className="tooltip tooltip-left"
+          data-tip={formatMessage({
+            id: "common.showOnEtherscan",
+          })}
+        >
+          <a
+            href={`https://sepolia.etherscan.io/address/${address}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <NewTabIcon
+              className={
+                iconClassName
+                  ? iconClassName
+                  : "ml-4 h-5 opacity-60 transition-opacity hover:opacity-100"
+              }
+            />
+          </a>
         </div>
       )}
     </div>

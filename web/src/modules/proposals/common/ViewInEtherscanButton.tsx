@@ -10,7 +10,7 @@ export const ViewInEtherscanButton = ({
   const { formatMessage } = useIntl();
 
   return (
-    <div
+    <button
       className="tooltip tooltip-left z-10"
       data-tip={formatMessage({
         id: "proposal.timeline.openOnEtherscan",
@@ -23,6 +23,6 @@ export const ViewInEtherscanButton = ({
       >
         <NewTabIcon className="fill-primary w-4 h-4 hover:fill-primary-focus" />
       </a>
-    </div>
+    </button>
   );
 };
