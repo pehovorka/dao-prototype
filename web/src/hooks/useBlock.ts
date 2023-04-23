@@ -9,7 +9,9 @@ export const useBlock = (blockNumber: number | undefined) => {
     const load = async () => {
       try {
         const res = await providers
-          .getDefaultProvider(config.network.readOnlyChainId)
+          .getDefaultProvider(
+            config.network.readOnlyUrls[config.network.readOnlyChainId]
+          )
           .getBlock(blockNumber ?? 0);
         setBlock(res);
       } catch (e) {
