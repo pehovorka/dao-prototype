@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { providers } from "ethers";
-import { config } from "@/pages/_app";
-import { Goerli } from "@usedapp/core";
+import { config } from "@/config";
 
 export const useBlock = (blockNumber: number | undefined) => {
   const [block, setBlock] = useState<providers.Block>();
@@ -10,7 +9,7 @@ export const useBlock = (blockNumber: number | undefined) => {
     const load = async () => {
       try {
         const res = await providers
-          .getDefaultProvider(config.readOnlyUrls![Goerli.chainId] as string)
+          .getDefaultProvider(config.network.readOnlyChainId)
           .getBlock(blockNumber ?? 0);
         setBlock(res);
       } catch (e) {
