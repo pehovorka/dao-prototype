@@ -17,7 +17,7 @@ export const ViewInEtherscanButton = ({
       })}
     >
       <a
-        href={`https://goerli.etherscan.io/tx/${transactionHash}`}
+        href={`https://sepolia.etherscan.io/tx/${transactionHash}`}
         target="_blank"
         rel="noreferrer"
       >
