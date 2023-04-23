@@ -13,6 +13,7 @@
   "proposals.list.title" : "List of proposals",
   "proposals.list.addNewButton" : "Create new",
   "proposals.list.error" : "There was an error while fetching the proposals. Please try again later.",
+  "proposals.list.empty" : "No proposals yet. Create the first one!",
   "proposals.list.pagination.page" : "Page {page}",
   "proposal.title" : "Proposal",
   "proposal.state.pending" : "Review",

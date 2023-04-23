@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { constants } from "ethers";
+import { useEffect, useMemo, useState } from "react";
+import { BigNumber, constants } from "ethers";
 import { formatEther } from "ethers/lib/utils";
 import { tokenContract } from "@/consts";
 import {
@@ -14,6 +14,11 @@ export const useVotingPower = (blockNumber?: number) => {
   const { account } = useEthers();
   const tokenBalance = useTokenBalance(config.tokenContractAddress, account);
   const currentBlockNumber = useBlockNumber();
+  const [
+    isTokenBalanceGreaterThanVotingPower,
+    setIsTokenBalanceGreaterThanVotingPower,
+  ] = useState<boolean>(false);
+  const [votingPower, setVotingPower] = useState<BigNumber>();
 
   const memoizedBlockNumber = useMemo(() => {
     if (blockNumber) {
@@ -32,15 +37,15 @@ export const useVotingPower = (blockNumber?: number) => {
       args: [account ?? constants.AddressZero, memoizedBlockNumber],
     }) ?? {};
 
-  const votingPower = useMemo(() => {
+  useEffect(() => {
     if (value && value[0]) {
-      return value[0];
+      setVotingPower(value[0]);
     }
   }, [value]);
 
-  const isTokenBalanceGreaterThanVotingPower = useMemo(() => {
+  useEffect(() => {
     if (tokenBalance === undefined || votingPower === undefined) return;
-    return tokenBalance.gt(votingPower);
+    setIsTokenBalanceGreaterThanVotingPower(tokenBalance.gt(votingPower));
   }, [tokenBalance, votingPower]);
 
   return {
