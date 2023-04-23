@@ -37,6 +37,16 @@ async function main() {
     `HomeOwnersGovernance deployed to ${homeOwnersGovernance.address}`
   );
 
+  // Deploy Treasury contract
+  const Treasury = await ethers.getContractFactory("Treasury");
+  const treasury = await Treasury.deploy();
+
+  await treasury.transferOwnership(timelockController.address, {
+    from: owner.address,
+  });
+
+  console.log(`Treasury deployed to ${treasury.address}`);
+
   // Assign proposer and executor roles to the governance contract
   const proposerRole = await timelockController.PROPOSER_ROLE();
   const executorRole = await timelockController.EXECUTOR_ROLE();
