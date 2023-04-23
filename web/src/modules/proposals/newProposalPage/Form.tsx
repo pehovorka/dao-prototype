@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { useEthers } from "@usedapp/core";
-import { ethers } from "ethers";
+import { constants, ethers } from "ethers";
 
 import {
   ActionsContainer,
@@ -64,7 +64,7 @@ export const Form = () => {
         }
       }
 
-      return "0x";
+      return constants.HashZero;
     };
 
     const getContractAddress = () => {

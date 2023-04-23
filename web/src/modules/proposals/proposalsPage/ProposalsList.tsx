@@ -14,39 +14,49 @@ export const ProposalsList = () => {
   const { items, numberOfPages, page, handleNext, handlePrevious } =
     usePagination<ProposalCreatedEvent>(proposals);
 
-  return (
+  if (error) {
+    return (
+      <Alert
+        type="error"
+        message={formatMessage({ id: "proposals.list.error" })}
+      />
+    );
+  }
+
+  if (proposals === undefined) {
+    return (
+      <>
+        {[...Array(3)].map((_, i) => (
+          <Skeleton type="TEXT" key={i} />
+        ))}
+      </>
+    );
+  }
+
+  if (items.length === 0) {
+    return (
+      <Alert
+        type="info"
+        message={formatMessage({ id: "proposals.list.empty" })}
+      />
+    );
+  }
+
+  return items.map((proposal) => (
     <>
-      {error && (
-        <Alert
-          type="error"
-          message={formatMessage({ id: "proposals.list.error" })}
-        />
-      )}
-      {items.length > 0 ? (
-        items.map((proposal) => (
-          <ProposalsListItem
-            name={proposal.data.description.split("\n")[0].slice(2)}
-            proposer={proposal.data.proposer}
-            blockNumber={proposal.blockNumber}
-            key={proposal.transactionIndex}
-            id={proposal.data.proposalId}
-          />
-        ))
-      ) : (
-        <>
-          {[...Array(3)].map((_, i) => (
-            <Skeleton type="TEXT" key={i} />
-          ))}
-        </>
-      )}
-      {items.length > 0 && (
-        <Pagination
-          page={page}
-          handlePrevious={handlePrevious}
-          handleNext={handleNext}
-          totalPages={numberOfPages}
-        />
-      )}
+      <ProposalsListItem
+        name={proposal.data.description.split("\n")[0].slice(2)}
+        proposer={proposal.data.proposer}
+        blockNumber={proposal.blockNumber}
+        key={proposal.transactionIndex}
+        id={proposal.data.proposalId}
+      />
+      <Pagination
+        page={page}
+        handlePrevious={handlePrevious}
+        handleNext={handleNext}
+        totalPages={numberOfPages}
+      />
     </>
-  );
+  ));
 };

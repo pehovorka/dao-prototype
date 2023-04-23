@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai";
 import { FormattedMessage, FormattedNumber } from "react-intl";
-import { formatEther } from "ethers/lib/utils";
+import { utils, constants } from "ethers";
 
 import { proposalDetailAtom } from "@/atoms";
 import { AddressWithAvatar } from "@/modules/common";
@@ -12,7 +12,7 @@ import { parseTransactionByContractAddress } from "../../utils";
 export const ActionsSection = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
 
-  if (proposal.data.calldatas[0] === "0x") {
+  if (proposal.data.calldatas[0] === constants.HashZero) {
     return (
       <SectionCard title={<FormattedMessage id="proposal.actions.title" />}>
         <div className="m-auto">
@@ -53,7 +53,7 @@ export const ActionsSection = () => {
             </div>
             <div className="stat-value text-primary">
               <FormattedNumber
-                value={Number(formatEther(transaction.args[1]))}
+                value={Number(utils.formatEther(transaction.args[1]))}
               />{" "}
               <FormattedMessage id="proposal.actions.transfer.amount.currency" />
             </div>
