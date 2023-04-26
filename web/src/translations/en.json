@@ -134,5 +134,6 @@
   "contractFunctionFlow.state.mining" : "Waiting for the block mining...",
   "contractFunctionFlow.state.success" : "🎉 The action was successfully executed!",
   "contractFunctionFlow.state.exception" : "Something went wrong – error:\n{error}",
-  "footer.infoModal.versions.title" : "Versions"
+  "footer.infoModal.versions.title" : "Versions",
+  "footer.infoModal.parameters.title" : "Show diagnostic parameters"
 }

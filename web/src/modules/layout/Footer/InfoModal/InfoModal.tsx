@@ -1,5 +1,11 @@
-import { config } from "@/config";
+import {
+  governorContract,
+  timelockContract,
+  tokenContract,
+  treasuryContract,
+} from "@/consts";
 import { AddressWithAvatar } from "@/modules/common";
+import { ContractParameter } from "@/modules/contracts/ContractParameter";
 import { Title, TitleType } from "@/modules/ui";
 import { constants } from "ethers";
 import getConfig from "next/config";
@@ -54,10 +60,31 @@ export const InfoModal = ({ open, onClose }: InfoModalProps) => {
               <AddressWithAvatar
                 copyable
                 openInEtherscan
-                address={contract.address ?? constants.AddressZero}
+                address={contract.contract.address ?? constants.AddressZero}
               />
             </div>
           ))}
+        </div>
+        <div className="collapse collapse-arrow bg-base-200 rounded-md mt-8">
+          <input type="checkbox" />
+          <div className="collapse-title">
+            <FormattedMessage id="footer.infoModal.parameters.title" />
+          </div>
+          <div className="collapse-content">
+            <div className="px-4 opacity-85 text-sm">
+              {contracts.map((contract) => {
+                if (contract.parameters?.length === 0) {
+                  return null;
+                }
+                return (
+                  <div key={contract.name} className="mb-6">
+                    <Title type={TitleType.H5}>{contract.name}</Title>
+                    {contract.parameters?.map((parameter) => parameter)}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,18 +94,73 @@ export const InfoModal = ({ open, onClose }: InfoModalProps) => {
 const contracts = [
   {
     name: "Governor",
-    address: config.governorContractAddress,
+    contract: governorContract,
+    parameters: [
+      <ContractParameter
+        key="votingDelay"
+        contract={governorContract}
+        method="votingDelay"
+        args={[]}
+      />,
+      <ContractParameter
+        key="votingPeriod"
+        contract={governorContract}
+        method="votingPeriod"
+        args={[]}
+      />,
+      <ContractParameter
+        key="proposalThreshold"
+        contract={governorContract}
+        method="proposalThreshold"
+        args={[]}
+      />,
+      <ContractParameter
+        key="quorumNumerator"
+        contract={governorContract}
+        method="quorumNumerator()"
+        args={[]}
+      />,
+    ],
   },
   {
     name: "Token",
-    address: config.tokenContractAddress,
+    contract: tokenContract,
+    parameters: [
+      <ContractParameter
+        key="totalSupply"
+        contract={tokenContract}
+        method="totalSupply"
+        args={[]}
+      />,
+      <ContractParameter
+        key="decimals"
+        contract={tokenContract}
+        method="decimals"
+        args={[]}
+      />,
+      <ContractParameter
+        key="symbol"
+        contract={tokenContract}
+        method="symbol"
+        args={[]}
+      />,
+    ],
   },
   {
     name: "Timelock",
-    address: config.timelockContractAddress,
+    contract: timelockContract,
+    parameters: [],
   },
   {
     name: "Treasury",
-    address: config.treasuryContractAddress,
+    contract: treasuryContract,
+    parameters: [
+      <ContractParameter
+        key="owner"
+        contract={treasuryContract}
+        method="owner"
+        args={[]}
+      />,
+    ],
   },
 ] as const;

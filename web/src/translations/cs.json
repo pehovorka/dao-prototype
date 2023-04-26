@@ -134,5 +134,6 @@
   "contractFunctionFlow.state.mining" : "Čekání na vytěžení bloku...",
   "contractFunctionFlow.state.success" : "🎉 Akce byla úspěšně vykonána!",
   "contractFunctionFlow.state.exception" : "Něco se nepovedlo – chyba:\n{error}",
-  "footer.infoModal.versions.title" : "Verze"
+  "footer.infoModal.versions.title" : "Verze",
+  "footer.infoModal.parameters.title" : "Zobrazit diagnostické parametry"
 }
