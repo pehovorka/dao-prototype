@@ -12,16 +12,18 @@ type NoWalletCardProps =
       activateBrowserWallet: ActivateBrowserWallet;
       type: "vote";
       handleClose: () => void;
+    }
+  | {
+      activateBrowserWallet: ActivateBrowserWallet;
+      type: "action";
+      handleClose: () => void;
     };
 export const NoWalletCard = ({
   activateBrowserWallet,
   type,
   handleClose,
 }: NoWalletCardProps) => {
-  const textMessageId: MessageDescriptor["id"] =
-    type === "create"
-      ? "profile.wallet.noWalletCard.createProposal.text"
-      : "profile.wallet.noWalletCard.vote.text";
+  const textMessageId: MessageDescriptor["id"] = `profile.wallet.noWalletCard.${type}.text`;
 
   return (
     <div className={"card overflow-hidden md:card-side bg-base-100 shadow-xl"}>
@@ -42,7 +44,7 @@ export const NoWalletCard = ({
         </p>
 
         <div className="card-actions justify-end mt-5">
-          {type === "vote" && (
+          {(type === "vote" || type === "action") && (
             <button onClick={handleClose} className="btn btn-ghost">
               <FormattedMessage id="proposal.new.page.form.button.cancel" />
             </button>

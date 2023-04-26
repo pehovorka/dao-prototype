@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { useAtomValue } from "jotai";
+import { ethers } from "ethers";
+import { FormattedMessage } from "react-intl";
 
 import { proposalDetailAtom } from "@/atoms";
 import {
@@ -6,22 +9,16 @@ import {
   useContractFunctionFlow,
   useProposalState,
 } from "../../hooks";
-/* import { useEthers } from "@usedapp/core"; */
 import { Confirm } from "@/modules/ui";
 import { useConfirmDialog } from "@/hooks";
-import { FormattedMessage } from "react-intl";
-import { governorContract, timelockContract } from "@/consts";
-import { ethers } from "ethers";
-import { useEffect } from "react";
+import { governorContract } from "@/consts";
 
 export const ProposalActionButtons = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
+
   const { state } = useProposalState(proposal.data.proposalId);
-  /*   const { account } = useEthers(); */
 
   const descriptionHash = ethers.utils.id(proposal.data.description);
-
-  /*   const isUserProposer = proposal.data.proposer === account; */
 
   const {
     isOpen: isQueueConfirmOpen,
@@ -41,35 +38,26 @@ export const ProposalActionButtons = () => {
     }
   }, [queueFunctionState, closeQueueConfirm]);
 
-  /*   const {
-    isOpen: isCancelConfirmOpen,
-    open: openCancelConfirm,
-    close: closeCancelConfirm,
+  const {
+    isOpen: isExecuteConfirmOpen,
+    open: openExecuteConfirm,
+    close: closeExecuteConfirm,
   } = useConfirmDialog();
 
-
   const {
-    send: cancelSend,
-    inProgress: cancelFunctionInProgress,
-    state: cancelFunctionState,
-  } = useContractFunctionFlow(timelockContract, "cancel");
+    send: executeSend,
+    inProgress: executeFunctionInProgress,
+    state: executeFunctionState,
+  } = useContractFunctionFlow(governorContract, "execute");
 
   useEffect(() => {
-    if (cancelFunctionState.status === "Success") {
-      closeCancelConfirm();
+    if (executeFunctionState.status === "Success") {
+      closeExecuteConfirm();
     }
-  }, [cancelFunctionState, closeCancelConfirm]);
+  }, [executeFunctionState, closeExecuteConfirm]);
 
-  const encodedProposalData = ethers.utils.defaultAbiCoder.encode(
-    ["uint256"],
-    [proposal.data.proposalId]
-  );
-  const encodedProposalId = ethers.utils.keccak256(encodedProposalData);
- */
   const showQueueButton = state === "succeeded" || queueFunctionInProgress;
-  /*   const showCancelButton =
-    (isUserProposer && state !== "queued" && state !== "canceled") ||
-    queueFunctionInProgress; */
+  const showExecuteButton = state === "queued" || executeFunctionInProgress;
 
   return (
     <div className="flex gap-2">
@@ -83,6 +71,7 @@ export const ProposalActionButtons = () => {
             inProgress={queueFunctionInProgress}
             title="proposal.actionButtons.queue.confirm.title"
             text="proposal.actionButtons.queue.confirm.text"
+            requireAuth
             onConfirm={() => {
               queueSend(
                 proposal.data.targets,
@@ -95,23 +84,29 @@ export const ProposalActionButtons = () => {
           />
         </>
       )}
-      {/*       {showCancelButton && (
+      {showExecuteButton && (
         <>
-          <button className="btn btn-sm btn-error" onClick={openCancelConfirm}>
-            <FormattedMessage id="proposal.actionButtons.cancel.button" />
+          <button className="btn btn-sm btn-error" onClick={openExecuteConfirm}>
+            <FormattedMessage id="proposal.actionButtons.execute.button" />
           </button>
           <Confirm
-            open={isCancelConfirmOpen}
-            inProgress={cancelFunctionInProgress}
-            title="proposal.actionButtons.cancel.confirm.title"
-            text="proposal.actionButtons.cancel.confirm.text"
+            open={isExecuteConfirmOpen}
+            inProgress={executeFunctionInProgress}
+            title="proposal.actionButtons.execute.confirm.title"
+            text="proposal.actionButtons.execute.confirm.text"
+            requireAuth
             onConfirm={() => {
-              cancelSend(encodedProposalId);
+              executeSend(
+                proposal.data.targets,
+                [0],
+                proposal.data.calldatas,
+                descriptionHash
+              );
             }}
-            onCancel={closeCancelConfirm}
+            onCancel={closeExecuteConfirm}
           />
         </>
-      )} */}
+      )}
     </div>
   );
 };

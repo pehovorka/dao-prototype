@@ -1,4 +1,7 @@
+import { useEthers } from "@usedapp/core";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
+
+import { NoWalletCard } from "../proposals/common";
 
 interface ConfirmProps {
   open: boolean;
@@ -7,8 +10,9 @@ interface ConfirmProps {
   confirmText?: MessageDescriptor["id"];
   cancelText?: MessageDescriptor["id"];
   inProgress?: boolean;
+  requireAuth?: boolean;
   onConfirm?: () => void;
-  onCancel?: () => void;
+  onCancel: () => void;
 }
 export const Confirm = ({
   open,
@@ -19,7 +23,24 @@ export const Confirm = ({
   onConfirm,
   onCancel,
   inProgress,
+  requireAuth,
 }: ConfirmProps) => {
+  const { account, activateBrowserWallet } = useEthers();
+
+  if (requireAuth && !account) {
+    return (
+      <div className={`modal ${open && "modal-open"}`}>
+        <div className="modal-box max-w-5xl p-0">
+          <NoWalletCard
+            activateBrowserWallet={activateBrowserWallet}
+            type="action"
+            handleClose={onCancel}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`modal ${open && "modal-open"}`}>
       <div className="modal-box">
