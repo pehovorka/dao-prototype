@@ -1,6 +1,9 @@
 import { proposalDetailAtom } from "@/atoms";
 import { ProposalState } from "@/consts";
-import type { ProposalCreatedEvent } from "@/modules/proposals/hooks";
+import {
+  ProposalCreatedEvent,
+  useProposalLifecycleEvents,
+} from "@/modules/proposals/hooks";
 import { useAtomValue } from "jotai";
 import { Step, TimelineStep } from "./TimelineStep";
 
@@ -15,9 +18,13 @@ export const TimelineSteps = ({
   startsAtDate,
   endsAtDate,
 }: TimelineStepsProps) => {
-  const { transactionHash: proposalCreatedTransaction } = useAtomValue(
-    proposalDetailAtom
-  ) as ProposalCreatedEvent;
+  const { transactionHash: proposalCreatedTransaction, data: proposalData } =
+    useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
+
+  const additionalLifecycleEvents = useProposalLifecycleEvents(
+    proposalData.proposalId,
+    proposalData.startBlock.toNumber()
+  );
 
   switch (proposalState) {
     case "active":
@@ -55,6 +62,47 @@ export const TimelineSteps = ({
           />
           <TimelineStep step={Step.VotingEnd} date={endsAtDate} />
           <TimelineStep step={Step.Succeeded} date={endsAtDate} />
+        </>
+      );
+    case "queued":
+      return (
+        <>
+          <TimelineStep
+            step={Step.Execute}
+            date={startsAtDate}
+            transactionHash={proposalCreatedTransaction}
+          />
+          <TimelineStep step={Step.VotingEnd} date={endsAtDate} />
+          <TimelineStep step={Step.Succeeded} date={endsAtDate} />
+          <TimelineStep
+            step={Step.Queue}
+            blockNumber={additionalLifecycleEvents?.queued?.blockNumber}
+            transactionHash={additionalLifecycleEvents?.queued?.transactionHash}
+          />
+        </>
+      );
+    case "executed":
+      return (
+        <>
+          <TimelineStep
+            step={Step.Execute}
+            date={startsAtDate}
+            transactionHash={proposalCreatedTransaction}
+          />
+          <TimelineStep step={Step.VotingEnd} date={endsAtDate} />
+          <TimelineStep step={Step.Succeeded} date={endsAtDate} />
+          <TimelineStep
+            step={Step.Queue}
+            blockNumber={additionalLifecycleEvents?.queued?.blockNumber}
+            transactionHash={additionalLifecycleEvents?.queued?.transactionHash}
+          />
+          <TimelineStep
+            step={Step.Execute}
+            blockNumber={additionalLifecycleEvents?.executed?.blockNumber}
+            transactionHash={
+              additionalLifecycleEvents?.executed?.transactionHash
+            }
+          />
         </>
       );
     default:

@@ -7,7 +7,7 @@ interface BlockDateProps {
 export const BlockDate = ({ blockNumber }: BlockDateProps) => {
   const block = useBlock(blockNumber);
   if (!block) return <>...</>;
-  const date = new Date(block.timestamp * 1000);
+  const date = block.date;
 
   return (
     <>

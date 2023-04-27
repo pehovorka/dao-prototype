@@ -13,17 +13,16 @@ import { TimelineSteps } from "./TimelineSteps";
 export const TimelineSection = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
 
-  const createdAtBlockDetails = useBlock(proposal.data.startBlock.toNumber());
-  const endsAtBlockDetails = useBlock(proposal.data.endBlock.toNumber());
+  const createdAtBlock = useBlock(proposal.data.startBlock.toNumber());
+  const endsAtBlock = useBlock(proposal.data.endBlock.toNumber());
   const { state } = useProposalState(proposal.data.proposalId);
 
-  const startsAtDate =
-    createdAtBlockDetails && new Date(createdAtBlockDetails?.timestamp * 1000);
+  const startsAtDate = createdAtBlock && createdAtBlock.date;
   const endsAtDate =
-    (endsAtBlockDetails && new Date(endsAtBlockDetails?.timestamp * 1000)) ??
-    (createdAtBlockDetails &&
+    (endsAtBlock && endsAtBlock.date) ??
+    (createdAtBlock.block &&
       getFutureBlockDate(
-        createdAtBlockDetails,
+        createdAtBlock.block,
         proposal.data.endBlock.toNumber()
       ));
 

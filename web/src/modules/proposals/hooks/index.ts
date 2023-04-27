@@ -1,3 +1,4 @@
+export * from "./useProposalLifecycleEvents";
 export * from "./useContractFunctionFlow";
 export * from "./useDelegate";
 export * from "./useProposalVotes";

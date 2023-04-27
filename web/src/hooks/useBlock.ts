@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { providers } from "ethers";
 import { config } from "@/config";
+import { timestampToDate } from "@/modules/proposals/utils";
 
 export const useBlock = (blockNumber: number | undefined) => {
   const [block, setBlock] = useState<providers.Block>();
+  const [date, setDate] = useState<Date>();
 
   useEffect(() => {
     const load = async () => {
@@ -14,6 +16,9 @@ export const useBlock = (blockNumber: number | undefined) => {
           )
           .getBlock(blockNumber ?? 0);
         setBlock(res);
+
+        const dateFromBlock = timestampToDate(res.timestamp);
+        if (dateFromBlock) setDate(dateFromBlock);
       } catch (e) {
         console.error(e);
       }
@@ -21,5 +26,5 @@ export const useBlock = (blockNumber: number | undefined) => {
     if (blockNumber) load();
   }, [blockNumber]);
 
-  return block;
+  return { block, date };
 };

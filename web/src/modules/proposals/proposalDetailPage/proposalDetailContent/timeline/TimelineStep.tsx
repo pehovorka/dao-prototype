@@ -1,5 +1,8 @@
-import { ViewInEtherscanButton } from "@/modules/proposals/common";
+import { memo } from "react";
 import { FormattedDate, FormattedMessage, FormattedTime } from "react-intl";
+
+import { useBlock } from "@/hooks";
+import { ViewInEtherscanButton } from "@/modules/proposals/common";
 
 export enum Step {
   Created = "created",
@@ -25,14 +28,19 @@ interface TimelineStepProps {
   step: Step;
   date?: Date;
   transactionHash?: string;
+  blockNumber?: number;
 }
-export const TimelineStep = ({
+export const TimelineStep = memo(function TimelineStep({
   step,
   date,
   transactionHash,
-}: TimelineStepProps) => {
+  blockNumber,
+}: TimelineStepProps) {
+  const { date: blockDate } = useBlock(blockNumber);
+
   const currentDate = new Date();
-  const active = date && currentDate > date;
+  const active =
+    (date && currentDate > date) || (blockDate && currentDate > blockDate);
   const className = active ? "step step-primary" : "step";
   const textClassName = active
     ? "text-left text-base flex justify-between items-center w-full"
@@ -45,9 +53,10 @@ export const TimelineStep = ({
           <span className="font-bold">
             <FormattedMessage id={`proposal.timeline.step.${step}`} />
           </span>
-          {date && (
+          {(date || blockDate) && (
             <div>
-              <FormattedDate value={date} /> <FormattedTime value={date} />
+              <FormattedDate value={date ?? blockDate} />{" "}
+              <FormattedTime value={date ?? blockDate} />
             </div>
           )}
         </div>
@@ -57,4 +66,4 @@ export const TimelineStep = ({
       </div>
     </li>
   );
-};
+});
