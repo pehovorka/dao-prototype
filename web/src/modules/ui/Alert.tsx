@@ -75,10 +75,10 @@ const SuccessIcon = () => (
   </svg>
 );
 
-const WarningIcon = () => (
+export const WarningIcon = ({ className }: { className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="stroke-current flex-shrink-0 h-6 w-6"
+    className={className ? className : "stroke-current flex-shrink-0 h-6 w-6"}
     fill="none"
     viewBox="0 0 24 24"
   >
