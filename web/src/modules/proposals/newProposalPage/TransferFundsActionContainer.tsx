@@ -1,13 +1,12 @@
 import { useFormContext } from "react-hook-form";
 import { useIntl } from "react-intl";
-import { constants } from "ethers";
 import { formatEther } from "ethers/lib/utils";
 import { useEtherBalance } from "@usedapp/core";
 
 import type { FormData } from "./Form";
 import { BalanceContainer } from "../common";
 import { Input } from "@/modules/ui";
-import { config } from "@/config";
+import { treasuryContract } from "@/consts";
 
 export const TransferFundsActionContainer = () => {
   const { formatMessage } = useIntl();
@@ -16,16 +15,14 @@ export const TransferFundsActionContainer = () => {
     formState: { errors },
   } = useFormContext<FormData>();
 
-  const treasuryContractAddress =
-    config.treasuryContractAddress || constants.AddressZero;
-  const balance = useEtherBalance(treasuryContractAddress);
+  const balance = useEtherBalance(treasuryContract.address);
   const balanceNumber = balance ? Number(formatEther(balance)) : 0;
 
   return (
     <div className="my-6">
       <div className="pb-6">
         <BalanceContainer
-          address={treasuryContractAddress}
+          address={treasuryContract.address}
           currency="ETH"
           label="proposal.new.page.form.actions.action.transfer.balance.label"
         />

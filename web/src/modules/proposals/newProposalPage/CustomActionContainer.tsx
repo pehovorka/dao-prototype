@@ -1,5 +1,3 @@
-import { config } from "@/config";
-import { constants } from "ethers";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { FormattedMessage, useIntl } from "react-intl";
 
@@ -8,11 +6,10 @@ import { BalanceContainer } from "../common";
 import { Alert, Input } from "@/modules/ui";
 import type { FormData } from "./Form";
 import { contracts } from "../consts";
+import { treasuryContract } from "@/consts";
 
 export const CustomActionContainer = () => {
   const { formatMessage } = useIntl();
-  const timelockContractAddress =
-    config.timelockContractAddress || constants.AddressZero;
 
   const {
     register,
@@ -31,7 +28,7 @@ export const CustomActionContainer = () => {
       <>
         <div className="pb-6 grid md:grid-cols-oneThird gap-6">
           <BalanceContainer
-            address={timelockContractAddress}
+            address={treasuryContract.address}
             currency="ETH"
             label="proposal.new.page.form.actions.action.transfer.balance.label"
           />
