@@ -18,12 +18,16 @@ contract HomeOwnersGovernance is
 {
     constructor(
         IVotes _token,
-        TimelockController _timelock
+        TimelockController _timelock,
+        uint256 _quorum,
+        uint256 _votingDelay,
+        uint256 _votingPeriod,
+        uint256 _proposalThreshold
     )
         Governor("HomeOwnersGovernance")
-        GovernorSettings(1 /* 1 block */, 50400 /* 1 week */, 0)
+        GovernorSettings(_votingDelay, _votingPeriod, _proposalThreshold)
         GovernorVotes(_token)
-        GovernorVotesQuorumFraction(25)
+        GovernorVotesQuorumFraction(_quorum)
         GovernorTimelockControl(_timelock)
     {}
 

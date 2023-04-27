@@ -1,4 +1,4 @@
-import { config } from "@/pages/_app";
+import { config } from "@/config";
 import { useEthers } from "@usedapp/core";
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
@@ -9,7 +9,7 @@ export const WrongNetworkModal = () => {
 
   useEffect(() => {
     if (!chainId) return;
-    if (config.readOnlyUrls && chainId && !config.readOnlyUrls[chainId]) {
+    if (chainId !== config.network.readOnlyChainId) {
       setShow(true);
     } else {
       setShow(false);
@@ -38,7 +38,9 @@ export const WrongNetworkModal = () => {
             </button>
             <button
               className="btn btn-primary"
-              onClick={() => switchNetwork(config.readOnlyChainId ?? 5)}
+              onClick={() =>
+                switchNetwork(config.network.readOnlyChainId ?? 11155111)
+              }
             >
               <FormattedMessage id="profile.wallet.switchNetwork" />
             </button>

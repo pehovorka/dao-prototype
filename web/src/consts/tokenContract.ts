@@ -1,10 +1,11 @@
 import { constants, Contract } from "ethers";
-import { HomeOwnersToken } from "contracts/typechain-types/contracts/Token.sol/HomeOwnersToken";
+import type { HomeOwnersToken } from "contracts/typechain-types/contracts/Token.sol/HomeOwnersToken";
 
 import contract from "contracts/artifacts/contracts/Token.sol/HomeOwnersToken.json";
+import { config } from "@/config";
 
 const tokenContractAddress =
-  process.env.NEXT_PUBLIC_TOKEN_ADDRESS ?? constants.AddressZero;
+  config.tokenContractAddress ?? constants.AddressZero;
 
 export const tokenContract = new Contract(
   tokenContractAddress,

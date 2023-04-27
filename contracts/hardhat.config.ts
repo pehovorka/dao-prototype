@@ -21,8 +21,8 @@ const config: HardhatUserConfig = {
     hardhat: {
       allowUnlimitedContractSize: true,
     },
-    goerli: {
-      url: `https://eth-goerli.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+    sepolia: {
+      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
       accounts: [`${process.env.OWNER_ACCOUNT_PRIVATE_KEY}`],
     },
   },

@@ -14,9 +14,11 @@ export const useVotingPower = (blockNumber?: number) => {
   const { account } = useEthers();
   const tokenBalance = useTokenBalance(config.tokenContractAddress, account);
   const currentBlockNumber = useBlockNumber();
-  const [votingPower, setVotingPower] = useState<BigNumber | undefined>(
-    undefined
-  );
+  const [
+    isTokenBalanceGreaterThanVotingPower,
+    setIsTokenBalanceGreaterThanVotingPower,
+  ] = useState<boolean>(false);
+  const [votingPower, setVotingPower] = useState<BigNumber>();
 
   const memoizedBlockNumber = useMemo(() => {
     if (blockNumber) {
@@ -29,14 +31,11 @@ export const useVotingPower = (blockNumber?: number) => {
   }, [blockNumber, currentBlockNumber]);
 
   const { value, error } =
-    useCall(
-      {
-        contract: tokenContract,
-        method: "getPastVotes",
-        args: [account ?? constants.AddressZero, memoizedBlockNumber],
-      },
-      { refresh: "never" }
-    ) ?? {};
+    useCall({
+      contract: tokenContract,
+      method: "getPastVotes",
+      args: [account ?? constants.AddressZero, memoizedBlockNumber],
+    }) ?? {};
 
   useEffect(() => {
     if (value && value[0]) {
@@ -44,9 +43,9 @@ export const useVotingPower = (blockNumber?: number) => {
     }
   }, [value]);
 
-  const isTokenBalanceGreaterThanVotingPower = useMemo(() => {
+  useEffect(() => {
     if (tokenBalance === undefined || votingPower === undefined) return;
-    return tokenBalance.gt(votingPower);
+    setIsTokenBalanceGreaterThanVotingPower(tokenBalance.gt(votingPower));
   }, [tokenBalance, votingPower]);
 
   return {

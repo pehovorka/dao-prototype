@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         twoThirds: "2fr 1fr",
+        oneThird: "1fr 2fr",
+        threeFifths: "3fr 2fr",
       },
     },
   },

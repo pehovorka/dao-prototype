@@ -7,6 +7,7 @@ import {
 import { useIntl } from "react-intl";
 import { Pagination } from "./Pagination";
 import { ProposalsListItem } from "./ProposalsListItem";
+import { parseProposalDescription } from "@/utils";
 
 export const ProposalsList = () => {
   const { proposals, error } = useProposalCreatedEvents();
@@ -14,39 +15,51 @@ export const ProposalsList = () => {
   const { items, numberOfPages, page, handleNext, handlePrevious } =
     usePagination<ProposalCreatedEvent>(proposals);
 
+  if (error) {
+    return (
+      <Alert
+        type="error"
+        message={formatMessage({ id: "proposals.list.error" })}
+      />
+    );
+  }
+
+  if (proposals === undefined) {
+    return (
+      <>
+        {[...Array(3)].map((_, i) => (
+          <Skeleton type="TEXT" key={i} />
+        ))}
+      </>
+    );
+  }
+
+  if (items.length === 0) {
+    return (
+      <Alert
+        type="info"
+        message={formatMessage({ id: "proposals.list.empty" })}
+      />
+    );
+  }
+
   return (
     <>
-      {error && (
-        <Alert
-          type="error"
-          message={formatMessage({ id: "proposals.list.error" })}
+      {items.map((proposal) => (
+        <ProposalsListItem
+          name={parseProposalDescription(proposal.data.description).title}
+          proposer={proposal.data.proposer}
+          blockNumber={proposal.blockNumber}
+          key={proposal.transactionIndex}
+          id={proposal.data.proposalId}
         />
-      )}
-      {items.length > 0 ? (
-        items.map((proposal) => (
-          <ProposalsListItem
-            name={proposal.data.description.split("\n")[0].slice(2)}
-            proposer={proposal.data.proposer}
-            blockNumber={proposal.blockNumber}
-            key={proposal.transactionIndex}
-            id={proposal.data.proposalId}
-          />
-        ))
-      ) : (
-        <>
-          {[...Array(3)].map((_, i) => (
-            <Skeleton type="TEXT" key={i} />
-          ))}
-        </>
-      )}
-      {items.length > 0 && (
-        <Pagination
-          page={page}
-          handlePrevious={handlePrevious}
-          handleNext={handleNext}
-          totalPages={numberOfPages}
-        />
-      )}
+      ))}
+      <Pagination
+        page={page}
+        handlePrevious={handlePrevious}
+        handleNext={handleNext}
+        totalPages={numberOfPages}
+      />
     </>
   );
 };

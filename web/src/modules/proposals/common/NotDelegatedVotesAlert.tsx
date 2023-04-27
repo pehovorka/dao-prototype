@@ -6,11 +6,15 @@ import { Alert } from "@/modules/ui";
 
 export const NotDelegatedVotesAlert = () => {
   const { formatMessage } = useIntl();
-  const { isTokenBalanceGreaterThanVotingPower, tokenBalance } =
+  const { isTokenBalanceGreaterThanVotingPower, tokenBalance, error } =
     useVotingPower();
   const { delegate, inProgress, state } = useDelegate();
 
-  if (isTokenBalanceGreaterThanVotingPower && state.status !== "Success") {
+  if (
+    isTokenBalanceGreaterThanVotingPower &&
+    !error &&
+    state.status !== "Success"
+  ) {
     return (
       <div className="p-4">
         <Alert

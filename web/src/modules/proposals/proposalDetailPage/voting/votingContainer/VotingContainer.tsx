@@ -17,9 +17,7 @@ export const VotingContainer = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
   const { formatNumber, formatMessage } = useIntl();
 
-  const { state: proposalState, error: proposalStateError } = useProposalState(
-    proposal.data.proposalId
-  );
+  const { state: proposalState } = useProposalState(proposal.data.proposalId);
   const { hasVoted } = useHasVoted(proposal.data.proposalId);
   const { isQuorumReached, participationRate, votes } = useProposalVotes(
     proposal.blockNumber,
@@ -29,10 +27,12 @@ export const VotingContainer = () => {
   if (votes.error) {
     console.error(votes.error);
     return (
-      <Alert
-        message={formatMessage({ id: "proposal.voting.error" })}
-        type="error"
-      />
+      <div className="pb-10">
+        <Alert
+          message={formatMessage({ id: "proposal.voting.error" })}
+          type="error"
+        />
+      </div>
     );
   }
 
@@ -60,7 +60,9 @@ export const VotingContainer = () => {
               />
             </span>
           )}
-          {proposalState === "active" && !hasVoted && <VoteModalButton />}
+          {proposalState === "active" && (
+            <VoteModalButton hidden={hasVoted ? true : false} />
+          )}
           {hasVoted && (
             <HasVotedBadge
               type="detail"

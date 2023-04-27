@@ -1,5 +1,5 @@
+import { FormattedMessage } from "react-intl";
 import { useAtomValue } from "jotai";
-import Blockies from "react-blockies";
 
 import { ProposalStateBadge } from "@/modules/proposals/common";
 import { proposalDetailAtom } from "@/atoms";
@@ -7,7 +7,8 @@ import {
   type ProposalCreatedEvent,
   useProposalState,
 } from "@/modules/proposals/hooks";
-import { FormattedMessage } from "react-intl";
+import { AddressWithAvatar } from "@/modules/common";
+import { ProposalActionButtons } from "../actionButtons";
 
 export const ProposalDetailMetaContainer = () => {
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
@@ -15,19 +16,20 @@ export const ProposalDetailMetaContainer = () => {
   const { state } = useProposalState(proposal.data.proposalId);
 
   return (
-    <section className="flex items-center mb-20 gap-x-12 gap-y-4 flex-wrap">
-      <div className="flex gap-4 items-center">
-        <div className="w-8 h-8 mask mask-squircle">
-          <Blockies seed={proposal.data.proposer} size={10} scale={3.2} />
-        </div>
-        <span className="text-sm break-all md:text-lg">
-          <FormattedMessage
-            id="proposal.proposedBy"
-            values={{ name: proposal.data.proposer }}
-          />
-        </span>
+    <section className="flex justify-between items-center mb-20 gap-x-12 gap-y-4 flex-wrap">
+      <div className="flex gap-2">
+        <FormattedMessage id="proposal.proposer" />
+        <AddressWithAvatar
+          address={proposal.data.proposer}
+          copyable
+          responsive
+          iconClassName="ml-2 h-4 fill-base-content opacity-50 transition-all hover:fill-secondary hover:opacity-100"
+        />
       </div>
-      {state && <ProposalStateBadge state={state} />}
+      <div className="flex gap-4 items-center">
+        {state && <ProposalStateBadge state={state} />}
+        <ProposalActionButtons />
+      </div>
     </section>
   );
 };

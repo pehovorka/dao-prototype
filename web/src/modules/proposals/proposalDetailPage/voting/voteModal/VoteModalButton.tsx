@@ -4,7 +4,11 @@ import { FormattedMessage } from "react-intl";
 
 import { VoteModal } from "./VoteModal";
 
-export const VoteModalButton = () => {
+interface VoteModalButtonProps {
+  hidden?: boolean;
+}
+
+export const VoteModalButton = ({ hidden }: VoteModalButtonProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClick = () => {
@@ -13,10 +17,13 @@ export const VoteModalButton = () => {
 
   return (
     <>
-      <button className="btn gap-3 btn-primary" onClick={handleClick}>
-        <Image src="/voteIcon.svg" alt="" width={16} height={16} />
-        <FormattedMessage id="proposal.voting.vote.button" />
-      </button>
+      {!hidden && (
+        <button className="btn gap-3 btn-primary" onClick={handleClick}>
+          <Image src="/icons/vote.svg" alt="" width={16} height={16} />
+          <FormattedMessage id="proposal.voting.vote.button" />
+        </button>
+      )}
+
       <VoteModal open={open} setOpen={setOpen} />
     </>
   );

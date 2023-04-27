@@ -1,49 +1,22 @@
-import { useEffect, useState } from "react";
-import { useIntl } from "react-intl";
-import { useContractFunction } from "@usedapp/core";
-import toast from "react-hot-toast";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
+
 import { governorContract } from "@/consts/governorContract";
+import { useContractFunctionFlow } from "./useContractFunctionFlow";
 
 export const usePropose = () => {
-  const { formatMessage } = useIntl();
   const { push } = useRouter();
-  const { send, state, events } = useContractFunction(
-    governorContract,
-    "propose"
-  );
-  const [inProgress, setInProgress] = useState<boolean>(false);
 
-  useEffect(() => {
-    console.log("state", state);
-    switch (state.status) {
-      case "None":
-        toast.dismiss();
-        break;
-      case "Mining":
-        toast.dismiss();
-        toast.loading(formatMessage({ id: "proposal.new.state.mining" }), {
-          duration: 1000000,
-        });
-        break;
-      case "Success":
-        toast.dismiss();
-        toast.success(formatMessage({ id: "proposal.new.state.success" }));
-        break;
-      case "Exception":
-        toast.dismiss();
-        setInProgress(false);
-        toast.error(formatMessage({ id: "proposal.new.state.exception" }));
-        break;
-      case "Fail":
-        toast.dismiss();
-        setInProgress(false);
-        toast.error(formatMessage({ id: "proposal.new.state.exception" }));
-        break;
-      default:
-        break;
+  const { send, events, inProgress, setInProgress } = useContractFunctionFlow(
+    governorContract,
+    "propose",
+    undefined,
+    {
+      mining: "proposal.new.state.mining",
+      success: "proposal.new.state.success",
+      exception: "proposal.new.state.exception",
     }
-  }, [state, formatMessage]);
+  );
 
   useEffect(() => {
     console.log("events", events);

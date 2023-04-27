@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
-import { type Control, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { FormattedMessage, useIntl } from "react-intl";
 import "easymde/dist/easymde.min.css";
 import type { Options } from "easymde";
@@ -18,11 +18,9 @@ const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
   ),
 });
 
-interface MarkdownEditorProps {
-  control: Control<FormData>;
-}
-export const MarkdownEditor = ({ control }: MarkdownEditorProps) => {
+export const MarkdownEditor = () => {
   const { formatMessage } = useIntl();
+  const { control } = useFormContext<FormData>();
 
   const mdEditorOptions = useMemo(() => {
     return {
