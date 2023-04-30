@@ -12,6 +12,7 @@ interface AddressWithAvatarProps {
   responsive?: boolean;
   iconClassName?: string;
   openInEtherscan?: boolean;
+  noAvatar?: boolean;
 }
 export const AddressWithAvatar = ({
   address,
@@ -20,6 +21,7 @@ export const AddressWithAvatar = ({
   responsive,
   iconClassName,
   openInEtherscan,
+  noAvatar,
 }: AddressWithAvatarProps) => {
   const { formatMessage } = useIntl();
   const [isCopied, setIsCopied] = useState(false);
@@ -32,9 +34,11 @@ export const AddressWithAvatar = ({
 
   return (
     <div className="flex gap-2">
-      <div className="w-6 h-6 mask mask-squircle">
-        <Blockies seed={address} size={10} scale={2.4} />
-      </div>
+      {!noAvatar && (
+        <div className="w-6 h-6 mask mask-squircle">
+          <Blockies seed={address} size={10} scale={2.4} />
+        </div>
+      )}
 
       {responsive ? (
         <>

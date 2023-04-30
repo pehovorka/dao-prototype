@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAtomValue } from "jotai";
-import { ethers } from "ethers";
+import { constants, ethers } from "ethers";
 import { FormattedMessage } from "react-intl";
 
 import { proposalDetailAtom } from "@/atoms";
@@ -56,8 +56,12 @@ export const ProposalActionButtons = () => {
     }
   }, [executeFunctionState, closeExecuteConfirm]);
 
-  const showQueueButton = state === "succeeded" || queueFunctionInProgress;
-  const showExecuteButton = state === "queued" || executeFunctionInProgress;
+  const showQueueButton =
+    (state === "succeeded" || queueFunctionInProgress) &&
+    proposal.data.calldatas[0] !== constants.HashZero;
+  const showExecuteButton =
+    (state === "queued" || executeFunctionInProgress) &&
+    proposal.data.calldatas[0] !== constants.HashZero;
 
   return (
     <div className="flex gap-2">

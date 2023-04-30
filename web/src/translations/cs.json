@@ -120,6 +120,7 @@
   "profile.wallet.connect" : "Připojit peněženku",
   "profile.wallet.disconnect" : "Odpojit peněženku",
   "profile.wallet.switchNetwork" : "Přepnout na síť Sepolia",
+  "profile.wallet.address" : "Vaše adresa",
   "profile.user.settings.title" : "Uživatelské nastavení",
   "profile.wallet.wrongNetworkModal.title" : "Jste připojeni ke špatné síti!",
   "profile.wallet.wrongNetworkModal.text" : "V peněžence prosím přepněte na síť Sepolia.",
