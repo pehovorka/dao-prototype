@@ -68,7 +68,7 @@ export const TimelineSteps = ({
       return (
         <>
           <TimelineStep
-            step={Step.Execute}
+            step={Step.Created}
             date={startsAtDate}
             transactionHash={proposalCreatedTransaction}
           />
@@ -85,7 +85,7 @@ export const TimelineSteps = ({
       return (
         <>
           <TimelineStep
-            step={Step.Execute}
+            step={Step.Created}
             date={startsAtDate}
             transactionHash={proposalCreatedTransaction}
           />
