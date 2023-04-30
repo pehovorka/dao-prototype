@@ -120,6 +120,7 @@
   "profile.wallet.connect" : "Connect wallet",
   "profile.wallet.disconnect" : "Disconnect wallet",
   "profile.wallet.switchNetwork" : "Switch to Sepolia",
+  "profile.wallet.address" : "Your address",
   "profile.user.settings.title" : "User settings",
   "profile.wallet.wrongNetworkModal.title" : "You are using a wrong network!",
   "profile.wallet.wrongNetworkModal.text" : "Please switch to the Sepolia network in your wallet.",

@@ -48,7 +48,7 @@ export default function Home() {
           </div>
         </section>
         <section className="alert flex-row items-center md:justify-center gap-4 mt-8 opacity-75">
-          <WarningIcon className="w-8 h-8 min-w-fit stroke-warning" />
+          <WarningIcon className="w-8 h-8 shrink-0 stroke-warning" />
           <FormattedMessage id="homepage.hero.disclaimer" />
         </section>
       </div>

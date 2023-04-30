@@ -2,7 +2,9 @@ import Image from "next/image";
 import { shortenAddress, useEthers } from "@usedapp/core";
 import { FormattedMessage } from "react-intl";
 import Blockies from "react-blockies";
+
 import { NotDelegatedVotesAlert, VotingPower } from "../proposals/common";
+import { AddressWithAvatar } from "../common";
 
 export const NavProfileDropdown = () => {
   const { account, deactivate, activateBrowserWallet } = useEthers();
@@ -13,11 +15,13 @@ export const NavProfileDropdown = () => {
         tabIndex={0}
         className="btn btn-ghost gap-3 px-2 flex-nowrap normal-case"
       >
-        {account ? (
-          shortenAddress(account)
-        ) : (
-          <FormattedMessage id="profile.user.anonymous" />
-        )}
+        <div className="hidden sm:block">
+          {account ? (
+            shortenAddress(account)
+          ) : (
+            <FormattedMessage id="profile.user.anonymous" />
+          )}
+        </div>
         <div className="w-10 h-10 mask mask-squircle">
           {account ? (
             <Blockies seed={account} size={10} />
@@ -37,6 +41,21 @@ export const NavProfileDropdown = () => {
       >
         {account && (
           <>
+            <div className="stats sm:hidden">
+              <div className="stat p-4">
+                <div className="stat-title">
+                  <FormattedMessage id="profile.wallet.address" />
+                </div>
+                <div className="text-xl font-bold">
+                  <AddressWithAvatar
+                    address={account}
+                    short
+                    copyable
+                    noAvatar
+                  />
+                </div>
+              </div>
+            </div>
             <VotingPower />
             <NotDelegatedVotesAlert />
             <div className="divider m-0"></div>
