@@ -6,7 +6,6 @@ export async function deploy() {
   // Deploy HomeOwnersToken contract
   const HomeOwnersToken = await ethers.getContractFactory("HomeOwnersToken");
   const homeOwnersToken = await HomeOwnersToken.deploy();
-  console.log(`HomeOwnersToken deployed to ${homeOwnersToken.address}`);
 
   // Deploy TimelockController contract
   const TimelockController = await ethers.getContractFactory(
@@ -18,7 +17,6 @@ export async function deploy() {
     [],
     owner.address
   );
-  console.log(`TimeLockController deployed to ${timelockController.address}`);
 
   // Deploy HomeOwnersGovernance contract
 
@@ -33,9 +31,6 @@ export async function deploy() {
     1500,
     1
   );
-  console.log(
-    `HomeOwnersGovernance deployed to ${homeOwnersGovernance.address}`
-  );
 
   // Deploy Treasury contract
   const Treasury = await ethers.getContractFactory("Treasury");
@@ -44,8 +39,6 @@ export async function deploy() {
   await treasury.transferOwnership(timelockController.address, {
     from: owner.address,
   });
-
-  console.log(`Treasury deployed to ${treasury.address}`);
 
   // Assign proposer and executor roles to the governance contract
   const proposerRole = await timelockController.PROPOSER_ROLE();
@@ -62,6 +55,7 @@ export async function deploy() {
     homeOwnersGovernance.address,
     { from: owner.address }
   );
+
   return {
     homeOwnersToken,
     timelockController,
