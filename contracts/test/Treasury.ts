@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { formatEther } from "ethers/lib/utils";
 import { ethers } from "hardhat";
 import type { BigNumber } from "ethers";
 
@@ -68,5 +67,14 @@ describe("treasury", function () {
     } catch (error: any) {
       expect(error.message).to.contain("Ownable: caller is not the owner");
     }
+
+    const treasuryBalance = await treasuryContract.provider.getBalance(
+      treasuryContract.address
+    );
+
+    expect(treasuryBalance).to.equal(
+      amountToSend,
+      "treasury balance should remain 10ETH"
+    );
   });
 });
