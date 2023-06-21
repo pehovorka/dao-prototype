@@ -1,7 +1,8 @@
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 
 import { config } from "@/config";
 import { useVotingPower } from "@/modules/proposals/hooks";
+import { formatEther } from "ethers/lib/utils";
 
 interface VotingPowerProps {
   blockNumber?: number;
@@ -24,7 +25,8 @@ export const VotingPower = ({ blockNumber }: VotingPowerProps) => {
         )}
         {votingPower !== undefined && !error && (
           <div className="text-xl font-bold">
-            {votingPower} {config.tokenSymbol}
+            <FormattedNumber value={Number(formatEther(votingPower))} />{" "}
+            {config.tokenSymbol}
           </div>
         )}
       </div>

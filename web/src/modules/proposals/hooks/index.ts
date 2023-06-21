@@ -6,6 +6,7 @@ export * from "./useProposalVotes";
 export * from "./useProposalCreatedEvents";
 export * from "./useProposalLifecycleEvents";
 export * from "./useProposalState";
+export * from "./useProposalThreshold";
 export * from "./usePropose";
 export * from "./useVote";
 export * from "./useVoteCastEvents";

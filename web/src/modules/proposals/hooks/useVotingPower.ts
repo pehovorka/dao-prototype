@@ -49,7 +49,7 @@ export const useVotingPower = (blockNumber?: number) => {
   }, [tokenBalance, votingPower]);
 
   return {
-    votingPower: Number(formatEther(votingPower ?? 0)),
+    votingPower,
     error,
     tokenBalance: Number(formatEther(tokenBalance ?? 0)),
     isTokenBalanceGreaterThanVotingPower,
