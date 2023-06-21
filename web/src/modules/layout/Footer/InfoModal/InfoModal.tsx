@@ -1,3 +1,7 @@
+import { FormattedMessage } from "react-intl";
+import getConfig from "next/config";
+import { constants } from "ethers";
+
 import {
   governorContract,
   timelockContract,
@@ -6,10 +10,7 @@ import {
 } from "@/consts";
 import { AddressWithAvatar } from "@/modules/common";
 import { ContractParameter } from "@/modules/contracts/ContractParameter";
-import { Title, TitleType } from "@/modules/ui";
-import { constants } from "ethers";
-import getConfig from "next/config";
-import { FormattedMessage } from "react-intl";
+import { Modal, Title, TitleType } from "@/modules/ui";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -19,75 +20,67 @@ interface InfoModalProps {
 }
 export const InfoModal = ({ open, onClose }: InfoModalProps) => {
   return (
-    <div className={`modal ${open && "modal-open"}`}>
-      <div className="modal-box max-w-fit">
-        <button
-          className="btn btn-sm btn-circle absolute right-2 top-2"
-          onClick={onClose}
-        >
-          ✕
-        </button>
-        <Title type={TitleType.H3}>
-          <FormattedMessage id="footer.infoModal.versions.title" />
-        </Title>
-        <div className="stats stats-vertical border-2 border-base-content w-full border-opacity-10 mb-12 mt-4 md:stats-horizontal">
-          <div className="stat">
-            <div className="stat-title">
-              <FormattedMessage id="common.web" />
-            </div>
-            <div className="stat-value text-secondary">
-              {publicRuntimeConfig?.webVersion}
-            </div>
+    <Modal open={open} onClose={onClose}>
+      <Title type={TitleType.H3}>
+        <FormattedMessage id="footer.infoModal.versions.title" />
+      </Title>
+      <div className="stats stats-vertical border-2 border-base-content w-full border-opacity-10 mb-12 mt-4 md:stats-horizontal">
+        <div className="stat">
+          <div className="stat-title">
+            <FormattedMessage id="common.web" />
           </div>
-
-          <div className="stat">
-            <div className="stat-title">
-              <FormattedMessage id="common.contracts" />
-            </div>
-            <div className="stat-value text-secondary">
-              {publicRuntimeConfig?.contractsVersion}
-            </div>
+          <div className="stat-value text-secondary">
+            {publicRuntimeConfig?.webVersion}
           </div>
         </div>
 
-        <Title type={TitleType.H3}>
-          <FormattedMessage id="common.contracts" />
-        </Title>
-        <div className="mt-4">
-          {contracts.map((contract) => (
-            <div key={contract.name} className="mb-6">
-              <Title type={TitleType.H4}>{contract.name}</Title>
-              <AddressWithAvatar
-                copyable
-                openInEtherscan
-                address={contract.contract.address ?? constants.AddressZero}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="collapse collapse-arrow bg-base-200 rounded-md mt-8">
-          <input type="checkbox" />
-          <div className="collapse-title">
-            <FormattedMessage id="footer.infoModal.parameters.title" />
+        <div className="stat">
+          <div className="stat-title">
+            <FormattedMessage id="common.contracts" />
           </div>
-          <div className="collapse-content">
-            <div className="px-4 opacity-85 text-sm">
-              {contracts.map((contract) => {
-                if (contract.parameters?.length === 0) {
-                  return null;
-                }
-                return (
-                  <div key={contract.name} className="mb-6">
-                    <Title type={TitleType.H5}>{contract.name}</Title>
-                    {contract.parameters?.map((parameter) => parameter)}
-                  </div>
-                );
-              })}
-            </div>
+          <div className="stat-value text-secondary">
+            {publicRuntimeConfig?.contractsVersion}
           </div>
         </div>
       </div>
-    </div>
+
+      <Title type={TitleType.H3}>
+        <FormattedMessage id="common.contracts" />
+      </Title>
+      <div className="mt-4">
+        {contracts.map((contract) => (
+          <div key={contract.name} className="mb-6">
+            <Title type={TitleType.H4}>{contract.name}</Title>
+            <AddressWithAvatar
+              copyable
+              openInEtherscan
+              address={contract.contract.address ?? constants.AddressZero}
+            />
+          </div>
+        ))}
+      </div>
+      <div className="collapse collapse-arrow bg-base-200 rounded-md mt-8">
+        <input type="checkbox" />
+        <div className="collapse-title">
+          <FormattedMessage id="footer.infoModal.parameters.title" />
+        </div>
+        <div className="collapse-content">
+          <div className="px-4 opacity-85 text-sm">
+            {contracts.map((contract) => {
+              if (contract.parameters?.length === 0) {
+                return null;
+              }
+              return (
+                <div key={contract.name} className="mb-6">
+                  <Title type={TitleType.H5}>{contract.name}</Title>
+                  {contract.parameters?.map((parameter) => parameter)}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </Modal>
   );
 };
 

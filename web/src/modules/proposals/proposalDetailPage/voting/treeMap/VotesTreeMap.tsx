@@ -138,6 +138,21 @@ export const VotesTreeMap = () => {
               return "hsl(var(--b3))";
           }
         }}
+        labelTextColor={({ data }) => {
+          switch (data.type) {
+            case "forVotes":
+              return "hsl(var(--suc))";
+            case "againstVotes":
+              return "hsl(var(--erc))";
+            case "abstainVotes":
+              return "hsl(var(--inc))";
+            case "notVoted":
+              return "hsl(var(--bc))";
+            default:
+              return "hsl(var(--bc))";
+          }
+        }}
+        borderColor="hsl(var(--pc))"
       />
     </div>
   );

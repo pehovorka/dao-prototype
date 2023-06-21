@@ -4,13 +4,14 @@ import { ProposalCreatedEventObject } from "contracts/typechain-types/contracts/
 
 import { AddressWithAvatar, BlockDate } from "@/modules/common";
 import { useProposalState } from "@/modules/proposals/hooks";
-import { HasVotedBadge, ProposalStateBadge } from "../common";
+import { HasActionBadge, HasVotedBadge, ProposalStateBadge } from "../common";
 
 interface ProposalsListItemProps {
   name: string;
   proposer: string;
   blockNumber: number;
   id: ProposalCreatedEventObject["proposalId"];
+  hasAction: boolean;
 }
 
 export const ProposalsListItem = ({
@@ -18,6 +19,7 @@ export const ProposalsListItem = ({
   proposer,
   blockNumber,
   id,
+  hasAction,
 }: ProposalsListItemProps) => {
   const { state } = useProposalState(id);
   const { account } = useEthers();
@@ -40,6 +42,7 @@ export const ProposalsListItem = ({
           </div>
           <div className="flex items-center gap-x-2 flex-wrap justify-end">
             {account && <HasVotedBadge type="list" proposalId={id} />}
+            {hasAction && <HasActionBadge />}
             {state ? <ProposalStateBadge state={state} /> : "..."}
           </div>
         </div>

@@ -17,7 +17,13 @@ export const Layout = ({ children }: LayoutProps) => {
       <Toaster
         position="bottom-center"
         toastOptions={{
-          style: { padding: "1rem", maxWidth: "30rem", marginBottom: "2rem" },
+          style: {
+            padding: "1rem",
+            maxWidth: "30rem",
+            marginBottom: "2rem",
+            background: "hsl(var(--b1))",
+            color: "hsl(var(--bc))",
+          },
           duration: 7500,
         }}
       />

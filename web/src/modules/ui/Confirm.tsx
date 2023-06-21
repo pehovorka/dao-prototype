@@ -2,6 +2,8 @@ import { useEthers } from "@usedapp/core";
 import { FormattedMessage, MessageDescriptor } from "react-intl";
 
 import { NoWalletCard } from "../proposals/common";
+import { useClickOutside, useEscapeKey } from "@/hooks";
+import { useRef } from "react";
 
 interface ConfirmProps {
   open: boolean;
@@ -26,6 +28,10 @@ export const Confirm = ({
   requireAuth,
 }: ConfirmProps) => {
   const { account, activateBrowserWallet } = useEthers();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEscapeKey(onCancel);
+  useClickOutside(onCancel, ref);
 
   if (requireAuth && !account) {
     return (
@@ -43,7 +49,7 @@ export const Confirm = ({
 
   return (
     <div className={`modal ${open && "modal-open"}`}>
-      <div className="modal-box">
+      <div className="modal-box" ref={ref}>
         <h3 className="font-bold text-lg">
           <FormattedMessage id={title} />
         </h3>

@@ -4,6 +4,7 @@ import type { BigNumber } from "ethers";
 
 import { governorContract } from "@/consts";
 import type { VoteCastEventObject } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
+import { config } from "@/config";
 
 export interface VoteCastEvent {
   data: VoteCastEventObject;
@@ -39,7 +40,7 @@ export const useVoteCastEvents = (
       event: "VoteCast",
       args: [],
     },
-    { fromBlock, toBlock }
+    { fromBlock, toBlock, chainId: config.network.readOnlyChainId }
   );
 
   useEffect(() => {

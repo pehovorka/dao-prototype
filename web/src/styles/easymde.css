@@ -1,0 +1,27 @@
+/* Overrides for EasyMDE editor to support dark mode */
+
+.EasyMDEContainer .CodeMirror {
+    --tw-border-opacity: 0.2;
+    background-color: hsl(var(--b1)) !important;
+    color: hsl(var(--bc)) !important;
+    border-color: hsl(var(--bc) / var(--tw-border-opacity)) !important;
+}
+
+.EasyMDEContainer .editor-toolbar {
+    --tw-border-opacity: 0.2;
+    border-color: hsl(var(--bc) / var(--tw-border-opacity)) !important;
+    background-color: hsl(var(--b2)) !important;
+}
+
+.EasyMDEContainer .separator {
+    --tw-border-opacity: 0.2;
+    border-color: hsl(var(--bc) / var(--tw-border-opacity)) !important;
+}
+
+.EasyMDEContainer .editor-preview {
+    background-color: hsl(var(--b1)) !important;
+}
+
+.EasyMDEContainer .CodeMirror-cursor {
+    border-color:  hsl(var(--bc)) !important;
+}

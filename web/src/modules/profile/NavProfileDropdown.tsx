@@ -5,9 +5,11 @@ import Blockies from "react-blockies";
 
 import { NotDelegatedVotesAlert, VotingPower } from "../proposals/common";
 import { AddressWithAvatar } from "../common";
+import { useNotDelegatedVotingPower } from "../proposals/hooks";
 
 export const NavProfileDropdown = () => {
   const { account, deactivate, activateBrowserWallet } = useEthers();
+  const notDelegated = useNotDelegatedVotingPower();
 
   return (
     <div className="dropdown dropdown-end">
@@ -22,7 +24,12 @@ export const NavProfileDropdown = () => {
             <FormattedMessage id="profile.user.anonymous" />
           )}
         </div>
-        <div className="w-10 h-10 mask mask-squircle">
+        {account && notDelegated && (
+          <div className="absolute badge badge-md badge-warning right-0 top-0 z-10">
+            !
+          </div>
+        )}
+        <div className="w-10 h-10 mask mask-squircle ">
           {account ? (
             <Blockies seed={account} size={10} />
           ) : (

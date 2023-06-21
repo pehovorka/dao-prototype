@@ -1,13 +1,16 @@
+import { constants } from "ethers";
+import { useIntl } from "react-intl";
+
 import { Alert, Skeleton } from "@/modules/ui";
 import { usePagination } from "@/hooks";
+import { parseProposalDescription } from "@/utils";
 import {
   type ProposalCreatedEvent,
   useProposalCreatedEvents,
 } from "@/modules/proposals/hooks";
-import { useIntl } from "react-intl";
+
 import { Pagination } from "./Pagination";
 import { ProposalsListItem } from "./ProposalsListItem";
-import { parseProposalDescription } from "@/utils";
 
 export const ProposalsList = () => {
   const { proposals, error } = useProposalCreatedEvents();
@@ -52,6 +55,7 @@ export const ProposalsList = () => {
           blockNumber={proposal.blockNumber}
           key={proposal.transactionIndex}
           id={proposal.data.proposalId}
+          hasAction={proposal.data.calldatas[0] !== constants.HashZero}
         />
       ))}
       <Pagination

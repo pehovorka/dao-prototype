@@ -68,13 +68,20 @@ export const TransferFundsActionContainer = () => {
           max: formatMessage({
             id: "proposal.new.page.form.actions.action.transfer.amount.error.max",
           }),
+          positive: formatMessage({
+            id: "proposal.new.page.form.actions.action.transfer.amount.error.positive",
+          }),
         }}
         error={errors?.transferAmount}
         register={register}
         name="transferAmount"
         type="number"
         step="any"
-        options={{ required: true, max: balanceNumber }}
+        options={{
+          required: true,
+          validate: { positive: (value) => value > 0 },
+          max: balanceNumber,
+        }}
       />
     </div>
   );

@@ -10,7 +10,11 @@ import {
 } from "@/modules/proposals/newProposalPage";
 
 import { tokenContract, treasuryContract } from "@/consts";
-import { usePropose } from "@/modules/proposals/hooks";
+import {
+  useProposalThreshold,
+  usePropose,
+  useVotingPower,
+} from "@/modules/proposals/hooks";
 import { NoWalletCard } from "@/modules/proposals/common";
 import { SolidityDataType } from "@/utils";
 import { contracts } from "../consts";
@@ -33,6 +37,10 @@ export const Form = () => {
   const methods = useForm<FormData>();
   const { account, activateBrowserWallet } = useEthers();
   const { inProgress, setInProgress, send } = usePropose();
+  const { votingPower } = useVotingPower();
+  const proposalThreshold = useProposalThreshold();
+
+  const isEntitledToVote = votingPower?.gte(proposalThreshold ?? 0) ?? false;
 
   const onSubmit = methods.handleSubmit((data) => {
     setInProgress(true);
@@ -109,7 +117,11 @@ export const Form = () => {
           <ProposalTitleInput />
           <MarkdownEditor />
           <ActionsContainer />
-          <FormButtons loading={inProgress} />
+          <FormButtons
+            loading={inProgress}
+            isEntitledToVote={isEntitledToVote}
+            proposalThreshold={proposalThreshold}
+          />
         </form>
       </section>
     </FormProvider>

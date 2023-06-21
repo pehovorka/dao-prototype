@@ -5,7 +5,9 @@ const networkConfig = {
   readOnlyUrls: {
     [Sepolia.chainId]: `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`,
   },
-} as const satisfies Config;
+  networks: [Sepolia],
+  noMetamaskDeactivate: true,
+} satisfies Config;
 
 export const config = {
   governorContractAddress: process.env.NEXT_PUBLIC_GOVERNOR_CONTRACT_ADDRESS,
