@@ -104,6 +104,7 @@
   "proposal.new.page.form.actions.action.transfer.amount.currency" : "ETH",
   "proposal.new.page.form.actions.action.transfer.amount.error.required" : "You must enter the amount of ETH to transfer!",
   "proposal.new.page.form.actions.action.transfer.amount.error.max" : "The treasury balance is not sufficient. Please choose a lower value.",
+  "proposal.new.page.form.actions.action.transfer.amount.error.positive" : "The amount must be a positive number.",
   "proposal.new.page.form.actions.action.custom.title" : "Custom action",
   "proposal.new.page.form.votingPower" : "Your voting power is {votingPower} {token}",
   "proposal.new.page.form.button.cancel" : "Cancel",

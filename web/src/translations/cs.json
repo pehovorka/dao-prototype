@@ -104,6 +104,7 @@
   "proposal.new.page.form.actions.action.transfer.amount.currency" : "ETH",
   "proposal.new.page.form.actions.action.transfer.amount.error.required" : "Mustíte uvést množství ETH k odeslání!",
   "proposal.new.page.form.actions.action.transfer.amount.error.max" : "Zůstatek v pokladně není dostatečný. Zvolte prosím nižší částku.",
+  "proposal.new.page.form.actions.action.transfer.amount.error.positive" : "Musíte zadat kladné číslo.",
   "proposal.new.page.form.actions.action.custom.title" : "Vlastní akce",
   "proposal.new.page.form.votingPower" : "Vaše hlasovací síla je {votingPower} {token}",
   "proposal.new.page.form.button.cancel" : "Zrušit",
