@@ -137,7 +137,7 @@
   "profile.undelegatedVotes.text" : "You own the {tokenName} token, but you don't have the voting power delegated yet.",
   "profile.undelegatedVotes.button" : "Delegate {tokenBalance} {tokenName}",
   "profile.delegate.state.mining" : "Waiting for the block mining...",
-  "profile.delegate.state.success" : "🎉 The voting power was successfully delegated!",
+  "profile.delegate.state.success" : "🎉 The voting power was successfully delegated! It can take a few seconds for the data to be updated. Please hold on.",
   "profile.delegate.state.exception" : "Something went wrong – error:\n{error}",
   "contractFunctionFlow.state.mining" : "Waiting for the block mining...",
   "contractFunctionFlow.state.success" : "🎉 The action was successfully executed!",
