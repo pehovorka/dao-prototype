@@ -9,6 +9,7 @@ import type {
 } from "contracts/typechain-types/contracts/Governor.sol/HomeOwnersGovernance";
 import { useEffect, useState } from "react";
 import { DetailedEventRecord } from "@usedapp/core/dist/esm/src/model";
+import { config } from "@/config";
 
 interface AllEvents {
   queued:
@@ -35,7 +36,7 @@ export const useProposalLifecycleEvents = (
       event: "ProposalQueued",
       args: [],
     },
-    { fromBlock }
+    { fromBlock, chainId: config.network.readOnlyChainId }
   );
 
   const executedEvents = useLogs(

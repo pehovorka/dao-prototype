@@ -6,6 +6,7 @@ const networkConfig = {
     [Sepolia.chainId]: `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`,
   },
   networks: [Sepolia],
+  noMetamaskDeactivate: true,
 } satisfies Config;
 
 export const config = {

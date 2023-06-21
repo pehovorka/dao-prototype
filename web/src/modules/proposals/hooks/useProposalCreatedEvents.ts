@@ -4,6 +4,7 @@ import { useBlockNumber, useLogs } from "@usedapp/core";
 import { ethers } from "ethers";
 
 import { governorContract } from "@/consts/governorContract";
+import { config } from "@/config";
 
 export interface ProposalCreatedEvent {
   data: ProposalCreatedEventObject;
@@ -27,11 +28,14 @@ export const useProposalCreatedEvents = (
   // More info here: https://github.com/TrueFiEng/useDApp/pull/1045#issuecomment-1403793564
   const [hasRendered, setHasRendered] = useState(false);
 
-  const logs = useLogs({
-    contract: governorContract,
-    event: "ProposalCreated",
-    args: [],
-  });
+  const logs = useLogs(
+    {
+      contract: governorContract,
+      event: "ProposalCreated",
+      args: [],
+    },
+    { chainId: config.network.readOnlyChainId }
+  );
 
   useEffect(() => {
     if (blockNumber) {
