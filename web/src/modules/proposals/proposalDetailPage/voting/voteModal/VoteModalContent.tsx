@@ -5,6 +5,7 @@ import {
   SetStateAction,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { FormattedMessage } from "react-intl";
@@ -18,7 +19,7 @@ import {
 import { NoWalletCard, VotingPower } from "../../../common";
 import { VoteRadioButton } from "./VoteRadioButton";
 import { proposalDetailAtom } from "@/atoms";
-import { useEscapeKey } from "@/hooks";
+import { useClickOutside, useEscapeKey } from "@/hooks";
 
 interface VoteModalContentProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -28,6 +29,7 @@ export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
   const [selectedOption, setSelectedOption] = useState<Vote>();
   const { castVote, inProgress, setInProgress, state } = useVote();
   const proposal = useAtomValue(proposalDetailAtom) as ProposalCreatedEvent;
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleSelect = (vote: Vote) => {
     setSelectedOption(vote);
@@ -43,6 +45,7 @@ export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
   }, [setOpen]);
 
   useEscapeKey(handleClose);
+  useClickOutside(handleClose, ref);
 
   useEffect(() => {
     if (state.status === "Success") {
@@ -64,7 +67,7 @@ export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
   }
 
   return (
-    <div className="modal-box">
+    <div className="modal-box" ref={ref}>
       <h3 className="font-bold text-lg">
         <FormattedMessage id="proposal.voting.title" />
       </h3>
