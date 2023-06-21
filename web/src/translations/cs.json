@@ -17,6 +17,7 @@
   "proposals.list.empty" : "Zatím zde nejsou žádné návrhy. Přidejte první!",
   "proposals.list.pagination.page" : "Strana {page}",
   "proposal.title" : "Návrh",
+  "proposal.hasAction" : "Obsahuje akci",
   "proposal.state.pending" : "Posouzení",
   "proposal.state.active" : "Aktivní",
   "proposal.state.succeeded" : "Úspěšný",

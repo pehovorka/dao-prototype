@@ -17,6 +17,7 @@
   "proposals.list.empty" : "No proposals yet. Create the first one!",
   "proposals.list.pagination.page" : "Page {page}",
   "proposal.title" : "Proposal",
+  "proposal.hasAction" : "Has an action",
   "proposal.state.pending" : "Review",
   "proposal.state.active" : "Active",
   "proposal.state.succeeded" : "Succeeded",
