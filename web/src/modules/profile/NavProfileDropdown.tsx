@@ -24,7 +24,7 @@ export const NavProfileDropdown = () => {
             <FormattedMessage id="profile.user.anonymous" />
           )}
         </div>
-        {notDelegated && (
+        {account && notDelegated && (
           <div className="absolute badge badge-md badge-warning right-0 top-0 z-10">
             !
           </div>
