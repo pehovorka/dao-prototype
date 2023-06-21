@@ -18,6 +18,7 @@ import {
 import { NoWalletCard, VotingPower } from "../../../common";
 import { VoteRadioButton } from "./VoteRadioButton";
 import { proposalDetailAtom } from "@/atoms";
+import { useEscapeKey } from "@/hooks";
 
 interface VoteModalContentProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -40,6 +41,8 @@ export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
     setOpen(false);
     setSelectedOption(undefined);
   }, [setOpen]);
+
+  useEscapeKey(handleClose);
 
   useEffect(() => {
     if (state.status === "Success") {

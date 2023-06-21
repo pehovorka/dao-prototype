@@ -4,6 +4,7 @@ import {
   tokenContract,
   treasuryContract,
 } from "@/consts";
+import { useEscapeKey } from "@/hooks";
 import { AddressWithAvatar } from "@/modules/common";
 import { ContractParameter } from "@/modules/contracts/ContractParameter";
 import { Title, TitleType } from "@/modules/ui";
@@ -18,6 +19,8 @@ interface InfoModalProps {
   onClose: () => void;
 }
 export const InfoModal = ({ open, onClose }: InfoModalProps) => {
+  useEscapeKey(onClose);
+
   return (
     <div className={`modal ${open && "modal-open"}`}>
       <div className="modal-box max-w-fit">

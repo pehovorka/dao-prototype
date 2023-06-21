@@ -1,6 +1,7 @@
 import { FormattedMessage } from "react-intl";
 import { VotersModalTable } from "./VotersModalTable";
 import { VoteTypeContainerProps } from "./VoteTypeContainer";
+import { useEscapeKey } from "@/hooks";
 
 interface VotersModalProps {
   open: boolean;
@@ -8,6 +9,8 @@ interface VotersModalProps {
   type: VoteTypeContainerProps["type"];
 }
 export const VotersModal = ({ open, handleClose, type }: VotersModalProps) => {
+  useEscapeKey(handleClose);
+
   return (
     <>
       <input
