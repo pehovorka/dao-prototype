@@ -24,6 +24,20 @@ export const VotingContainer = () => {
     proposal.data.proposalId
   );
 
+  if (
+    (proposalState === "pending" || proposalState === undefined) &&
+    votes.error
+  ) {
+    return (
+      <div className="pb-10">
+        <Alert
+          message={formatMessage({ id: "proposal.voting.pending" })}
+          type="info"
+        />
+      </div>
+    );
+  }
+
   if (votes.error) {
     console.error(votes.error);
     return (

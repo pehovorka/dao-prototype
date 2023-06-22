@@ -45,6 +45,7 @@
   "proposal.timeline.openOnEtherscan" : "Zobrazit transakci na Etherscan",
   "proposal.voting.title" : "Hlasování",
   "proposal.voting.error" : "Chyba načítání dat o hlasování. Po vytvoření návrhu může několik sekund trvat, než budou data dostupná.",
+  "proposal.voting.pending" : "Hlasování ještě nebylo zahájeno. Počkejte prosím...",
   "proposal.voting.for" : "Pro",
   "proposal.voting.against" : "Proti",
   "proposal.voting.abstain" : "Zdržel se",
