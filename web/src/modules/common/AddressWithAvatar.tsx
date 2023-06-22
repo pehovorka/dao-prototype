@@ -33,7 +33,7 @@ export const AddressWithAvatar = ({
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 items-center">
       {!noAvatar && (
         <div className="w-6 h-6 mask mask-squircle">
           <Blockies seed={address} size={10} scale={2.4} />
@@ -65,7 +65,7 @@ export const AddressWithAvatar = ({
               className={
                 iconClassName
                   ? iconClassName
-                  : "ml-4 h-5 opacity-60 transition-opacity hover:opacity-100"
+                  : "h-5 opacity-60 transition-opacity hover:opacity-100"
               }
             />
           </button>

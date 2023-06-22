@@ -56,6 +56,9 @@ export const VotersModalTable = ({ type }: VotersModalTableProps) => {
             <th>
               <FormattedMessage id="proposal.voting.voters.table.date" />
             </th>
+            <th>
+              <FormattedMessage id="proposal.voting.voters.table.tx" />
+            </th>
             <th className="text-right">
               <FormattedMessage id="proposal.voting.voters.table.votingPower" />
             </th>
@@ -65,16 +68,21 @@ export const VotersModalTable = ({ type }: VotersModalTableProps) => {
           {filteredEvents.map((event, index) => (
             <tr key={index}>
               <th>{index + 1}</th>
-              <td className="flex gap-3">
+              <td className="flex mr-6">
                 <AddressWithAvatar
                   copyable
                   responsive
                   address={event.data.voter}
+                  iconClassName="fill-primary h-5 hover:fill-primary-focus"
                 />
               </td>
               <td>
-                <div className="flex gap-2 items-center">
+                <div>
                   <BlockDate blockNumber={event.blockNumber} />
+                </div>
+              </td>
+              <td>
+                <div>
                   <ViewInEtherscanButton
                     transactionHash={event.transactionHash}
                   />
@@ -91,6 +99,7 @@ export const VotersModalTable = ({ type }: VotersModalTableProps) => {
         </tbody>
         <tfoot>
           <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>

@@ -66,6 +66,7 @@
   "proposal.voting.voters.table.address" : "Adresa",
   "proposal.voting.voters.table.votingPower" : "Hlasovací síla",
   "proposal.voting.voters.table.date" : "Datum",
+  "proposal.voting.voters.table.tx" : "TX",
   "proposal.voting.treeMap.title" : "Rozložení hlasů",
   "proposal.voting.treeMap.unusedVotes" : "Nevyužité hlasy",
   "proposal.voting.treeMap.forVotes" : "Pro",
