@@ -40,9 +40,11 @@ export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
     castVote(proposal.data.proposalId, voteToSupportMap[selectedOption]);
   };
   const handleClose = useCallback(() => {
+    if (inProgress) return;
+
     setOpen(false);
     setSelectedOption(undefined);
-  }, [setOpen]);
+  }, [setOpen, inProgress]);
 
   useEscapeKey(handleClose);
   useClickOutside(handleClose, ref);
