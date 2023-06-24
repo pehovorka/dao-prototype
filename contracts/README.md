@@ -1,13 +1,3 @@
-# Sample Hardhat Project
+# DAO Prototype – smart contracts
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
-```
+This workspace uses [Hardhat](https://hardhat.org/) as the Ethereum development environment of choice. For more info, please refer to the README provided at the root of this repository.
