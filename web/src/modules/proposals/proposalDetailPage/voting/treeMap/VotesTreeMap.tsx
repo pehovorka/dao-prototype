@@ -152,7 +152,7 @@ export const VotesTreeMap = () => {
               return "hsl(var(--bc))";
           }
         }}
-        borderColor="hsl(var(--pc))"
+        borderColor="hsl(var(--ac))"
       />
     </div>
   );

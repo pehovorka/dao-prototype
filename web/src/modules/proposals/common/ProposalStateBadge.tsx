@@ -28,7 +28,7 @@ const getBadgeColor = (state: ProposalStateBadgeProps["state"]) => {
     case "expired":
       return "badge-error";
     case "executed":
-      return "badge-success";
+      return "bg-green-700 text-white border-transparent";
     default:
       return "badge-secondary";
   }
