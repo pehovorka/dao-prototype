@@ -6,8 +6,9 @@ interface BlockDateProps {
 }
 export const BlockDate = ({ blockNumber }: BlockDateProps) => {
   const block = useBlock(blockNumber);
-  if (!block) return <>...</>;
   const date = block.date;
+
+  if (!block || !date) return <>...</>;
 
   return (
     <>
