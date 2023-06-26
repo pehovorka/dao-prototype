@@ -25,7 +25,13 @@ export const ProposalsListItem = ({
   const { account } = useEthers();
 
   return (
-    <Link href={`/proposal/${id}`}>
+    <Link
+      href={{
+        pathname: "/proposal/[proposalId]",
+        query: { proposalId: id.toString() },
+      }}
+      prefetch={false}
+    >
       <div className="card group shadow-md bg-base-100 mb-3 transition-all duration-200 hover:shadow-xl">
         <div className="card-body flex flex-row justify-between gap-5 flex-wrap">
           <div className="min-w-0">

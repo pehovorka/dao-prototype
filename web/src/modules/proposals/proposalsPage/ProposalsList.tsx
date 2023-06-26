@@ -48,16 +48,19 @@ export const ProposalsList = () => {
 
   return (
     <>
-      {items.map((proposal) => (
-        <ProposalsListItem
-          name={parseProposalDescription(proposal.data.description).title}
-          proposer={proposal.data.proposer}
-          blockNumber={proposal.blockNumber}
-          key={proposal.transactionIndex}
-          id={proposal.data.proposalId}
-          hasAction={proposal.data.calldatas[0] !== constants.HashZero}
-        />
-      ))}
+      <ul>
+        {items.map((proposal) => (
+          <li key={proposal.data.proposalId.toString()}>
+            <ProposalsListItem
+              name={parseProposalDescription(proposal.data.description).title}
+              proposer={proposal.data.proposer}
+              blockNumber={proposal.blockNumber}
+              id={proposal.data.proposalId}
+              hasAction={proposal.data.calldatas[0] !== constants.HashZero}
+            />
+          </li>
+        ))}
+      </ul>
       <Pagination
         page={page}
         handlePrevious={handlePrevious}

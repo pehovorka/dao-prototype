@@ -13,7 +13,7 @@ export const NavLink = ({ href, children }: NavLinkProps) => {
     pathname.substring(0, 5) === href.substring(0, 5) ? "font-bold" : undefined;
 
   return (
-    <Link className={className} href={href}>
+    <Link className={className} href={href} prefetch={false}>
       {children}
     </Link>
   );
