@@ -62,7 +62,12 @@ export const CustomActionContainer = () => {
         </label>
         <select
           className="select select-bordered w-full"
-          {...(register("customFunctionName", { required: true }),
+          {...(register("customFunctionName", {
+            validate: {
+              required: (value, formValues) =>
+                value !== undefined || formValues.action !== "custom",
+            },
+          }),
           {
             onChange: (e) => {
               const [contractName, functionName] = JSON.parse(e.target.value);
