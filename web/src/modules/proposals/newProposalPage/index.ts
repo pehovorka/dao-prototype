@@ -5,3 +5,4 @@ export * from "./FormButtons";
 export * from "./MarkdownEditor";
 export * from "./ProposalTitleInput";
 export * from "./TransferFundsActionContainer";
+export * from "./VotingPowerAlert";

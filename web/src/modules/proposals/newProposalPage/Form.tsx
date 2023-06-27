@@ -7,6 +7,7 @@ import {
   FormButtons,
   MarkdownEditor,
   ProposalTitleInput,
+  VotingPowerAlert,
 } from "@/modules/proposals/newProposalPage";
 
 import { tokenContract, treasuryContract } from "@/consts";
@@ -113,6 +114,7 @@ export const Form = () => {
   return (
     <FormProvider {...methods}>
       <section>
+        <VotingPowerAlert />
         <form onSubmit={onSubmit}>
           <ProposalTitleInput />
           <MarkdownEditor />
