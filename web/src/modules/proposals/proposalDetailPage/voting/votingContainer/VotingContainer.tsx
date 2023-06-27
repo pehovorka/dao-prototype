@@ -77,12 +77,6 @@ export const VotingContainer = () => {
           {proposalState === "active" && (
             <VoteModalButton hidden={hasVoted ? true : false} />
           )}
-          {hasVoted && (
-            <HasVotedBadge
-              type="detail"
-              proposalId={proposal.data.proposalId}
-            />
-          )}
         </div>
       </div>
       <div className="grid grid-cols-1 md:gap-5 md:grid-cols-3">

@@ -104,7 +104,7 @@ export const VoteModalContent = ({ setOpen }: VoteModalContentProps) => {
         </button>
         <button
           onClick={handleVote}
-          disabled={!selectedOption || inProgress}
+          disabled={!selectedOption}
           className={`btn btn-primary ${inProgress && "loading"}`}
         >
           <FormattedMessage id="proposal.voting.vote.button" />

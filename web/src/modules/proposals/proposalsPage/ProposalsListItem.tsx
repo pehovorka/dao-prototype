@@ -35,9 +35,12 @@ export const ProposalsListItem = ({
       <div className="card group shadow-md bg-base-100 mb-3 transition-all duration-200 hover:shadow-xl">
         <div className="card-body flex flex-row justify-between gap-5 flex-wrap">
           <div className="min-w-0">
-            <h2 className="card-title mt-0 underline decoration-transparent underline-offset-4 decoration-2 transition-colors group-hover:decoration-secondary">
-              {name}
-            </h2>
+            <div className="flex gap-4 items-center">
+              <h2 className="card-title mt-0 underline decoration-transparent underline-offset-4 decoration-2 transition-all group-hover:text-secondary">
+                {name}
+              </h2>
+              {account && <HasVotedBadge type="list" proposalId={id} />}
+            </div>
             <div className="flex flex-wrap gap-2 items-center mt-3">
               <AddressWithAvatar address={proposer} short />
               {"|"}
@@ -46,8 +49,7 @@ export const ProposalsListItem = ({
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-x-2 flex-wrap justify-end">
-            {account && <HasVotedBadge type="list" proposalId={id} />}
+          <div className="flex items-center gap-x-2 flex-wrap md:justify-end">
             {hasAction && <HasActionBadge />}
             {state ? <ProposalStateBadge state={state} /> : "..."}
           </div>
