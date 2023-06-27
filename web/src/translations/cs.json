@@ -112,7 +112,7 @@
   "proposal.new.page.form.votingPower" : "Vaše hlasovací síla je {votingPower} {token}",
   "proposal.new.page.form.button.cancel" : "Zrušit",
   "proposal.new.page.form.button.create" : "Vytvořit návrh",
-  "proposal.new.page.form.button.create.notEntitledToVoteTooltip" : "Vaše hlasovací síla je menší než minimální limit pro vytváření návrhu ({proposalThreshold} {token}). Pokud již vlastníte hlasovací token, musíte si nejdříve delegovat hlasovací sílu.",
+  "proposal.new.page.form.error.create.notEntitledToVote" : "Vaše hlasovací síla je menší než minimální limit pro vytváření návrhu ({proposalThreshold} {token}). Pokud již vlastníte hlasovací token, musíte si nejdříve delegovat hlasovací sílu.",
   "proposal.new.page.form.undelegatedVotesAlert" : "Přestože vlastníte token {token}, zatím jste si nedelegovali hlasovací sílu. Před vytvořením prvního návrhu si musíte tuto hlasovací sílu delegovat.",
   "proposal.new.page.form.notEnoughVotesAlert" : "Nemáte dostatečnou hlasovací sílu abyste mohli vytvářet návrhy.",
   "proposal.new.state.mining" : "Čekání na vytěžení bloku...",

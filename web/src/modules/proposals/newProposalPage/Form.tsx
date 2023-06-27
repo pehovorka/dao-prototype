@@ -19,6 +19,10 @@ import {
 import { NoWalletCard } from "@/modules/proposals/common";
 import { SolidityDataType } from "@/utils";
 import { contracts } from "../consts";
+import { toast } from "react-hot-toast";
+import { useIntl } from "react-intl";
+import { formatEther } from "ethers/lib/utils";
+import { config } from "@/config";
 
 export interface FormData {
   title: string;
@@ -35,6 +39,7 @@ export interface FormData {
 }
 
 export const Form = () => {
+  const { formatMessage, formatNumber } = useIntl();
   const methods = useForm<FormData>();
   const { account, activateBrowserWallet } = useEthers();
   const { inProgress, setInProgress, send } = usePropose();
@@ -44,6 +49,29 @@ export const Form = () => {
   const isEntitledToVote = votingPower?.gte(proposalThreshold ?? 0) ?? false;
 
   const onSubmit = methods.handleSubmit((data) => {
+    if (!isEntitledToVote) {
+      toast.error(
+        formatMessage(
+          {
+            id: "proposal.new.page.form.error.create.notEntitledToVote",
+          },
+          {
+            proposalThreshold: formatNumber(
+              Number(formatEther(proposalThreshold ?? 0)),
+              {
+                notation: "compact",
+              }
+            ),
+            token: config.tokenSymbol,
+          }
+        ),
+        {
+          duration: 10000,
+        }
+      );
+      return;
+    }
+
     setInProgress(true);
 
     const getCallData = () => {
@@ -119,11 +147,7 @@ export const Form = () => {
           <ProposalTitleInput />
           <MarkdownEditor />
           <ActionsContainer />
-          <FormButtons
-            loading={inProgress}
-            isEntitledToVote={isEntitledToVote}
-            proposalThreshold={proposalThreshold}
-          />
+          <FormButtons loading={inProgress} />
         </form>
       </section>
     </FormProvider>

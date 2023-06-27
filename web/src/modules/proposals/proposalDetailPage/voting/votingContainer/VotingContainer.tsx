@@ -10,7 +10,6 @@ import {
   useProposalState,
   useHasVoted,
 } from "@/modules/proposals/hooks";
-import { HasVotedBadge } from "../../../common";
 import { useProposalVotes } from "../../../hooks";
 
 export const VotingContainer = () => {

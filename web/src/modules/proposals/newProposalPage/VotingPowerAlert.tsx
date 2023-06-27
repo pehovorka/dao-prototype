@@ -14,7 +14,7 @@ export const VotingPowerAlert = () => {
       return (
         <div className="pb-6">
           <Alert
-            type="warning"
+            type="error"
             noWrap
             message={
               <FormattedMessage

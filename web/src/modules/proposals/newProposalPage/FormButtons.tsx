@@ -4,19 +4,12 @@ import { useVotingPower } from "../hooks";
 import { formatEther } from "ethers/lib/utils";
 import { config } from "@/config";
 import { InfoIcon } from "@/assets/icons";
-import { BigNumber } from "ethers";
 
 interface FormButtonsProps {
   loading: boolean;
-  isEntitledToVote: boolean;
-  proposalThreshold: BigNumber | undefined;
 }
-export const FormButtons = ({
-  loading,
-  isEntitledToVote,
-  proposalThreshold,
-}: FormButtonsProps) => {
-  const { formatMessage, formatNumber } = useIntl();
+export const FormButtons = ({ loading }: FormButtonsProps) => {
+  const { formatNumber } = useIntl();
   const { push } = useRouter();
   const { votingPower } = useVotingPower();
 
@@ -44,31 +37,12 @@ export const FormButtons = ({
         >
           <FormattedMessage id="proposal.new.page.form.button.cancel" />
         </button>
-        <div
-          className={!isEntitledToVote ? "tooltip tooltip-left" : ""}
-          data-tip={formatMessage(
-            {
-              id: "proposal.new.page.form.button.create.notEntitledToVoteTooltip",
-            },
-            {
-              proposalThreshold: formatNumber(
-                Number(formatEther(proposalThreshold ?? 0)),
-                {
-                  notation: "engineering",
-                }
-              ),
-              token: config.tokenSymbol,
-            }
-          )}
+        <button
+          type="submit"
+          className={`btn btn-primary ${loading && "loading"}`}
         >
-          <button
-            type="submit"
-            disabled={loading || !isEntitledToVote}
-            className={`btn btn-primary ${loading && "loading"}`}
-          >
-            <FormattedMessage id="proposal.new.page.form.button.create" />
-          </button>
-        </div>
+          <FormattedMessage id="proposal.new.page.form.button.create" />
+        </button>
       </div>
     </div>
   );
