@@ -27,7 +27,7 @@ export const useVotingPower = (blockNumber?: number) => {
     if (currentBlockNumber) {
       return currentBlockNumber - 1;
     }
-    return 0;
+    return Promise.resolve(0);
   }, [blockNumber, currentBlockNumber]);
 
   const { value, error } =
@@ -38,9 +38,9 @@ export const useVotingPower = (blockNumber?: number) => {
     }) ?? {};
 
   useEffect(() => {
-    if (value && value[0]) {
-      setVotingPower(value[0]);
-    }
+    if (value === undefined || value[0] === undefined) return;
+
+    setVotingPower(value[0]);
   }, [value]);
 
   useEffect(() => {
