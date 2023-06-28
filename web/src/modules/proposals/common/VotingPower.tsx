@@ -8,22 +8,17 @@ interface VotingPowerProps {
   blockNumber?: number;
 }
 export const VotingPower = ({ blockNumber }: VotingPowerProps) => {
-  const { votingPower, error } = useVotingPower(blockNumber);
+  const { votingPower } = useVotingPower(blockNumber);
   return (
     <div className="stats">
       <div className="stat p-4">
         <div className="stat-title">
           <FormattedMessage id="profile.votingPower.text" />
         </div>
-        {votingPower === undefined && !error && (
+        {votingPower === undefined && (
           <div className="text-xl font-bold">...</div>
         )}
-        {error && (
-          <div className="text-xl font-bold">
-            <FormattedMessage id="profile.votingPower.error" />
-          </div>
-        )}
-        {votingPower !== undefined && !error && (
+        {votingPower !== undefined && (
           <div className="text-xl font-bold">
             <FormattedNumber value={Number(formatEther(votingPower))} />{" "}
             {config.tokenSymbol}

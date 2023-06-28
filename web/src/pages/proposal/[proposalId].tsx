@@ -31,6 +31,8 @@ export default function PropsalDetailPage() {
   useEffect(() => {
     if (proposals && proposals.length > 0) {
       setProposal(proposals[0]);
+    } else {
+      setProposal(null);
     }
   }, [proposals, setProposal]);
 

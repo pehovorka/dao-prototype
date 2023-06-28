@@ -23,8 +23,17 @@ export const Layout = ({ children }: LayoutProps) => {
             marginBottom: "2rem",
             background: "hsl(var(--b1))",
             color: "hsl(var(--bc))",
+            borderWidth: "1px",
+            borderColor: "hsl(var(--bc) / 0.2)",
           },
           duration: 7500,
+          error: {
+            style: {
+              background: "hsl(var(--er))",
+              color: "hsl(var(--erc))",
+              borderColor: "hsl(var(--erc) / 0.2)",
+            },
+          },
         }}
       />
     </>

@@ -26,6 +26,7 @@ export default function Home() {
                 <Link
                   href={"/proposals"}
                   className="btn btn-primary bg-gradient-to-r from-primary to-fuchsia-700 border-none transition-all hover:hue-rotate-15"
+                  prefetch={false}
                 >
                   <FormattedMessage id="homepage.hero.cta.showProposals" />
                 </Link>

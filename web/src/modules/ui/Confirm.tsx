@@ -13,7 +13,7 @@ interface ConfirmProps {
   cancelText?: MessageDescriptor["id"];
   inProgress?: boolean;
   requireAuth?: boolean;
-  onConfirm?: () => void;
+  onConfirm: () => void;
   onCancel: () => void;
 }
 export const Confirm = ({
@@ -60,13 +60,19 @@ export const Confirm = ({
           <button
             className="btn btn-ghost"
             disabled={inProgress}
-            onClick={onCancel}
+            onClick={(e) => {
+              e.preventDefault();
+              onCancel();
+            }}
           >
             <FormattedMessage id={cancelText ?? "common.cancel"} />
           </button>
           <button
             className={`btn ${inProgress && "loading"}`}
-            onClick={onConfirm}
+            onClick={(e) => {
+              e.preventDefault();
+              onConfirm();
+            }}
           >
             <FormattedMessage id={confirmText ?? "common.confirm"} />
           </button>

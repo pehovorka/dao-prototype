@@ -16,7 +16,7 @@ export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
         {items.map((item, index) => (
           <li key={index}>
             {item.href ? (
-              <Link href={item.href}>
+              <Link href={item.href} prefetch={false}>
                 <FormattedMessage id={item.message} />
               </Link>
             ) : (

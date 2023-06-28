@@ -63,6 +63,8 @@ export const ProposalActionButtons = () => {
     (state === "queued" || executeFunctionInProgress) &&
     proposal.data.calldatas[0] !== constants.HashZero;
 
+  if (!showExecuteButton && !showQueueButton) return null;
+
   return (
     <div className="flex gap-2">
       {showQueueButton && (
@@ -90,7 +92,10 @@ export const ProposalActionButtons = () => {
       )}
       {showExecuteButton && (
         <>
-          <button className="btn btn-sm btn-error" onClick={openExecuteConfirm}>
+          <button
+            className="btn btn-sm btn-primary"
+            onClick={openExecuteConfirm}
+          >
             <FormattedMessage id="proposal.actionButtons.execute.button" />
           </button>
           <Confirm

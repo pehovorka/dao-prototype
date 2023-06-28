@@ -2,9 +2,15 @@ interface AlertProps {
   message: React.ReactNode;
   type: "error" | "success" | "info" | "warning";
   actions?: React.ReactNode;
+  noWrap?: boolean;
 }
-export const Alert = ({ message, type, actions }: AlertProps) => {
-  const className = getAlertClassName(type);
+export const Alert = ({
+  message,
+  type,
+  actions,
+  noWrap = false,
+}: AlertProps) => {
+  const className = getAlertClassName(type, noWrap);
   const icon = getIcon(type);
   return (
     <div className={className}>
@@ -17,16 +23,16 @@ export const Alert = ({ message, type, actions }: AlertProps) => {
   );
 };
 
-const getAlertClassName = (type: AlertProps["type"]) => {
+const getAlertClassName = (type: AlertProps["type"], noWrap: boolean) => {
   switch (type) {
     case "error":
-      return "alert alert-error shadow-lg flex-wrap";
+      return `alert alert-error shadow-lg ${!noWrap && "flex-wrap"}`;
     case "info":
-      return "alert alert-info shadow-lg flex-wrap";
+      return `alert alert-info shadow-lg ${!noWrap && "flex-wrap"}`;
     case "success":
-      return "alert alert-success shadow-lg flex-wrap";
+      return `alert alert-success shadow-lg ${!noWrap && "flex-wrap"}`;
     case "warning":
-      return "alert alert-warning shadow-lg flex-wrap";
+      return `alert alert-warning shadow-lg ${!noWrap && "flex-wrap"}`;
   }
 };
 

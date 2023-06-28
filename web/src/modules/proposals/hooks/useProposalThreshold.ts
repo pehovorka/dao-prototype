@@ -6,7 +6,7 @@ import type { BigNumber } from "ethers";
 export const useProposalThreshold = () => {
   const [proposalThreshold, setProposalThreshold] = useState<BigNumber>();
 
-  const { value, error } =
+  const { value } =
     useCall({
       contract: governorContract,
       method: "proposalThreshold",
