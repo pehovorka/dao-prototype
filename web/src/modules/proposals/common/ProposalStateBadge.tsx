@@ -16,7 +16,7 @@ export const ProposalStateBadge = ({ state }: ProposalStateBadgeProps) => {
 const getBadgeColor = (state: ProposalStateBadgeProps["state"]) => {
   switch (state) {
     case "active":
-      return "badge-primary";
+      return "badge-accent";
     case "canceled":
       return "badge-error";
     case "defeated":

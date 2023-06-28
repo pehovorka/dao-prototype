@@ -29,20 +29,24 @@ export const ActionsContainer = () => {
       </label>
       <div className="collapse-content">
         <div className="tabs tabs-boxed">
-          <a
-            className={`tab transition-all ${
-              tab === "transfer" && "tab-active"
-            }`}
-            onClick={() => setTab("transfer")}
-          >
-            <FormattedMessage id="proposal.new.page.form.actions.action.transfer.title" />
-          </a>
-          <a
-            className={`tab transition-all ${tab === "custom" && "tab-active"}`}
-            onClick={() => setTab("custom")}
-          >
-            <FormattedMessage id="proposal.new.page.form.actions.action.custom.title" />
-          </a>
+          <div className="border border-lightBorder rounded-btn">
+            <a
+              className={`tab transition-all ${
+                tab === "transfer" && "tab-active"
+              }`}
+              onClick={() => setTab("transfer")}
+            >
+              <FormattedMessage id="proposal.new.page.form.actions.action.transfer.title" />
+            </a>
+            <a
+              className={`tab transition-all ${
+                tab === "custom" && "tab-active"
+              }`}
+              onClick={() => setTab("custom")}
+            >
+              <FormattedMessage id="proposal.new.page.form.actions.action.custom.title" />
+            </a>
+          </div>
         </div>
         {enabled && tab === "transfer" && <TransferFundsActionContainer />}
 

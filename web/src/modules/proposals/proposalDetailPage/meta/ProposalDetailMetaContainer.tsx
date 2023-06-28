@@ -1,7 +1,7 @@
 import { FormattedMessage } from "react-intl";
 import { useAtomValue } from "jotai";
 
-import { ProposalStateBadge } from "@/modules/proposals/common";
+import { HasVotedBadge, ProposalStateBadge } from "@/modules/proposals/common";
 import { proposalDetailAtom } from "@/atoms";
 import {
   type ProposalCreatedEvent,
@@ -26,7 +26,8 @@ export const ProposalDetailMetaContainer = () => {
           iconClassName="ml-2 h-4 fill-base-content opacity-50 transition-all hover:fill-secondary hover:opacity-100"
         />
       </div>
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-3 items-center">
+        <HasVotedBadge type="list" proposalId={proposal.data.proposalId} />
         {state && <ProposalStateBadge state={state} />}
         <ProposalActionButtons />
       </div>

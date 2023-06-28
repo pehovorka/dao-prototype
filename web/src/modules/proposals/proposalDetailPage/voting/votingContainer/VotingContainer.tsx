@@ -10,7 +10,6 @@ import {
   useProposalState,
   useHasVoted,
 } from "@/modules/proposals/hooks";
-import { HasVotedBadge } from "../../../common";
 import { useProposalVotes } from "../../../hooks";
 
 export const VotingContainer = () => {
@@ -76,12 +75,6 @@ export const VotingContainer = () => {
           )}
           {proposalState === "active" && (
             <VoteModalButton hidden={hasVoted ? true : false} />
-          )}
-          {hasVoted && (
-            <HasVotedBadge
-              type="detail"
-              proposalId={proposal.data.proposalId}
-            />
           )}
         </div>
       </div>
